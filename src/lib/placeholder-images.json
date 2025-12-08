@@ -1,0 +1,88 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A premium, modern hero illustration for Zekkers, a global career platform. It showcases AI-powered hiring with a glowing globe, diverse professionals, and futuristic UI elements, embodying trust and ambition.",
+      "imageUrl": "https://storage.googleapis.com/studio-ux-testing-projects/task-325-1721332938334.jpeg",
+      "imageHint": "AI hiring ecosystem"
+    },
+    {
+      "id": "avatar1",
+      "description": "Avatar for Sarah J.",
+      "imageUrl": "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2Mzg1NzIyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "avatar2",
+      "description": "Avatar for Michael B.",
+      "imageUrl": "https://images.unsplash.com/photo-1521146764736-56c929d59c83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2Mzg1NzIyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "avatar3",
+      "description": "Avatar for David L.",
+      "imageUrl": "https://images.unsplash.com/photo-1548544149-4835e62ee5b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2Mzg1NzIyNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "yuvahome",
+      "description": "Dashboard preview for Yuva Setu",
+      "imageUrl": "https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkYXNoYm9hcmQlMjBwcmV2aWV3fGVufDB8fHx8MTc2Mzg5MjgwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard preview"
+    },
+    {
+      "id": "yuvaapp",
+      "description": "Yuva Setu app mockup",
+      "imageUrl": "https://images.unsplash.com/photo-1707836916010-3c4ad261936c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhcHAlMjBtb2NrdXB8ZW58MHx8fHwxNzYzODkyODAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "app mockup"
+    },
+    {
+      "id": "studentdash",
+      "description": "Student dashboard preview",
+      "imageUrl": "https://images.unsplash.com/photo-1594256340135-fa2480f82417?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzdHVkZW50JTIwZGFzaGJvYXJkfGVufDB8fHx8MTc2Mzg5MjgwMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "student dashboard"
+    },
+    {
+      "id": "employerdash",
+      "description": "Employer dashboard preview",
+      "imageUrl": "https://images.unsplash.com/photo-1719925219818-a09debbf804f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbXBsb3llciUyMGRhc2hib2FyZHxlbnwwfHx8fDE3NjM4OTI4MDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "employer dashboard"
+    },
+    {
+      "id": "logo",
+      "description": "Zekkers company logo",
+      "imageUrl": "https://images.unsplash.com/photo-1633796212691-0cfba2ab1dab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG1vbm9ncmFtfGVufDB8fHx8MTc2Mzk4ODc4NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "abstract monogram"
+    },
+    {
+      "id": "company1",
+      "description": "Company 1 logo",
+      "imageUrl": "https://images.unsplash.com/photo-1620288627223-53302f4e8c74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjM5NzEzODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company2",
+      "description": "Company 2 logo",
+      "imageUrl": "https://images.unsplash.com/photo-1549924231-f129b911e442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjM5NzEzODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company3",
+      "description": "Company 3 logo",
+      "imageUrl": "https://images.unsplash.com/photo-1619551734325-81aaf323686c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjM5NzEzODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company4",
+      "description": "Company 4 logo",
+      "imageUrl": "https://images.unsplash.com/photo-1562783912-21ad31ee2a83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjM5NzEzODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "company5",
+      "description": "Company 5 logo",
+      "imageUrl": "https://images.unsplash.com/photo-1529612700005-e35377bf1415?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjM5NzEzODl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    }
+  ]
+}

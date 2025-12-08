@@ -1,0 +1,100 @@
+
+
+'use client';
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
+import { ChevronDown } from 'lucide-react';
+import {
+  Sidebar,
+  useSidebar,
+} from '@/components/ui/sidebar';
+import { menuItems } from './menu-items';
+import { cn } from '@/lib/utils';
+
+function GlobalSidebar() {
+  const pathname = usePathname();
+  const { state: sidebarState } = useSidebar();
+
+  const isItemActive = (item: any) => {
+    if (item.subItems) {
+      return item.subItems.some((sub: any) => pathname.startsWith(sub.to));
+    }
+    return item.to ? pathname.startsWith(item.to) : false;
+  };
+
+  return (
+    <Sidebar className="flex flex-col">
+       <Link
+        href="/global-employers-dashboard"
+        className="flex items-center gap-3 px-3 py-4 hover:bg-slate-50 transition-colors"
+      >
+        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold">
+            ZK
+        </div>
+        {sidebarState === 'expanded' && (
+          <div className="overflow-hidden">
+            <div className="font-semibold">GlobalCorp</div>
+            <div className="text-xs text-slate-500 truncate">Global Employer</div>
+          </div>
+        )}
+      </Link>
+
+      <nav className="flex flex-col gap-1 p-2 flex-1 overflow-y-auto">
+        {menuItems.map((item) =>
+          item.subItems ? (
+            <Collapsible key={item.key} defaultOpen={isItemActive(item)}>
+              <CollapsibleTrigger
+                className={cn('group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-slate-50', isItemActive(item) ? 'bg-slate-100' : '')}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={cn('text-slate-600 group-hover:text-primary', isItemActive(item) ? 'text-primary' : '')}
+                  >
+                    {item.icon}
+                  </div>
+                  {sidebarState === 'expanded' && <div className="text-sm font-semibold">{item.label}</div>}
+                </div>
+                {sidebarState === 'expanded' && <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />}
+              </CollapsibleTrigger>
+              <CollapsibleContent className={cn("pl-6", sidebarState === 'collapsed' && 'hidden')}>
+                <div className="flex flex-col gap-1 mt-1">
+                  {item.subItems.map((subItem) => (
+                    <Link
+                      key={subItem.key}
+                      href={subItem.to}
+                      className={cn('group flex items-center gap-3 p-2 rounded-md text-sm', pathname === subItem.to ? 'bg-slate-100' : 'hover:bg-slate-50')}
+                    >
+                      <div className="text-xs font-semibold">
+                        {subItem.label}
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          ) : (
+            <Link
+              key={item.key}
+              href={item.to || '#'}
+              className={cn('group flex items-center gap-3 p-2 rounded-md', isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50')}
+            >
+              <div
+                className={cn('text-slate-600 group-hover:text-primary', isItemActive(item) ? 'text-primary' : '')}
+              >
+                {item.icon}
+              </div>
+              {sidebarState === 'expanded' && <div className="text-sm font-semibold">{item.label}</div>}
+            </Link>
+          )
+        )}
+      </nav>
+    </Sidebar>
+  );
+}
+export default GlobalSidebar;

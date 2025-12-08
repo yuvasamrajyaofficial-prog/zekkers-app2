@@ -1,0 +1,548 @@
+
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user within the Zekkers job portal, containing their profile information.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the user (should match auth UID)." },
+        "name": { "type": "string", "description": "The user's full name." },
+        "email": { "type": "string", "description": "The user's email address.", "format": "email" },
+        "role": { "type": "string", "enum": ["Student/Job Seeker", "Indian Employer", "NGO", "Global Employer", "Admin"]},
+        "phone": { "type": "string", "description": "The user's phone number." },
+        "location": { "type": "string", "description": "The user's city and country." },
+        "about": { "type": "string", "description": "A short biography or summary about the user." },
+        "avatarUrl": { "type": "string", "description": "URL for the user's profile picture.", "format": "uri" },
+        "resumeUrl": { "type": "string", "description": "URL for the user's uploaded resume.", "format": "uri" },
+        "resumeScore": { "type": "number", "description": "An AI-calculated score for the user's resume." },
+        "skills": {
+          "type": "array",
+          "description": "A list of the user's skills.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "description": "The name of the skill." },
+              "level": { "type": "number", "description": "The user's self-assessed proficiency level (0-100)." }
+            },
+            "required": ["name", "level"]
+          }
+        },
+        "education": {
+          "type": "array",
+          "description": "The user's educational background.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "school": { "type": "string" },
+              "degree": { "type": "string" },
+              "startYear": { "type": "number" },
+              "endYear": { "type": "number" }
+            },
+            "required": ["id", "school", "degree"]
+          }
+        },
+        "experience": {
+          "type": "array",
+          "description": "The user's work experience.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "company": { "type": "string" },
+              "role": { "type": "string" },
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["id", "company", "role"]
+          }
+        },
+        "projects": {
+          "type": "array",
+          "description": "Projects the user has worked on.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "link": { "type": "string", "format": "uri" }
+            },
+            "required": ["id", "title"]
+          }
+        },
+        "languages": { "type": "array", "items": { "type": "string" } },
+        "certifications": { "type": "array", "items": { "type": "string" } },
+        "social": {
+          "type": "object",
+          "properties": {
+            "github": { "type": "string" },
+            "portfolio": { "type": "string", "format": "uri" }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp of the last profile update." }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "Company": {
+      "title": "Company",
+      "description": "Represents an employer's company profile.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "description": { "type": "string" },
+        "logoUrl": { "type": "string", "format": "uri" },
+        "verifiedLevel": { "type": "string", "enum": ["none", "basic", "document", "premium"] },
+        "companyScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name"]
+    },
+    "TeamMember": {
+      "title": "Team Member",
+      "description": "A user's role within a company.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user on the team." },
+        "role": { "type": "string", "enum": ["owner", "admin", "recruiter", "interviewer"] },
+        "invitedBy": { "type": "string", "description": "UID of the user who invited this member." },
+        "status": { "type": "string", "enum": ["invited", "active"] }
+      },
+      "required": ["userId", "role", "status"]
+    },
+    "Job": {
+      "title": "Job",
+      "description": "Represents a job posting.",
+      "type": "object",
+      "properties": {
+        "companyId": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["government", "private", "international"] },
+        "description": { "type": "string" },
+        "location": { "type": "string" },
+        "country": { "type": "string" },
+        "salaryMin": { "type": "number" },
+        "salaryMax": { "type": "number" },
+        "currency": { "type": "string" },
+        "jobType": { "type": "string", "enum": ["onsite", "hybrid", "remote", "wfh", "internship", "fresher", "walkin", "parttime"] },
+        "jobSchedule": { "type": "string", "enum": ["full-time", "part-time"] },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "qualifications": { "type": "array", "items": { "type": "string" } },
+        "assessmentId": { "type": "string" },
+        "referralCode": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "published", "paused", "closed"] },
+        "postedAt": { "type": "string", "format": "date-time" },
+        "scheduledAt": { "type": "string", "format": "date-time" },
+        "companyVerified": { "type": "boolean", "description": "Whether the company is verified." },
+        "companyScore": { "type": "number", "description": "A composite trust score for the company." }
+      },
+      "required": ["companyId", "title", "category", "status"]
+    },
+     "Quiz": {
+      "title": "Quiz",
+      "description": "Represents a quiz with questions.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "questions": { 
+          "type": "array", 
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "options": { "type": "array", "items": { "type": "string" } },
+              "correctAnswer": { "type": "number" }
+            },
+            "required": ["text", "options", "correctAnswer"]
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "questions"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "Represents a candidate's application for a job.",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string" },
+        "candidateId": { "type": "string" },
+        "companyId": { "type": "string" },
+        "stage": { "type": "string", "enum": ["Applied", "Shortlisted", "Assessment Pending", "Assessment Completed", "Interview Scheduled", "HR Round Pending", "Document Verification Pending", "Notice Period Negotiation", "Selected / Offer Made", "Hired", "Rejected", "Dropped / No Response", "Walk-In Candidate" ] },
+        "atsScore": { "type": "number" },
+        "appliedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["jobId", "candidateId", "companyId", "stage", "appliedAt"]
+    },
+    "Competition": {
+      "title": "Competition",
+      "description": "A single competition event.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "difficulty": { "type": "string", "enum": ["Beginner", "Intermediate", "Advanced", "Pro Mode"] },
+        "tasks": { "type": "array", "items": { "type": "string" } },
+        "prizes": { "type": "string" },
+        "rules": { "type": "string" },
+        "duration": { "type": "number", "description": "Duration in minutes" },
+        "startAt": { "type": "string", "format": "date-time" },
+        "endAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "difficulty", "startAt", "endAt"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "A user's submission for a competition.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "competitionId": { "type": "string" },
+        "submissionData": { "type": "object" },
+        "score": { "type": "number" },
+        "rank": { "type": "number" },
+        "aiFeedback": { "type": "string" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "competitionId", "submittedAt"]
+    },
+    "LeaderboardEntry": {
+      "title": "Leaderboard Entry",
+      "description": "An entry in a competition's leaderboard.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "score": { "type": "number" },
+        "rank": { "type": "number" }
+      },
+      "required": ["userId", "score", "rank"]
+    },
+    "AssessmentTemplate": {
+      "title": "Assessment Template",
+      "description": "A reusable assessment template for evaluating candidates.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "difficulty": { "type": "string", "enum": ["Easy", "Medium", "Hard"] },
+        "duration": { "type": "number", "description": "Duration in minutes" },
+        "passingScore": { "type": "number" },
+        "sections": { "type": "array", "items": { "type": "object" } },
+        "weights": { "type": "object" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "aiGenerated": { "type": "boolean" }
+      },
+      "required": ["name", "category", "createdBy"]
+    },
+    "AssessmentQuestion": {
+      "title": "Assessment Question",
+      "description": "A single question within an assessment template.",
+      "type": "object",
+      "properties": {
+        "templateId": { "type": "string" },
+        "type": { "type": "string", "enum": ["MCQ", "Coding", "Text", "Audio", "Video Response", "File Upload"] },
+        "text": { "type": "string" },
+        "options": { "type": "array", "items": { "type": "object" } },
+        "correctAnswers": { "type": "array", "items": { "type": "string" } },
+        "codeTestCases": { "type": "array", "items": { "type": "object" } },
+        "media": { "type": "string", "format": "uri" },
+        "difficulty": { "type": "string", "enum": ["Easy", "Medium", "Hard"] }
+      },
+      "required": ["templateId", "type", "text"]
+    },
+    "Integration": {
+      "title": "Integration",
+      "description": "Represents a third-party integration for a college.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["lms", "erp", "sso", "webhook", "custom"] },
+        "provider": { "type": "string", "enum": ["moodle", "canvas", "microsoft", "google", "custom"] },
+        "config": {
+          "type": "object",
+          "properties": {
+            "clientAppUrl": {
+              "type": "string",
+              "description": "URL of the client application to redirect to after SSO."
+            }
+          }
+        },
+        "status": { "type": "string", "enum": ["connected", "error", "pending", "disabled"] },
+        "lastSyncAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "createdBy": { "type": "string" }
+      },
+      "required": ["id", "type", "provider", "status"]
+    },
+    "IntegrationLog": {
+      "title": "Integration Log",
+      "description": "A log entry for an integration event.",
+      "type": "object",
+      "properties": {
+        "integrationId": { "type": "string" },
+        "severity": { "type": "string", "enum": ["info", "warning", "error"] },
+        "message": { "type": "string" },
+        "meta": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["integrationId", "severity", "message"]
+    },
+    "IntegrationTask": {
+      "title": "Integration Task",
+      "description": "A task to be processed for an integration.",
+      "type": "object",
+      "properties": {
+        "integrationId": { "type": "string" },
+        "action": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["integrationId", "action"]
+    },
+    "Webhook": {
+      "title": "Webhook",
+      "description": "Represents a configured webhook for event delivery.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "secretHash": { "type": "string" },
+        "events": { "type": "array", "items": { "type": "string" } },
+        "enabled": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "url", "events", "enabled"]
+    },
+    "WebhookLog": {
+      "title": "Webhook Log",
+      "description": "A log entry for a webhook delivery attempt.",
+      "type": "object",
+      "properties": {
+        "webhookId": { "type": "string" },
+        "eventType": { "type": "string" },
+        "payload": { "type": "object" },
+        "status": { "type": "string", "enum": ["queued", "success", "failed"] },
+        "error": { "type": "string" },
+        "attempts": { "type": "number" },
+        "lastAttemptAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["webhookId", "eventType", "status"]
+    },
+    "Branding": {
+      "title": "Branding",
+      "description": "Stores branding assets and configurations for a college.",
+      "type": "object",
+      "properties": {
+        "primaryColor": { "type": "string", "format": "color" },
+        "secondaryColor": { "type": "string", "format": "color" },
+        "accentColor": { "type": "string", "format": "color" },
+        "logoPath": { "type": "string", "description": "Path to the logo in Firebase Storage." },
+        "bannerPath": { "type": "string", "description": "Path to the banner in Firebase Storage." },
+        "version": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "ExportRequest": {
+        "title": "Export Request",
+        "description": "A request to export data from the system.",
+        "type": "object",
+        "properties": {
+            "id": { "type": "string" },
+            "createdBy": { "type": "string" },
+            "type": { "type": "string", "enum": ["students", "drives", "assessments", "roadmaps", "employers"] },
+            "filters": { "type": "object" },
+            "format": { "type": "string", "enum": ["csv", "excel", "pdf", "json"] },
+            "status": { "type": "string", "enum": ["queued", "processing", "completed", "failed"] },
+            "result": { 
+                "type": "object",
+                "properties": {
+                    "storagePath": { "type": "string" },
+                    "downloadUrl": { "type": "string", "format": "uri" },
+                    "sizeBytes": { "type": "number" },
+                    "generatedAt": { "type": "string", "format": "date-time" }
+                }
+            },
+            "scheduledFor": { "type": "string", "format": "date-time" },
+            "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "createdBy", "type", "format", "status"]
+    },
+    "ExportLog": {
+        "title": "Export Log",
+        "description": "A log entry for a data export attempt.",
+        "type": "object",
+        "properties": {
+            "requestId": { "type": "string" },
+            "filePath": { "type": "string" },
+            "fileName": { "type": "string" },
+            "mimeType": { "type": "string" },
+            "sizeBytes": { "type": "number" },
+            "createdAt": { "type": "string", "format": "date-time" },
+            "status": { "type": "string", "enum": ["success", "failed"] },
+            "error": { "type": "string" }
+        },
+        "required": ["requestId", "status"]
+    },
+    "SupportTicket": {
+      "title": "Support Ticket",
+      "description": "A support ticket created by a user or college staff.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "createdBy": { "type": "string", "description": "UID of the user who created the ticket." },
+        "subject": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "status": { "type": "string", "enum": ["open", "assigned", "in_progress", "resolved", "closed"] },
+        "assignedTo": { "type": "string", "description": "UID of the admin or support staff assigned." },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "attachments": { "type": "array", "items": { "type": "object", "properties": { "name": { "type": "string" }, "storagePath": { "type": "string" } } } },
+        "channel": { "type": "string", "enum": ["portal", "email", "phone", "admin"] },
+        "lastActivityAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "createdBy", "subject", "status"]
+    },
+    "SupportTicketComment": {
+      "title": "Support Ticket Comment",
+      "description": "A comment or reply on a support ticket.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string", "description": "UID of the author." },
+        "text": { "type": "string" },
+        "type": { "type": "string", "enum": ["note", "reply", "system"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "authorId", "text", "type"]
+    },
+    "SupportLog": {
+      "title": "Support Log",
+      "description": "An audit log entry for a support ticket event.",
+      "type": "object",
+      "properties": {
+        "ticketId": { "type": "string" },
+        "action": { "type": "string" },
+        "by": { "type": "string", "description": "UID of the user who performed the action." },
+        "meta": { "type": "object", "description": "Additional metadata about the action." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["ticketId", "action", "by"]
+    },
+    "SupportSettings": {
+      "title": "Support Settings",
+      "description": "Configuration for the support system for a college.",
+      "type": "object",
+      "properties": {
+        "autoAssignRules": { "type": "object" },
+        "escalationRules": { "type": "object" },
+        "supportEmails": { "type": "object" },
+        "slaHours": { "type": "object" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password", "anonymous", "google.com"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores all data for a single user, including their public and private profile information. The document ID must match the Firebase Auth UID."
+    },
+    "/companies/{companyId}": {
+      "schema": { "$ref": "#/entities/Company" },
+      "description": "Stores public profiles for employer companies."
+    },
+    "/companies/{companyId}/team/{userId}": {
+      "schema": { "$ref": "#/entities/TeamMember" },
+      "description": "Stores team members and their roles for a company."
+    },
+    "/jobs/{jobId}": {
+      "schema": { "$ref": "#/entities/Job" },
+      "description": "Stores all job postings."
+    },
+    "/quizzes/{quizId}": {
+      "schema": { "$ref": "#/entities/Quiz" },
+      "description": "Stores all quizzes created by admins."
+    },
+    "/applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/Application" },
+      "description": "Stores all candidate applications for jobs."
+    },
+    "/competitions/{competitionId}": {
+      "schema": { "$ref": "#/entities/Competition" },
+      "description": "Stores details for each competition."
+    },
+    "/submissions/{competitionId}/{userId}": {
+      "schema": { "$ref": "#/entities/Submission" },
+      "description": "Stores user submissions for a specific competition."
+    },
+    "/leaderboards/{competitionId}": {
+      "schema": { "$ref": "#/entities/LeaderboardEntry" },
+      "description": "Stores the leaderboard for a specific competition."
+    },
+    "/assessment_templates/{templateId}": {
+      "schema": { "$ref": "#/entities/AssessmentTemplate" },
+      "description": "Stores reusable assessment templates."
+    },
+    "/assessment_questions/{questionId}": {
+      "schema": { "$ref": "#/entities/AssessmentQuestion" },
+      "description": "Stores individual questions for assessment templates."
+    },
+    "/colleges/{collegeId}/integrations/{integrationId}": {
+      "schema": { "$ref": "#/entities/Integration" },
+      "description": "Stores third-party integration configurations for a college."
+    },
+    "/colleges/{collegeId}/integrationLogs/{logId}": {
+      "schema": { "$ref": "#/entities/IntegrationLog" },
+      "description": "Logs for integration events and errors for a college."
+    },
+    "/colleges/{collegeId}/integrationTasks/{taskId}": {
+      "schema": { "$ref": "#/entities/IntegrationTask" },
+      "description": "Queue of tasks to be processed for a college's integrations."
+    },
+    "/colleges/{collegeId}/branding/{brandingId}": {
+      "schema": { "$ref": "#/entities/Branding" },
+      "description": "Stores branding assets and configurations for a college."
+    },
+    "/colleges/{collegeId}/webhooks/{webhookId}": {
+      "schema": { "$ref": "#/entities/Webhook" },
+      "description": "Webhook configurations for a specific college."
+    },
+    "/colleges/{collegeId}/webhookLogs/{logId}": {
+      "schema": { "$ref": "#/entities/WebhookLog" },
+      "description": "Logs for all webhook delivery attempts for a college."
+    },
+    "/colleges/{collegeId}/exportRequests/{requestId}": {
+        "schema": { "$ref": "#/entities/ExportRequest" },
+        "description": "Stores requests for data exports for a specific college."
+    },
+    "/colleges/{collegeId}/exportLogs/{logId}": {
+        "schema": { "$ref": "#/entities/ExportLog" },
+        "description": "Logs for all data export attempts for a college."
+    },
+    "/colleges/{collegeId}/supportTickets/{ticketId}": {
+        "schema": { "$ref": "#/entities/SupportTicket" },
+        "description": "Stores support tickets for a specific college."
+    },
+    "/colleges/{collegeId}/supportTickets/{ticketId}/comments/{commentId}": {
+        "schema": { "$ref": "#/entities/SupportTicketComment" },
+        "description": "Stores comments for a specific support ticket."
+    },
+    "/colleges/{collegeId}/supportLogs/{logId}": {
+        "schema": { "$ref": "#/entities/SupportLog" },
+        "description": "Audit log for support ticket events for a college."
+    },
+    "/colleges/{collegeId}/supportSettings/{settingsId}": {
+        "schema": { "$ref": "#/entities/SupportSettings" },
+        "description": "Settings for the support system for a college."
+    }
+  }
+}
