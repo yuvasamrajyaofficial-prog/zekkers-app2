@@ -75,6 +75,16 @@ _International hiring with global talent insights, visa tracking, and multi-coun
 ![NGO Dashboard - Program Management](docs/screenshots/ngo-dashboard.png)
 _Track beneficiaries, skill programs, placements, and social impact metrics_
 
+### College Analytics & Insights
+
+![College Analytics Dashboard](docs/screenshots/college-analytics.png)
+_AI-powered analytics with hiring trends, job categories, and actionable placement insights_
+
+### NGO Donor Reporting
+
+![NGO Donor Reporting & Funding](docs/screenshots/ngo-donor-reporting.png)
+_Comprehensive donor management with commitment tracking and program funding analytics_
+
 > **Note:** Screenshots coming soon! The app is live and fully functional.
 
 ---
