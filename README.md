@@ -50,25 +50,30 @@
 
 ## 📸 Screenshots
 
-### Landing Page
+### Student Dashboard
 
-![Zekkers Landing Page](docs/screenshots/landing.png)
-_Beautiful landing page with interactive shining stars effect_
-
-### AI-Powered Features
-
-![AI Resume Analyzer](docs/screenshots/ai-resume.png)
-_Resume analysis with AI-powered scoring and recommendations_
+![Student Dashboard - AI Job Matching](docs/screenshots/student-dashboard.png)
+_Smart job recommendations with AI-powered match scores for government, private, and international opportunities_
 
 ### Employer Dashboard
 
-![ATS Board](docs/screenshots/ats-board.png)
-_Kanban-style Applicant Tracking System_
+![Employer Dashboard - ATS & Hiring](docs/screenshots/employer-dashboard.png)
+_Complete hiring dashboard with ATS pipeline, AI insights, and candidate management_
 
-### Student Dashboard
+### College Dashboard
 
-![Job Search](docs/screenshots/job-search.png)
-_Smart job matching with personalized recommendations_
+![College Dashboard - Placement Analytics](docs/screenshots/college-dashboard.png)
+_Real-time placement tracking with department analytics and student readiness metrics_
+
+### Global Employer Dashboard
+
+![Global Employer Dashboard](docs/screenshots/global-employer-dashboard.png)
+_International hiring with global talent insights, visa tracking, and multi-country analytics_
+
+### NGO Dashboard
+
+![NGO Dashboard - Program Management](docs/screenshots/ngo-dashboard.png)
+_Track beneficiaries, skill programs, placements, and social impact metrics_
 
 > **Note:** Screenshots coming soon! The app is live and fully functional.
 
