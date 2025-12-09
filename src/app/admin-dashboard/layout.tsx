@@ -11,7 +11,7 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="light flex flex-col h-screen">
+    <div className="light flex flex-col min-h-screen">
       <SidebarProvider>
         <AdminSidebar />
         <SidebarInset>

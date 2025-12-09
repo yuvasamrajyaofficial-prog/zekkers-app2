@@ -12,7 +12,7 @@ export default function CollegeDashboardLayout({
 }) {
 
   return (
-    <div className="light flex flex-col h-screen">
+    <div className="light flex flex-col min-h-screen">
       <SidebarProvider>
         <CollegeSidebar />
         <SidebarInset>
