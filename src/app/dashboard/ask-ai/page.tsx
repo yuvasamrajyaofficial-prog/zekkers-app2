@@ -55,7 +55,7 @@ export default function StudyAIPage() {
 
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col bg-white overflow-hidden">
+    <div className="min-h-screen flex flex-col bg-white overflow-hidden">
       {/* Main 3-pane layout */}
       <div className="flex-1 flex overflow-hidden">
         {/* Left Pane: Workspace List (Desktop) */}
