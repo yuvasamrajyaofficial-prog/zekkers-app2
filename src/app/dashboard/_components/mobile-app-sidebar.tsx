@@ -190,7 +190,7 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`text-white group-hover:text-gray-900 ${
+                  className={`text-orange-700 group-hover:text-gray-900 ${
                     isItemActive(item) ? 'text-gray-900' : ''
                   }`}
                 >
@@ -238,7 +238,7 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
             }`}
           >
             <div
-              className={`text-white group-hover:text-gray-900 ${
+              className={`text-orange-700 group-hover:text-gray-900 ${
                 isItemActive(item) ? 'text-gray-900' : ''
               }`}
             >
