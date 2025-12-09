@@ -202,14 +202,14 @@ export default function AppSidebar() {
           item.subItems ? (
             <Collapsible key={item.key} defaultOpen={isItemActive(item)}>
               <CollapsibleTrigger
-                className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-slate-50 ${
-                  isItemActive(item) ? 'bg-slate-100' : ''
+                className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-orange-50 ${
+                  isItemActive(item) ? 'bg-orange-100' : ''
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className={`text-slate-600 group-hover:text-primary ${
-                      isItemActive(item) ? 'text-primary' : ''
+                    className={`text-orange-700 group-hover:text-orange-600 ${
+                      isItemActive(item) ? 'text-orange-600' : ''
                     }`}
                   >
                     {item.icon}
@@ -226,13 +226,13 @@ export default function AppSidebar() {
                       href={subItem.to}
                       className={`group flex items-center gap-3 p-2 rounded-md text-sm ${
                         pathname === subItem.to
-                          ? 'bg-slate-100'
-                          : 'hover:bg-slate-50'
+                          ? 'bg-orange-100'
+                          : 'hover:bg-orange-50'
                       }`}
                     >
                       <div
-                        className={`text-slate-500 group-hover:text-primary ${
-                          pathname === subItem.to ? 'text-primary' : ''
+                        className={`text-orange-600 group-hover:text-orange-500 ${
+                          pathname === subItem.to ? 'text-orange-500' : ''
                         }`}
                       >
                         {subItem.icon}
@@ -250,12 +250,12 @@ export default function AppSidebar() {
               key={item.key}
               href={item.to}
               className={`group flex items-center gap-3 p-2 rounded-md ${
-                isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
+                isItemActive(item) ? 'bg-orange-100' : 'hover:bg-orange-50'
               }`}
             >
               <div
-                className={`text-slate-600 group-hover:text-primary ${
-                  isItemActive(item) ? 'text-primary' : ''
+                className={`text-orange-700 group-hover:text-orange-600 ${
+                  isItemActive(item) ? 'text-orange-600' : ''
                 }`}
               >
                 {item.icon}

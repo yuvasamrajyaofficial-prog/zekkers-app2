@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80 active:scale-[0.98] shadow-sm hover:shadow-md",
+        default: "bg-[#FFB900] text-[#1A1A1A] hover:bg-[#FF9500] active:bg-[#FF8000] active:scale-[0.98] shadow-md hover:shadow-lg font-semibold",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80 active:scale-[0.98] shadow-sm hover:shadow-md",
         outline:
-          "border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground hover:border-primary active:border-primary/80 active:scale-[0.98]",
+          "border-2 border-input bg-background hover:bg-accent hover:text-accent-foreground hover:border-[#FFB900] active:border-[#FF9500] active:scale-[0.98]",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70 active:scale-[0.98]",
         ghost: "hover:bg-accent hover:text-accent-foreground active:bg-accent/80 active:scale-[0.98]",
-        link: "text-primary underline-offset-4 hover:underline active:text-primary/80",
-        ai: "bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-xl shadow-lg hover:scale-[1.03] hover:shadow-xl active:scale-[1.01]"
+        link: "text-[#FFB900] underline-offset-4 hover:underline active:text-[#FF9500]",
+        ai: "bg-gradient-to-r from-[#FFB900] to-[#FFA500] text-[#1A1A1A] rounded-xl shadow-lg hover:scale-[1.03] hover:shadow-xl active:scale-[1.01] font-semibold"
       },
       size: {
         default: "h-10 px-4 py-2",

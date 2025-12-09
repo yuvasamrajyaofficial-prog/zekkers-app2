@@ -32,13 +32,13 @@
 
   .light {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 45 100% 51%;
+    --primary-foreground: 0 0% 10%;
     --secondary: 220 14% 96%;
     --secondary-foreground: 220 9% 46%;
     --muted: 220 14% 96%;
@@ -49,8 +49,14 @@
     --destructive-foreground: 0 0% 100%;
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
+    --ring: 45 100% 51%;
+    --sidebar: 220 14% 96%;
+    --sidebar-foreground: 20 90% 48%;
+    --sidebar-accent: 220 13% 91%;
+    --sidebar-accent-foreground: 20 90% 38%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 20 90% 48%;
+    --chart-1: 45 100% 51%;
     --chart-2: 24 95% 53%;
     --chart-3: 45 95% 53%;
     --chart-4: 198 93% 60%;
