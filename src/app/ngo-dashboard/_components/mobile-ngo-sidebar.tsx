@@ -58,13 +58,13 @@ export default function MobileNgoSidebar({ closeSheet }: MobileNgoSidebarProps) 
           key={item.key}
           href={item.to}
           onClick={closeSheet}
-          className={`group flex items-center gap-3 p-2 rounded-md ${
-            isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
+          className={`group flex items-center gap-3 p-2 rounded-md hover:bg-yellow-400 hover:text-gray-900 ${
+            isItemActive(item) ? 'bg-yellow-500 text-gray-900' : ''
           }`}
         >
           <div
-            className={`text-slate-600 group-hover:text-primary ${
-              isItemActive(item) ? 'text-primary' : ''
+            className={`text-orange-700 group-hover:text-gray-900 ${
+              isItemActive(item) ? 'text-gray-900' : ''
             }`}
           >
             {item.icon}
