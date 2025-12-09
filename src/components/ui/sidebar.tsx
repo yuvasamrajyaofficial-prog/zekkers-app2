@@ -199,7 +199,7 @@ const Sidebar = React.forwardRef<
           <SheetContent
             data-sidebar="sidebar"
             data-mobile="true"
-            className="w-[--sidebar-width] bg-gray-100 p-0 text-orange-700 [&>button]:hidden fixed inset-y-0 left-0 z-50 shadow-2xl border-r border-gray-200"
+            className="w-[--sidebar-width] bg-gray-100 p-0 text-white [&>button]:hidden fixed inset-y-0 left-0 z-50 shadow-2xl border-r border-gray-200"
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
