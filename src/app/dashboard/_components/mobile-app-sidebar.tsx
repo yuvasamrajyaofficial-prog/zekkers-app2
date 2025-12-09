@@ -184,14 +184,14 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
         item.subItems ? (
           <Collapsible key={item.key} defaultOpen={isItemActive(item)}>
             <CollapsibleTrigger
-              className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-orange-50 ${
-                isItemActive(item) ? 'bg-orange-100' : ''
+              className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-yellow-400 hover:text-gray-900 ${
+                isItemActive(item) ? 'bg-yellow-500 text-gray-900' : ''
               }`}
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`text-orange-700 group-hover:text-orange-600 ${
-                    isItemActive(item) ? 'text-orange-600' : ''
+                  className={`text-white group-hover:text-gray-900 ${
+                    isItemActive(item) ? 'text-gray-900' : ''
                   }`}
                 >
                   {item.icon}
@@ -214,8 +214,8 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
                     }`}
                   >
                     <div
-                      className={`text-orange-600 group-hover:text-orange-500 ${
-                        pathname === subItem.to ? 'text-orange-500' : ''
+                      className={`text-white group-hover:text-gray-900 ${
+                        pathname === subItem.to ? 'text-gray-900' : ''
                       }`}
                     >
                       {subItem.icon}
@@ -238,8 +238,8 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
             }`}
           >
             <div
-              className={`text-orange-700 group-hover:text-orange-600 ${
-                isItemActive(item) ? 'text-orange-600' : ''
+              className={`text-white group-hover:text-gray-900 ${
+                isItemActive(item) ? 'text-gray-900' : ''
               }`}
             >
               {item.icon}
