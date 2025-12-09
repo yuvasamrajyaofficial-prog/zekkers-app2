@@ -47,7 +47,7 @@ export default function BrandingSettingsPage() {
                 </div>
                     <div className="space-y-2">
                     <Label>Brand Colors</Label>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <Input type="color" defaultValue="#3740FF" className="h-12 p-1" />
                         <Input type="color" defaultValue="#06B6D4" className="h-12 p-1" />
                     </div>

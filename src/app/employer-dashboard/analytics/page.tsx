@@ -150,7 +150,7 @@ export default function EmployerAnalyticsPage() {
       </div>
       
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="mt-6 space-y-6">
-        <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {kpiData.map(kpi => (
                 <motion.div variants={itemVariants} key={kpi.title}><KpiCard kpi={kpi} /></motion.div>
             ))}
