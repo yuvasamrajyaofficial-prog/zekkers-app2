@@ -159,7 +159,7 @@ export default function EmployerDashboardPage() {
             <div className="lg:col-span-2 space-y-6">
 
                 {/* 2. Top Analytics Summary */}
-                <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {kpiData.slice(0, 6).map(kpi => (
                         <motion.div variants={itemVariants} key={kpi.title}><KpiCard kpi={kpi} /></motion.div>
                     ))}
@@ -174,7 +174,7 @@ export default function EmployerDashboardPage() {
                                 <Button variant="ghost" size="sm">Open ATS <ArrowRight className="w-4 h-4 ml-2" /></Button>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className="grid grid-cols-3 md:grid-cols-7 gap-2 text-center">
+                        <CardContent className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-2 text-center">
                             {['Applied', 'Screening', 'Assessment', 'Interview', 'Offer', 'Hired', 'Rejected'].map(stage => (
                                 <div key={stage} className="p-2 bg-slate-50 rounded-lg border">
                                     <p className="font-bold text-xl">{(Math.random() * 50).toFixed(0)}</p>
