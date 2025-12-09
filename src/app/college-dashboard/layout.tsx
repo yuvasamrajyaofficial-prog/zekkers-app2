@@ -17,7 +17,7 @@ export default function CollegeDashboardLayout({
         <CollegeSidebar />
         <SidebarInset>
           <Topbar dashboardName="College Dashboard" />
-          <main className="flex-1 bg-slate-50 overflow-y-auto">
+          <main className="flex-1 bg-white overflow-y-auto">
             {children}
           </main>
         </SidebarInset>

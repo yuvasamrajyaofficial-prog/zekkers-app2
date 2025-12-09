@@ -16,7 +16,7 @@ export default function EmployerDashboardLayout({
         <EmployerSidebar />
         <SidebarInset>
           <Topbar dashboardName="Employer Dashboard" />
-          <main className="flex-1 bg-slate-50 overflow-y-auto">
+          <main className="flex-1 bg-white overflow-y-auto">
             {children}
           </main>
         </SidebarInset>
