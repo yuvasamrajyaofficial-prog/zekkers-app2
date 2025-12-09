@@ -119,7 +119,7 @@ export default function MessagesPage() {
     }
 
   return (
-    <div className="h-[calc(100vh-65px)] flex bg-white border-t overflow-hidden">
+    <div className="min-h-screen flex bg-white border-t overflow-hidden">
       {/* Inbox Panel */}
       <aside className={cn(
         "w-full md:w-1/3 lg:w-1/4 h-full border-r flex-col",
