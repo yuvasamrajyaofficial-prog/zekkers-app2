@@ -85,7 +85,7 @@ export default function NgoAssessmentsPage() {
           </div>
         </CardHeader>
         <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <StatCard title="Total Assessments" value="8" icon={<ClipboardCheck className="text-muted-foreground"/>} />
                 <StatCard title="Certificates Issued" value="452" icon={<Award className="text-muted-foreground"/>} />
                 <StatCard title="Avg. Score" value="82%" icon={<BarChart className="text-muted-foreground"/>} />

@@ -125,7 +125,7 @@ export default function CompetitionsPage() {
             {/* Categories */}
             <motion.section variants={containerVariants} initial="hidden" animate="visible">
               <h2 className="text-2xl font-bold mb-4">Categories</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 {competitionCategories.map((cat) => (
                   <motion.div key={cat.name} variants={itemVariants}>
                     <Card className="text-center p-4 hover:shadow-lg hover:-translate-y-1 transition-transform cursor-pointer">

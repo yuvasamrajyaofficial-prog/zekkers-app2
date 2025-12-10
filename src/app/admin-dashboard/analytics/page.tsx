@@ -62,7 +62,7 @@ export default function AdminAnalyticsPage() {
       <h1 className="text-2xl font-semibold mb-4">Platform Analytics</h1>
       
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
-        <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {kpiData.map(kpi => (
                 <motion.div variants={itemVariants} key={kpi.title}><StatCard {...kpi} /></motion.div>
             ))}

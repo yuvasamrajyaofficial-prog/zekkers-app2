@@ -128,7 +128,7 @@ export default function CollegeDashboardPage() {
         {/* KPI Cards */}
         <motion.div
           variants={containerVariants}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
         >
           {kpiData.map((kpi, index) => (
             <motion.div key={index} variants={itemVariants}>

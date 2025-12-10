@@ -95,7 +95,7 @@ const ProgramCard = ({ program }: { program: Program }) => (
                 <CardDescription>{program.category} • {program.duration}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 space-y-3">
-                 <div className="text-sm text-muted-foreground grid grid-cols-2 gap-2">
+                 <div className="text-sm text-muted-foreground grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <div className="flex items-center gap-1.5"><Users size={14}/> {program.enrolled} Enrolled</div>
                     <div className="flex items-center gap-1.5"><Star size={14}/> {program.completionRate}% Completion</div>
                     <div className="flex items-center gap-1.5 col-span-2"><Briefcase size={14}/> {program.partnerships} Employer Partners</div>

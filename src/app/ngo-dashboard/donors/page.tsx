@@ -142,7 +142,7 @@ export default function DonorsPage() {
         </CardHeader>
         <CardContent>
             {/* KPIs */}
-             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <KpiCard title="Total Commitments" value={`₹${(kpiData.totalCommitments/100000).toFixed(1)}L`} icon={<DollarSign/>} subtext="All active programs"/>
                 <KpiCard title="Pledged vs Received" value={`${kpiData.pledgedVsReceived}%`} icon={<Calendar/>} subtext="This fiscal year"/>
                 <KpiCard title="Total Disbursed" value={`₹${(kpiData.disbursed/100000).toFixed(1)}L`} icon={<TrendingUp/>} subtext="To beneficiaries & programs"/>

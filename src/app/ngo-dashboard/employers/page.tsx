@@ -101,7 +101,7 @@ export default function NgoEmployersPage() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <KpiCard title="Total Partners" value={kpiStats.total} icon={<Users/>} />
             <KpiCard title="Active Hiring" value={kpiStats.hiring} icon={<CheckCircle/>} />
             <KpiCard title="Students Placed" value={kpiStats.placed} icon={<TrendingUp/>} />
