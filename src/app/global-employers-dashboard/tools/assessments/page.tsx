@@ -85,7 +85,7 @@ export default function GlobalAssessmentCenterPage() {
           </div>
         </CardHeader>
         <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <StatCard title="Total Templates" value="12" icon={<ClipboardCheck className="text-muted-foreground"/>} />
                 <StatCard title="Candidates Assessed" value="1,482" icon={<Users className="text-muted-foreground"/>} />
                 <StatCard title="Avg. Score" value="76%" icon={<BarChart className="text-muted-foreground"/>} />

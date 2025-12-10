@@ -134,7 +134,7 @@ export default function GlobalEmployersDashboardPage() {
         </motion.div>
 
         {/* KPIs */}
-        <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {kpiData.map((kpi) => (
             <motion.div variants={itemVariants} key={kpi.title} className="h-full"><KpiCard kpi={kpi} /></motion.div>
           ))}

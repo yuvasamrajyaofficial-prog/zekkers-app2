@@ -122,7 +122,7 @@ export default function AssignmentsPage() {
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <motion.div variants={containerVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                             <motion.div variants={itemVariants}><Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Sent</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{kpiData.sent}</p></CardContent></Card></motion.div>
                             <motion.div variants={itemVariants}><Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Pending Submission</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{kpiData.pending}</p></CardContent></Card></motion.div>
                             <motion.div variants={itemVariants}><Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Pending Review</CardTitle></CardHeader><CardContent><p className="text-2xl font-bold">{kpiData.submitted}</p></CardContent></Card></motion.div>

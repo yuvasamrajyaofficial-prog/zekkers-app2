@@ -74,7 +74,7 @@ const OfficeCard = ({ office, onDelete }: { office: Office; onDelete: (id: strin
                  <CardDescription className="flex items-center gap-2 pt-1"><MapPin size={14}/>{office.address}, {office.country}</CardDescription>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between bg-slate-50/50 p-4">
-                 <div className="text-sm text-muted-foreground grid grid-cols-2 gap-3">
+                 <div className="text-sm text-muted-foreground grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="flex items-center gap-1.5 truncate"><Phone size={14}/> <span className="truncate">{office.phone}</span></div>
                     <div className="flex items-center gap-1.5 truncate"><Mail size={14}/> <span className="truncate">{office.email}</span></div>
                     <div className="flex items-center gap-1.5"><Users size={14}/> {office.employeeCount} Employees</div>

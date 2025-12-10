@@ -200,7 +200,7 @@ export default function OfferManagementPage() {
                         </div>
                     </CardHeader>
                     <CardContent>
-                        <motion.div variants={containerVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                            <KpiCard title="Offers Sent" value={String(kpiData.sent)} icon={<Send/>}/>
                            <KpiCard title="Accepted" value={String(kpiData.accepted)} icon={<CheckCircle/>}/>
                            <KpiCard title="Acceptance Rate" value={`${kpiData.acceptanceRate}%`} icon={<TrendingUp/>}/>

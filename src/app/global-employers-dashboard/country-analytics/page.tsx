@@ -175,7 +175,7 @@ export default function CountryAnalyticsPage() {
         </motion.div>
         
         {/* Overview Stats */}
-        <motion.div variants={containerVariants} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <motion.div variants={itemVariants}><StatCard title="Hiring Difficulty" value={`${data.hdi}/100`}/></motion.div>
             <motion.div variants={itemVariants}><StatCard title="Talent Pool" value={`${(data.talentPool / 1000000).toFixed(1)}M`}/></motion.div>
             <motion.div variants={itemVariants}><StatCard title="Avg. Salary (SDE)" value={data.avgSalary}/></motion.div>

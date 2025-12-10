@@ -117,7 +117,7 @@ export default function CreditUsagePage() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         {Object.values(kpiData).map(kpi => <KpiCard key={kpi.title} title={kpi.title} value={kpi.value} icon={kpi.icon}/>)}
                     </motion.div>
                     

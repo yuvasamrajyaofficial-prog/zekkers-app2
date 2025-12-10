@@ -109,7 +109,7 @@ export default function SavedCandidatesPage() {
           </div>
         </CardHeader>
         <CardContent>
-            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <KpiCard title="Total Saved" value={candidates.length} icon={<Users/>}/>
                 <KpiCard title="High-Fit (>85%)" value={candidates.filter(c => (c.aiMatchScore ?? 0) > 85).length} icon={<TrendingUp/>}/>
                 <KpiCard title="Verified Profiles" value={candidates.filter(c => c.visaStatus === 'Visa-Ready').length} icon={<CheckCircle/>}/>

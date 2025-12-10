@@ -90,7 +90,7 @@ export default function EmployerBranding() {
                             </div>
                             <div className="space-y-2">
                                 <Label>Brand Colors</Label>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                                     <div className="space-y-1">
                                         <Label htmlFor="primary-color" className="text-xs">Primary</Label>
                                         <Input id="primary-color" type="color" defaultValue="#3740FF" className="h-12 p-1" />

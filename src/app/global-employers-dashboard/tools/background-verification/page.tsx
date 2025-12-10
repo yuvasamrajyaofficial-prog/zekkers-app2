@@ -121,7 +121,7 @@ export default function BackgroundVerificationPage() {
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                         <KpiCard title="Total Checks" value={kpiData.total} icon={<Users />} />
                         <KpiCard title="Pending Review" value={kpiData.pending} icon={<Clock />} />
                         <KpiCard title="Completed" value={kpiData.completed} icon={<CheckCircle />} />

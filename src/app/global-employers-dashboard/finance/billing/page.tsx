@@ -212,7 +212,7 @@ export default function BillingPage() {
                 <CardDescription>Your current subscription details and limits.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="p-4 rounded-lg bg-slate-50 border grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="p-4 rounded-lg bg-slate-50 border grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     <div><p className="text-xs text-muted-foreground">Plan</p><p className="font-bold">{currentUsage.plan}</p></div>
                     <div><p className="text-xs text-muted-foreground">Renews On</p><p className="font-bold">{currentUsage.renewalDate}</p></div>
                     <div><p className="text-xs text-muted-foreground">Payment</p><p className="font-bold">{currentUsage.paymentMethod}</p></div>

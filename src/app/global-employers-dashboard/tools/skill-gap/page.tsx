@@ -155,7 +155,7 @@ export default function SkillGapAnalyzerPage() {
         {analysis && (
             <>
             {/* KPIs */}
-            <motion.div variants={containerVariants} className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div variants={containerVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard title="Overall Skill Match" value={`${analysis.overallMatch}%`} icon={<Target/>} subtext={`${analysis.applicants} applicants`}/>
                 <StatCard title="Top Missing Skill" value={analysis.topMissing[0]?.skill || 'N/A'} icon={<TrendingDown className="text-destructive"/>} subtext={`${Math.round(analysis.topMissing[0]?.percentage || 0)}% of applicants`}/>
                 <StatCard title="Talent Pool Readiness" value={`${analysis.readiness}%`} icon={<Users/>} subtext="Candidates >80% match"/>
