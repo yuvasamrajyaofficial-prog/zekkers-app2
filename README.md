@@ -411,7 +411,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <div align="center">
 
-**Made with ❤️ by the Zekkers Team**
+**Made with ❤️ by the Prashant**
 
 © 2025 Zekkers — Powered by MCT. All rights reserved.
 
