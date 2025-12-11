@@ -365,7 +365,7 @@ Zekkers takes security and privacy seriously:
 ### Reporting Security Issues
 
 If you discover a security vulnerability, please email:
-**security@zekkers.com**
+**yuvasamrajyaofficial@gmail.com**
 
 Do NOT create public GitHub issues for security vulnerabilities.
 
