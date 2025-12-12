@@ -31,10 +31,7 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
-              <SheetHeader className="p-4 border-b">
-                <SheetTitle>NGO Menu</SheetTitle>
-                <SheetDescription>Navigate your dashboard.</SheetDescription>
-              </SheetHeader>
+
               <MobileNgoSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
             </SheetContent>
           </Sheet>

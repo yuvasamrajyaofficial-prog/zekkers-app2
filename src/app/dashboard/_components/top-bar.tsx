@@ -33,10 +33,7 @@ export default function Topbar() {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
-                    <SheetHeader className="p-4 border-b">
-                        <SheetTitle>Zekkers Menu</SheetTitle>
-                        <SheetDescription>Navigate through your student dashboard.</SheetDescription>
-                    </SheetHeader>
+
                     <MobileAppSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
                 </SheetContent>
             </Sheet>

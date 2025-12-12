@@ -32,10 +32,7 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
-               <SheetHeader className="p-4 border-b">
-                <SheetTitle>Global Employer Menu</SheetTitle>
-                <SheetDescription>Manage your global hiring.</SheetDescription>
-              </SheetHeader>
+
               <MobileGlobalSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
             </SheetContent>
           </Sheet>
