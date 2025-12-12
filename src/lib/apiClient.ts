@@ -10,10 +10,26 @@ const DEEPSEEK_KEY = process.env.DEEPSEEK_KEY;
 const GROQ_KEY = process.env.GROQ_KEY;
 
 // Placeholder implementations for each provider
+import { generate } from '@genkit-ai/ai';
+import { gemini15Flash } from '@genkit-ai/google-genai';
+
+// Placeholder implementations for each provider
 async function callGemini(model: string, prompt: string): Promise<string> {
-    if (!GEMINI_KEY) return "Error: GEMINI_API_KEY is not configured.";
-    return `Response from Gemini for prompt: "${prompt}"`;
+    try {
+        const response = await generate({
+            model: gemini15Flash,
+            prompt: prompt,
+            config: {
+                temperature: 0.7,
+            }
+        });
+        return response.text();
+    } catch (error) {
+        console.error("Error calling Gemini via Genkit:", error);
+        return "Error: Failed to generate response from Gemini.";
+    }
 }
+
 async function callOpenAI(model: string, prompt: string): Promise<string> {
     if (!OPENAI_KEY) return "Error: OPENAI_API_KEY is not configured.";
     return `Response from OpenAI for prompt: "${prompt}"`;

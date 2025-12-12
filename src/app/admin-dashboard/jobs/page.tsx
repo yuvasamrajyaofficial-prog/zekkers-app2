@@ -78,7 +78,7 @@ export default function AdminJobsPage() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <Card>
         <CardHeader className='flex flex-row items-center justify-between'>
             <div>

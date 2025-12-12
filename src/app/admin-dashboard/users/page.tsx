@@ -37,7 +37,7 @@ export default function AdminUsersPage() {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <Card>
         <CardHeader>
           <CardTitle>User Management</CardTitle>

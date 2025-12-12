@@ -58,7 +58,7 @@ const StatCard: React.FC<{ title: string, value: string, icon: React.ReactNode }
 
 export default function AdminAnalyticsPage() {
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <h1 className="text-2xl font-semibold mb-4">Platform Analytics</h1>
       
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
