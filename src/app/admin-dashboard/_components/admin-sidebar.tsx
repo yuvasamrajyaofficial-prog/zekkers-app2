@@ -142,10 +142,10 @@ function AdminSidebar() {
   };
 
   return (
-    <Sidebar className="flex flex-col">
+    <Sidebar className="flex flex-col bg-white border-r border-slate-200">
        <Link
         href="/admin-dashboard"
-        className="flex items-center gap-3 px-3 py-4 hover:bg-slate-50 transition-colors"
+        className="flex items-center gap-3 px-3 py-4 hover:bg-slate-100 transition-colors"
       >
         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold">
             ZK
@@ -164,18 +164,18 @@ function AdminSidebar() {
               key={item.key}
               href={item.to}
               className={`group flex items-center gap-3 p-2 rounded-md ${
-                isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
+                isItemActive(item) ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700 hover:bg-slate-100'
               }`}
             >
               <div
-                className={`text-slate-600 group-hover:text-primary ${
+                className={`text-slate-500 group-hover:text-primary ${
                   isItemActive(item) ? 'text-primary' : ''
                 }`}
               >
                 {item.icon}
               </div>
               {sidebarState === 'expanded' && (
-                <div className="text-sm font-semibold">{item.label}</div>
+                <div className="text-sm">{item.label}</div>
               )}
             </Link>
           )
@@ -188,18 +188,18 @@ function AdminSidebar() {
               key={item.key}
               href={item.to}
               className={`group flex items-center gap-3 p-2 rounded-md ${
-                isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
+                isItemActive(item) ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700 hover:bg-slate-100'
               }`}
             >
               <div
-                className={`text-slate-600 group-hover:text-primary ${
+                className={`text-slate-500 group-hover:text-primary ${
                   isItemActive(item) ? 'text-primary' : ''
                 }`}
               >
                 {item.icon}
               </div>
               {sidebarState === 'expanded' && (
-                <div className="text-sm font-semibold">{item.label}</div>
+                <div className="text-sm">{item.label}</div>
               )}
             </Link>
           )

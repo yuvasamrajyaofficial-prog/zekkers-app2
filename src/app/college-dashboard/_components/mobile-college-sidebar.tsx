@@ -122,17 +122,17 @@ export default function MobileCollegeSidebar({ closeSheet }: MobileCollegeSideba
           href={item.to}
           onClick={closeSheet}
           className={`group flex items-center gap-3 p-2 rounded-md ${
-            isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
+            isItemActive(item) ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
           <div
-            className={`text-slate-600 group-hover:text-primary ${
+            className={`text-slate-500 group-hover:text-primary ${
               isItemActive(item) ? 'text-primary' : ''
             }`}
           >
             {item.icon}
           </div>
-          <div className="text-sm font-semibold">{item.label}</div>
+          <div className="text-sm">{item.label}</div>
         </Link>
       ))}
     </nav>
