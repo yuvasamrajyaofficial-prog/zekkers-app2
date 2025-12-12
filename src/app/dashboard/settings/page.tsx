@@ -73,7 +73,7 @@ export default function ProfileSettingsPage() {
     if (loading || userLoading || !profile) return <div className="p-6 flex justify-center"><ZLoader /></div>
 
   return (
-    <div className="space-y-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full space-y-6">
         <Card>
             <CardHeader>
                 <CardTitle>Public Profile</CardTitle>

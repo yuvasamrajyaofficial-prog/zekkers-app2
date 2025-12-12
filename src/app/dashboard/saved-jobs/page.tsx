@@ -170,7 +170,7 @@ export default function SavedJobsPage() {
     };
   
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <Card>
         <CardHeader>
           <CardTitle className="text-2xl font-bold flex items-center gap-3">
@@ -183,12 +183,14 @@ export default function SavedJobsPage() {
         </CardHeader>
         <CardContent>
           <Tabs defaultValue="All">
-            <TabsList>
-              <TabsTrigger value="All">All Saved</TabsTrigger>
-              <TabsTrigger value="Government">Government</TabsTrigger>
-              <TabsTrigger value="Private">Private</TabsTrigger>
-              <TabsTrigger value="International">International</TabsTrigger>
-            </TabsList>
+            <div className="w-full overflow-x-auto pb-2 no-scrollbar">
+                <TabsList>
+                <TabsTrigger value="All">All Saved</TabsTrigger>
+                <TabsTrigger value="Government">Government</TabsTrigger>
+                <TabsTrigger value="Private">Private</TabsTrigger>
+                <TabsTrigger value="International">International</TabsTrigger>
+                </TabsList>
+            </div>
             <TabsContent value="All" className="mt-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filterJobs('All').map(job => <SavedJobCard key={job.id} job={job} />)}

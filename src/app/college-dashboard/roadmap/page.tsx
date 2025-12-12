@@ -1,216 +1,314 @@
-
 'use client';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart2, Layers, TrendingUp, Users } from 'lucide-react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, LineChart, Line } from 'recharts';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter } from '@/components/ui/sheet';
-import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import {
+  ArrowRight,
+  BrainCircuit,
+  GraduationCap,
+  Briefcase,
+  Lightbulb,
+  CheckCircle2,
+  BookOpen,
+  DollarSign,
+  Clock,
+  Globe,
+  Target,
+  Rocket,
+  Code,
+  Laptop,
+  Search,
+  Users,
+  Building,
+  Award,
+  BookOpen,
+  BrainCircuit,
+  Briefcase,
+  CheckCircle2,
+  Clock,
+  DollarSign,
+  Globe,
+  GraduationCap,
+  Lightbulb,
+} from 'lucide-react';
+import SkillBar from '@/components/skill-bar';
+import { generateRoadmap } from '@/ai/flows/ai-roadmap-generator';
 
-interface DeptAnalytics {
-  id: string;
-  department: string;
-  totalStudents: number;
-  avgProgress: number;
-  topGoals: string[];
-  skillGaps: { name: string; count: number }[];
-  roadmapActivity: { month: string; value: number }[];
-}
+const iconMap: any = {
+  GraduationCap,
+  BrainCircuit,
+  Briefcase,
+  Globe,
+  Rocket,
+  Code,
+  Laptop,
+  Search,
+  Users,
+  Building,
+  Award,
+  BookOpen,
+  Lightbulb,
+  Target
+};
 
-const mockDepts: DeptAnalytics[] = [
-  {
-    id: 'dept1',
-    department: 'Computer Science Engineering',
-    totalStudents: 420,
-    avgProgress: 71,
-    topGoals: ['Full Stack Developer', 'Data Scientist', 'AI Engineer'],
-    skillGaps: [
-      { name: 'DSA', count: 90 },
-      { name: 'ML Foundations', count: 70 },
-      { name: 'Cloud DevOps', count: 45 },
-    ],
-    roadmapActivity: [
-      { month: 'Jan', value: 80 },
-      { month: 'Feb', value: 120 },
-      { month: 'Mar', value: 160 },
-      { month: 'Apr', value: 140 },
-    ],
+
+const MotionCard = motion(Card);
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
   },
-  {
-    id: 'dept2',
-    department: 'Mechanical Engineering',
-    totalStudents: 380,
-    avgProgress: 56,
-    topGoals: ['Automobile Engineer', 'Production Engineer', 'Industrial Designer'],
-    skillGaps: [
-      { name: 'CAD Expertise', count: 80 },
-      { name: 'Manufacturing Tech', count: 60 },
-      { name: 'Simulation Tools', count: 40 },
-    ],
-    roadmapActivity: [
-      { month: 'Jan', value: 40 },
-      { month: 'Feb', value: 70 },
-      { month: 'Mar', value: 110 },
-      { month: 'Apr', value: 130 },
-    ],
-  },
-  {
-    id: 'dept3',
-    department: 'Electronics & Communication',
-    totalStudents: 350,
-    avgProgress: 62,
-    topGoals: ['Embedded Systems Dev', 'VLSI Design Engineer', 'Telecom Engineer'],
-    skillGaps: [
-      { name: 'VHDL/Verilog', count: 110 },
-      { name: 'PCB Design', count: 85 },
-      { name: 'Signal Processing', count: 50 },
-    ],
-    roadmapActivity: [
-      { month: 'Jan', value: 60 },
-      { month: 'Feb', value: 90 },
-      { month: 'Mar', value: 100 },
-      { month: 'Apr', value: 150 },
-    ],
-  },
-];
+};
 
-const StatCard: React.FC<{ icon:React.ReactNode; label:string; value:string|number; iconClass?: string }> = ({ icon, label, value, iconClass }) => (
-    <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{label}</CardTitle>
-            {React.cloneElement(icon as React.ReactElement, { className: `w-4 h-4 text-muted-foreground ${iconClass}` })}
-        </CardHeader>
-        <CardContent>
-            <div className="text-2xl font-bold">{value}</div>
-        </CardContent>
-    </Card>
-);
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+    },
+  },
+};
 
-export default function DepartmentAIAnalytics() {
-  const [depts, setDepts] = useState(mockDepts);
-  const [selected, setSelected] = useState<DeptAnalytics | null>(null);
+
+const mockRoadmap = {
+  goal: 'Become a Software Engineer in Germany',
+  phases: [
+    {
+      title: 'Phase 1: Foundation (0-3 Months)',
+      icon: <GraduationCap />,
+      tasks: [
+        { text: 'Master Data Structures & Algorithms', completed: true },
+        { text: 'Complete a course on Advanced JavaScript (ES6+)', completed: true },
+        { text: 'Build 2 simple projects with HTML/CSS/JS', completed: false },
+      ],
+      cost: 2000,
+      duration: '3 months',
+    },
+    {
+      title: 'Phase 2: Upskilling (3-6 Months)',
+      icon: <BrainCircuit />,
+      tasks: [
+        { text: 'Learn React.js & State Management (Redux/Zustand)', completed: false },
+        { text: 'Learn Node.js, Express, and REST API principles', completed: false },
+        { text: 'Build a full-stack MERN application', completed: false },
+      ],
+      cost: 5000,
+      duration: '3 months',
+    },
+     {
+      title: 'Phase 3: Job Readiness (6-9 Months)',
+      icon: <Briefcase />,
+      tasks: [
+        { text: 'Optimize resume with AI keywords', completed: false },
+        { text: 'Prepare for technical interviews (LeetCode Easy/Medium)', completed: false },
+        { text: 'Build and deploy a portfolio website', completed: false },
+      ],
+      cost: 1000,
+      duration: '3 months',
+    },
+    {
+        title: 'Phase 4: International Pathway (9-12 Months)',
+        icon: <Globe />,
+        tasks: [
+            { text: 'Research German Job Seeker Visa requirements', completed: false },
+            { text: 'Network with developers in Berlin on LinkedIn', completed: false },
+            { text: 'Start applying for jobs in Germany', completed: false },
+        ],
+        cost: 150000,
+        duration: '3 months',
+    }
+  ],
+};
+
+
+export default function CollegeAiRoadmapPage() {
+  const [goal, setGoal] = useState('');
+  const [roadmap, setRoadmap] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  
+  const handleGenerateRoadmap = async () => {
+    if (!goal) return;
+    setLoading(true);
+    try {
+      const result = await generateRoadmap({ goal });
+      
+      // Map string icons to React components
+      const processedRoadmap = {
+        ...result,
+        phases: result.phases.map((phase: any) => ({
+          ...phase,
+          icon: phase.icon && iconMap[phase.icon] ? React.createElement(iconMap[phase.icon]) : <BrainCircuit />
+        }))
+      };
+
+      setRoadmap(processedRoadmap);
+    } catch (error) {
+      console.error("Failed to generate roadmap:", error);
+      // Fallback to mock if AI fails (or for demo purposes if keys missing)
+      setRoadmap(mockRoadmap);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="p-6">
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Department-wise AI Roadmap Analytics</CardTitle>
-          <CardDescription className="max-w-2xl">
-            Get AI-generated insights for each department — skill gaps, roadmap progress, career goals, and monthly learning activity.
-            This helps colleges plan training programs, workshops, faculty interventions, and placement readiness.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {depts.map((d) => (
-                <motion.div
-                    key={d.id}
-                    whileHover={{ y: -5 }}
-                    className="h-full"
-                >
-                    <Card
-                        className="cursor-pointer h-full flex flex-col"
-                        onClick={() => setSelected(d)}
-                    >
-                        <CardHeader>
-                            <CardTitle className="text-lg">{d.department}</CardTitle>
-                            <CardDescription>{d.totalStudents} students</CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-1 flex items-end">
-                            <div className="flex items-center gap-2 text-slate-600 text-sm">
-                                <TrendingUp className="w-4 h-4" /> Avg Roadmap Progress: <span className="font-semibold">{d.avgProgress}%</span>
-                            </div>
-                        </CardContent>
-                    </Card>
+    <div className="p-4 md:p-6 min-h-full bg-slate-50/50">
+      <div className="max-w-7xl mx-auto">
+        <header className="text-center mb-10">
+            <motion.div initial={{y: -20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 0.5}}>
+                <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight">College AI Career Roadmap</h1>
+                <p className="mt-2 text-lg text-slate-500">
+                    Generate personalized career paths for your students, powered by AI.
+                </p>
+            </motion.div>
+        
+            <motion.div 
+                initial={{scale: 0.9, opacity: 0}} 
+                animate={{scale: 1, opacity: 1}} 
+                transition={{duration: 0.5, delay: 0.2}}
+                className="mt-6 max-w-2xl mx-auto"
+            >
+            <Card className="shadow-lg">
+                <CardContent className="p-4 md:p-6 flex flex-col sm:flex-row items-center gap-4">
+                    <div className="relative w-full">
+                        <Target className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <Input
+                        type="text"
+                        placeholder="e.g., Become a Machine Learning Engineer in Canada"
+                        value={goal}
+                        onChange={(e) => setGoal(e.target.value)}
+                        className="pl-10 h-12 text-base"
+                        onKeyDown={(e) => e.key === 'Enter' && handleGenerateRoadmap()}
+                        />
+                    </div>
+                    <Button onClick={handleGenerateRoadmap} size="lg" className="w-full sm:w-auto" disabled={loading}>
+                        {loading ? 'Generating...' : 'Create Path'}
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                </CardContent>
+            </Card>
+            </motion.div>
+        </header>
+
+        {!roadmap && !loading && (
+             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="text-center py-16 px-6 bg-white rounded-2xl border-2 border-dashed">
+                <BrainCircuit className="w-16 h-16 text-primary mx-auto opacity-50" />
+                <h3 className="mt-4 text-xl font-semibold">Enter a career goal to generate a roadmap.</h3>
+                <p className="mt-2 max-w-prose mx-auto text-slate-500">Our AI will analyze the requirements and create a step-by-step plan including skills, projects, and visa requirements.</p>
+             </motion.div>
+        )}
+        
+        {loading && (
+             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="text-center py-16 px-6">
+                <motion.div animate={{rotate: 360}} transition={{repeat: Infinity, duration: 1, ease: 'linear'}}>
+                    <BrainCircuit className="w-16 h-16 text-primary mx-auto" />
                 </motion.div>
+                <h3 className="mt-4 text-xl font-semibold animate-pulse">AI is crafting the roadmap...</h3>
+                <p className="mt-2 text-slate-500">Analyzing requirements and generating a personalized career path.</p>
+             </motion.div>
+        )}
+
+        {roadmap && (
+            <motion.div variants={containerVariants} initial="hidden" animate="visible">
+            {/* User Context */}
+            <h2 className="text-2xl font-bold mb-4">Sample Student Status</h2>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                 <MotionCard variants={itemVariants}>
+                     <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
+                        <GraduationCap className="w-8 h-8 text-primary"/>
+                        <CardTitle>Education</CardTitle>
+                     </CardHeader>
+                     <CardContent>
+                         <p className="font-semibold">B.Tech in Computer Science</p>
+                         <p className="text-sm text-slate-500">Your College (2022-2026)</p>
+                     </CardContent>
+                 </MotionCard>
+                  <MotionCard variants={itemVariants}>
+                     <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
+                        <Briefcase className="w-8 h-8 text-accent"/>
+                        <CardTitle>Experience</CardTitle>
+                     </CardHeader>
+                     <CardContent>
+                         <p className="font-semibold">No Experience</p>
+                         <p className="text-sm text-slate-500">Fresher</p>
+                     </CardContent>
+                 </MotionCard>
+                  <MotionCard variants={itemVariants}>
+                     <CardHeader className="flex-row items-center gap-4 space-y-0 pb-2">
+                        <Lightbulb className="w-8 h-8 text-yellow-500"/>
+                        <CardTitle>Top Skills</CardTitle>
+                     </CardHeader>
+                     <CardContent className="space-y-2">
+                        <SkillBar label="Java" value={60} />
+                        <SkillBar label="Python" value={45} />
+                     </CardContent>
+                 </MotionCard>
+             </div>
+
+            {/* Roadmap Timeline */}
+            <h2 className="text-2xl font-bold mb-6">12-Month Transformation Journey</h2>
+            <div className="relative">
+                 {/* The timeline */}
+                 <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-slate-200 rounded-full -translate-x-1/2"></div>
+                {roadmap.phases.map((phase: any, index: number) => (
+                    <motion.div 
+                        key={index}
+                        initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className={`relative mb-8 flex md:justify-between md:items-center w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+                    >
+                         <div className="hidden md:block w-5/12"></div>
+
+                        <div className="z-10 absolute left-6 top-2 md:static flex items-center justify-center w-12 h-12 rounded-full bg-white border-4 border-slate-200 -translate-x-1/2">
+                           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white">{phase.icon}</div>
+                        </div>
+                        
+                        <div className="w-full md:w-5/12 pl-16 md:pl-0">
+                            <Card className="shadow-lg hover:shadow-xl transition-shadow">
+                                <CardHeader>
+                                    <CardTitle className="text-lg">{phase.title}</CardTitle>
+                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 mt-1">
+                                        <div className="flex items-center gap-1.5"><Clock size={14}/> {phase.duration}</div>
+                                        <div className="flex items-center gap-1.5"><DollarSign size={14}/> Est. ₹{phase.cost.toLocaleString()}</div>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <ul className="space-y-3">
+                                    {phase.tasks.map((task: any, i: number) => (
+                                        <li key={i} className={`flex items-start gap-3 text-sm ${task.completed ? 'text-slate-400 line-through' : 'text-slate-700'}`}>
+                                            <CheckCircle2 className={`w-5 h-5 mt-px shrink-0 ${task.completed ? 'text-green-500' : 'text-slate-300'}`} />
+                                            <span>{task.text}</span>
+                                        </li>
+                                    ))}
+                                    </ul>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                    </motion.div>
                 ))}
             </div>
-        </CardContent>
-      </Card>
-      
-      <Sheet open={!!selected} onOpenChange={(open) => !open && setSelected(null)}>
-        <SheetContent className="w-full sm:max-w-4xl overflow-y-auto">
-            {selected && (
-                <>
-                <SheetHeader>
-                    <SheetTitle className="text-2xl">{selected.department}</SheetTitle>
-                    <SheetDescription>Department Analytics Overview</SheetDescription>
-                </SheetHeader>
 
-                <div className="py-6 space-y-8">
-                    {/* Key Stats */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <StatCard icon={<Users />} label="Total Students" value={selected.totalStudents} />
-                        <StatCard icon={<BarChart2 />} label="Avg Progress" value={`${selected.avgProgress}%`} />
-                        <StatCard icon={<Layers />} label="Top Goals" value={selected.topGoals.length} />
-                    </div>
-
-                    {/* Top Goals */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-lg">Top Student Goals</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-wrap gap-2">
-                                {selected.topGoals.map((g, i) => (
-                                    <Badge key={i} variant="secondary">{g}</Badge>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* Skill Gaps */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-lg">Department Skill Gaps</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ResponsiveContainer width="100%" height={250}>
-                                <BarChart data={selected.skillGaps}>
-                                <XAxis dataKey="name" fontSize={12} tickLine={false} axisLine={false} />
-                                <YAxis fontSize={12} tickLine={false} axisLine={false} />
-                                <Tooltip
-                                  contentStyle={{
-                                    background: "hsl(var(--background))",
-                                    border: "1px solid hsl(var(--border))",
-                                    borderRadius: "var(--radius-lg)",
-                                  }}
-                                />
-                                <Bar dataKey="count" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </CardContent>
-                    </Card>
-
-                    {/* Monthly Roadmap Activity */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-lg">Monthly Roadmap Activity</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ResponsiveContainer width="100%" height={250}>
-                                <LineChart data={selected.roadmapActivity}>
-                                <XAxis dataKey="month" fontSize={12} tickLine={false} axisLine={false} />
-                                <YAxis fontSize={12} tickLine={false} axisLine={false} />
-                                <Tooltip 
-                                  contentStyle={{
-                                    background: "hsl(var(--background))",
-                                    border: "1px solid hsl(var(--border))",
-                                    borderRadius: "var(--radius-lg)",
-                                  }}
-                                />
-                                <Line type="monotone" dataKey="value" stroke="hsl(var(--accent))" strokeWidth={3} />
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </CardContent>
-                    </Card>
-                </div>
-                </>
-            )}
-        </SheetContent>
-      </Sheet>
+            </motion.div>
+        )}
+      </div>
     </div>
   );
 }

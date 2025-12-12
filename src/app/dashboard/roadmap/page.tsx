@@ -23,9 +23,43 @@ import {
   Clock,
   Globe,
   Award,
-  Target
+  Target,
+  Rocket,
+  Code,
+  Laptop,
+  Search,
+  Users,
+  Building,
+  Award,
+  BookOpen,
+  BrainCircuit,
+  Briefcase,
+  CheckCircle2,
+  Clock,
+  DollarSign,
+  Globe,
+  GraduationCap,
+  Lightbulb,
 } from 'lucide-react';
 import SkillBar from '@/components/skill-bar';
+import { generateRoadmap } from '@/ai/flows/ai-roadmap-generator';
+
+const iconMap: any = {
+  GraduationCap,
+  BrainCircuit,
+  Briefcase,
+  Globe,
+  Rocket,
+  Code,
+  Laptop,
+  Search,
+  Users,
+  Building,
+  Award,
+  BookOpen,
+  Lightbulb,
+  Target
+};
 
 
 const MotionCard = motion(Card);
@@ -109,14 +143,29 @@ export default function AiRoadmapPage() {
   const [roadmap, setRoadmap] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   
-  const generateRoadmap = () => {
+  const handleGenerateRoadmap = async () => {
     if (!goal) return;
     setLoading(true);
-    // Simulate AI generation
-    setTimeout(() => {
+    try {
+      const result = await generateRoadmap({ goal });
+      
+      // Map string icons to React components
+      const processedRoadmap = {
+        ...result,
+        phases: result.phases.map((phase: any) => ({
+          ...phase,
+          icon: phase.icon && iconMap[phase.icon] ? React.createElement(iconMap[phase.icon]) : <BrainCircuit />
+        }))
+      };
+
+      setRoadmap(processedRoadmap);
+    } catch (error) {
+      console.error("Failed to generate roadmap:", error);
+      // Fallback to mock if AI fails
       setRoadmap(mockRoadmap);
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -146,10 +195,10 @@ export default function AiRoadmapPage() {
                         value={goal}
                         onChange={(e) => setGoal(e.target.value)}
                         className="pl-10 h-12 text-base"
-                        onKeyDown={(e) => e.key === 'Enter' && generateRoadmap()}
+                        onKeyDown={(e) => e.key === 'Enter' && handleGenerateRoadmap()}
                         />
                     </div>
-                    <Button onClick={generateRoadmap} size="lg" className="w-full sm:w-auto" disabled={loading}>
+                    <Button onClick={handleGenerateRoadmap} size="lg" className="w-full sm:w-auto" disabled={loading}>
                         {loading ? 'Generating...' : 'Create My Path'}
                         <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>

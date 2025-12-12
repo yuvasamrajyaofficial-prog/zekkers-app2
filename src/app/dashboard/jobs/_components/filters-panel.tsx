@@ -41,12 +41,12 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
 
 
   return (
-    <div className="p-4 bg-card rounded-xl border mb-6">
-        <div className="flex flex-wrap gap-2 items-center">
+    <div className="p-4 bg-white rounded-xl border mb-6 shadow-sm">
+        <div className="flex flex-wrap gap-2 items-center overflow-x-auto pb-2 md:pb-0 no-scrollbar">
             {/* AI Score Filter */}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant="outline" className="gap-2">
+                    <Button variant="outline" className="gap-2 whitespace-nowrap">
                         AI Score {filters.aiScore > 0 ? `> ${filters.aiScore}%` : ''}
                     </Button>
                 </PopoverTrigger>
@@ -72,7 +72,7 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
              {/* Salary Filter */}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant="outline">Salary (LPA)</Button>
+                    <Button variant="outline" className="whitespace-nowrap">Salary (LPA)</Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-80">
                     <div className="grid gap-4">
@@ -96,7 +96,7 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
              {/* Experience Filter */}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant="outline">Experience</Button>
+                    <Button variant="outline" className="whitespace-nowrap">Experience</Button>
                 </PopoverTrigger>
                 <PopoverContent>
                     <div className="grid gap-2">
@@ -116,7 +116,7 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
             {/* Job Type Filter */}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant="outline">Job Type</Button>
+                    <Button variant="outline" className="whitespace-nowrap">Job Type</Button>
                 </PopoverTrigger>
                 <PopoverContent>
                     <div className="grid gap-2">
@@ -136,7 +136,7 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
             {/* Location Filter */}
             <Popover>
                 <PopoverTrigger asChild>
-                    <Button variant="outline">Location</Button>
+                    <Button variant="outline" className="whitespace-nowrap">Location</Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-96">
                      <div className="grid gap-4">
@@ -154,7 +154,7 @@ export const FiltersPanel: React.FC<{ filters: any; onFilterChange: (filters: an
             </Popover>
             
             {activeFiltersCount > 0 && (
-                <Button variant="ghost" onClick={onReset} className="text-sm text-muted-foreground gap-2">
+                <Button variant="ghost" onClick={onReset} className="text-sm text-muted-foreground gap-2 whitespace-nowrap">
                     <X size={16} />
                     Clear Filters ({activeFiltersCount})
                 </Button>

@@ -73,13 +73,13 @@ const JobCard: React.FC<{ job: Job & { aiMatch?: number } }> = ({ job }) => {
             </div>
         </div>
       </div>
-       <div className="mt-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-                <Button asChild size="sm"><Link href={`/dashboard/jobs/${job.id}`}>View Details</Link></Button>
-                <Button variant="outline" size="sm">Save</Button>
+       <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+                <Button asChild size="sm" className="flex-1 sm:flex-none"><Link href={`/dashboard/jobs/${job.id}`}>View Details</Link></Button>
+                <Button variant="outline" size="sm" className="flex-1 sm:flex-none">Save</Button>
             </div>
             {job.aiMatch && (
-                <div className={`flex items-center gap-1 font-bold text-sm ${scoreColor}`}>
+                <div className={`flex items-center gap-1 font-bold text-sm ${scoreColor} self-end sm:self-auto`}>
                     <Star size={16} />
                     <span>{job.aiMatch}% Match</span>
                 </div>

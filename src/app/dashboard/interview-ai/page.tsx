@@ -163,7 +163,7 @@ export default function InterviewAIPage() {
 
   return (
     <div className={cn(
-        "p-4 md:p-6 bg-slate-50/50 min-h-full",
+        "p-4 md:p-6 bg-slate-50 min-h-full",
         isInterviewActive && "fixed inset-0 bg-background z-50 p-0"
     )}>
         <Card className={cn(

@@ -105,12 +105,14 @@ export default function JobsClient({ allJobs, isLoading }: JobsClientProps) {
     <div className="p-4 md:p-6">
         <FiltersPanel filters={filters} onFilterChange={setFilters} onReset={handleReset} />
         <Tabs defaultValue="all">
-            <TabsList>
-            <TabsTrigger value="all">All ({filteredJobs.all.length})</TabsTrigger>
-            <TabsTrigger value="government">Government ({filteredJobs.government.length})</TabsTrigger>
-            <TabsTrigger value="private">Private ({filteredJobs.private.length})</TabsTrigger>
-            <TabsTrigger value="international">International ({filteredJobs.international.length})</TabsTrigger>
-            </TabsList>
+            <div className="w-full overflow-x-auto pb-2 no-scrollbar">
+                <TabsList className="w-full justify-start md:justify-center">
+                    <TabsTrigger value="all">All ({filteredJobs.all.length})</TabsTrigger>
+                    <TabsTrigger value="government">Government ({filteredJobs.government.length})</TabsTrigger>
+                    <TabsTrigger value="private">Private ({filteredJobs.private.length})</TabsTrigger>
+                    <TabsTrigger value="international">International ({filteredJobs.international.length})</TabsTrigger>
+                </TabsList>
+            </div>
             <TabsContent value="all" className="mt-4">{renderJobList(filteredJobs.all)}</TabsContent>
             <TabsContent value="government" className="mt-4">{renderJobList(filteredJobs.government)}</TabsContent>
             <TabsContent value="private" className="mt-4">{renderJobList(filteredJobs.private)}</TabsContent>

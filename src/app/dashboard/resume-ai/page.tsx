@@ -228,7 +228,7 @@ export default function ResumeAIPage() {
   }
 
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl font-bold flex items-center gap-3">
