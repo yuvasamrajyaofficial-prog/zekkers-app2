@@ -98,7 +98,15 @@ export default function ZekkersLanding() {
             </DropdownMenu>
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-3">
+                    <Button asChild variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-800">
+                        <Link href="/login">Login</Link>
+                    </Button>
+                    <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Link href="/signup">Get Started</Link>
+                    </Button>
+                </div>
                 <div className="md:hidden">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -124,6 +132,13 @@ export default function ZekkersLanding() {
                         </DropdownMenuItem>
                         </DropdownMenuSubContent>
                     </DropdownMenuSub>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/login" className="w-full">Login</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/signup" className="w-full font-semibold text-primary">Get Started</Link>
+                    </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
                 </div>
