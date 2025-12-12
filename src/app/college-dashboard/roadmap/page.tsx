@@ -29,15 +29,6 @@ import {
   Users,
   Building,
   Award,
-  BookOpen,
-  BrainCircuit,
-  Briefcase,
-  CheckCircle2,
-  Clock,
-  DollarSign,
-  Globe,
-  GraduationCap,
-  Lightbulb,
 } from 'lucide-react';
 import SkillBar from '@/components/skill-bar';
 import { generateRoadmap } from '@/ai/flows/ai-roadmap-generator';
