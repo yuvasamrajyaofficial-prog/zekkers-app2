@@ -167,7 +167,7 @@ export default function CollegeAiRoadmapPage() {
   };
 
   return (
-    <div className="p-4 md:p-6 min-h-full bg-slate-50/50">
+    <div className="p-4 md:p-6 min-h-full bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <header className="text-center mb-10">
             <motion.div initial={{y: -20, opacity: 0}} animate={{y: 0, opacity: 1}} transition={{duration: 0.5}}>

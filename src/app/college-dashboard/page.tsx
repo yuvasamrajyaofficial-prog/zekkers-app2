@@ -109,7 +109,7 @@ const COLORS = ['#FFC107', '#EF4444'];
 
 export default function CollegeDashboardPage() {
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <motion.div
         initial="hidden"
         animate="visible"

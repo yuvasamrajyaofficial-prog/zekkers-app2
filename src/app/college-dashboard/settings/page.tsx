@@ -101,7 +101,7 @@ export default function CollegeSettingsIntegrations() {
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full max-w-6xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold flex items-center gap-3">
           <Settings /> Settings & Integrations

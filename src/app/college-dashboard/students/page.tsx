@@ -168,7 +168,7 @@ export default function StudentsPage({}: StudentsPageProps) {
   const students = isPreview ? mockStudents : liveStudents;
 
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
           <Users className="text-primary" />

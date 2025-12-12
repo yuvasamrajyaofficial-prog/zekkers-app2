@@ -32,7 +32,7 @@ export default function CollegeNotificationsPage() {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-4 md:p-6 bg-slate-50 min-h-full">
             <h1 className="text-2xl font-semibold mb-4">Compose Notification</h1>
             <p className="text-sm text-slate-500 mb-4 max-w-3xl">Send targeted alerts to students about placement drives, workshops, or important announcements. Use the audience filters to ensure the right students get the right message.</p>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
