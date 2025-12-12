@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Card,
@@ -27,9 +27,9 @@ import {
   Calendar,
   Building,
   DollarSign,
-  TrendingUp,
-  CheckCircle,
-  FileText,
+  MapPin,
+  Clock,
+  ExternalLink,
 } from 'lucide-react';
 import { Drive, DriveStatus } from '@/services/drives';
 
@@ -41,6 +41,13 @@ const mockDrives: Drive[] = [
   { id: 'd-1', title: 'ZekkTech Campus Drive 2025', company: 'ZekkTech', role: 'Software Engineer', ctc: '8-12 LPA', date: '2025-08-15', driveType: 'on-campus', status: 'upcoming', applicantsCount: 0 },
   { id: 'd-2', title: 'DataWave Analyst Hiring', company: 'DataWave', role: 'Data Analyst', ctc: '6-9 LPA', date: '2025-07-20', driveType: 'virtual', status: 'active', applicantsCount: 85 },
   { id: 'd-3', title: 'GlobalSoft Grad Program', company: 'GlobalSoft Inc.', role: 'Graduate Engineer Trainee', ctc: '15-20 LPA', date: '2024-06-10', driveType: 'pool', status: 'completed', applicantsCount: 250 },
+];
+
+const mockJobPool = [
+  { id: 'j-1', title: 'Junior Frontend Developer', company: 'TechStart', location: 'Bangalore (Hybrid)', type: 'Full-time', salary: '4-6 LPA', posted: '2 days ago' },
+  { id: 'j-2', title: 'Digital Marketing Intern', company: 'GrowthX', location: 'Remote', type: 'Internship', salary: '15k/month', posted: '1 week ago' },
+  { id: 'j-3', title: 'Customer Support Executive', company: 'ServiceFirst', location: 'Mumbai', type: 'Full-time', salary: '3-4 LPA', posted: '3 days ago' },
+  { id: 'j-4', title: 'Content Writer', company: 'CreativeHub', location: 'Remote', type: 'Contract', salary: '20k/month', posted: 'Just now' },
 ];
 
 const kpiData = [
@@ -111,6 +118,29 @@ const DriveCard = ({ drive }: { drive: Drive }) => (
     </motion.div>
 );
 
+const JobPoolCard = ({ job }: { job: any }) => (
+    <motion.div variants={itemVariants} className="flex items-center justify-between p-4 border rounded-lg bg-white hover:shadow-sm transition-shadow">
+        <div className="flex items-start gap-4">
+            <div className="h-12 w-12 rounded bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold">
+                {job.company.charAt(0)}
+            </div>
+            <div>
+                <h3 className="font-semibold text-base">{job.title}</h3>
+                <p className="text-sm text-muted-foreground">{job.company}</p>
+                <div className="flex items-center gap-4 mt-2 text-xs text-slate-500">
+                    <span className="flex items-center gap-1"><MapPin size={12} /> {job.location}</span>
+                    <span className="flex items-center gap-1"><Briefcase size={12} /> {job.type}</span>
+                    <span className="flex items-center gap-1"><DollarSign size={12} /> {job.salary}</span>
+                </div>
+            </div>
+        </div>
+        <div className="flex flex-col items-end gap-2">
+            <span className="text-xs text-muted-foreground flex items-center gap-1"><Clock size={12} /> {job.posted}</span>
+            <Button size="sm" variant="outline" className="h-8">Apply <ExternalLink size={12} className="ml-1"/></Button>
+        </div>
+    </motion.div>
+);
+
 
 // --- Main Component ---
 export default function PlacementsPage() {
@@ -169,11 +199,16 @@ export default function PlacementsPage() {
                 </TabsContent>
 
                 <TabsContent value="job-pool" className="mt-6">
-                    <div className="text-center py-16 bg-slate-50 rounded-lg border-2 border-dashed">
-                        <FileText className="w-12 h-12 mx-auto text-slate-400" />
-                        <h3 className="mt-4 font-semibold text-lg">Job Pool Coming Soon</h3>
-                        <p className="text-sm text-slate-500 mt-1">A curated list of job opportunities will be available here.</p>
+                    <div className="p-4 mb-4 bg-slate-50 rounded-lg border flex flex-col md:flex-row gap-4">
+                        <div className="relative flex-grow">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
+                            <Input placeholder="Search job pool..." className="pl-10"/>
+                        </div>
+                        <Button variant="outline">Filter</Button>
                     </div>
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-4">
+                        {mockJobPool.map(job => <JobPoolCard key={job.id} job={job} />)}
+                    </motion.div>
                 </TabsContent>
             </Tabs>
         </CardContent>
