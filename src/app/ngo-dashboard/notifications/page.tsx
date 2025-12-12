@@ -38,7 +38,7 @@ export default function NgoNotificationsPage() {
     };
 
     return (
-        <div className="p-6">
+        <div className="p-4 md:p-6 bg-slate-50 min-h-full">
             <h1 className="text-2xl font-semibold mb-4">Send Notification</h1>
             <p className="text-sm text-slate-500 mb-4 max-w-3xl">
                 Send targeted alerts to your beneficiaries about training sessions, job opportunities, or important announcements.

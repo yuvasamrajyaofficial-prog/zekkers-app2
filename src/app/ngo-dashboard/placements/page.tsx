@@ -117,7 +117,7 @@ export default function PlacementsPage() {
   const [drives, setDrives] = useState(mockDrives);
   
   return (
-    <div className="p-4 md:p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <Card>
         <CardHeader>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

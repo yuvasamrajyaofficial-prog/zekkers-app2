@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function CompliancePage() {
   return (
-    <div className="p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <h1 className="text-2xl font-semibold">Background Checks & Compliance</h1>
       <div className="mt-4 p-8 bg-white rounded-lg border">
         <p className="text-slate-500">

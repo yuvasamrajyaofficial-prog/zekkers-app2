@@ -109,7 +109,7 @@ const DifficultyIndicator = ({ level }: { level: string }) => {
 // --- Main Component ---
 export default function TalentInsightsPage() {
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <motion.div
         variants={containerVariants}
         initial="hidden"

@@ -93,7 +93,7 @@ const KpiCard = ({ kpi }: { kpi: typeof kpiData[0] }) => (
 
 export default function NgoDashboardPage() {
   return (
-    <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <motion.div
         variants={containerVariants}
         initial="hidden"
