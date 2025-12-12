@@ -44,6 +44,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
+    // Check if auth is initialized (it might be an empty object if config failed)
+    if (!auth || !auth.onAuthStateChanged) {
+        console.warn("Firebase Auth not initialized. Skipping auth listener.");
+        setLoading(false);
+        return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       
