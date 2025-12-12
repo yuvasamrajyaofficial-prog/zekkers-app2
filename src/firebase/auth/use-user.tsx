@@ -1,8 +1,8 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { onAuthStateChanged, getAuth, Auth, User } from 'firebase/auth';
-import { useFirebaseApp } from '@/firebase/provider';
+import { onAuthStateChanged, User, Auth } from 'firebase/auth';
+import { useFirebase } from '@/firebase/provider';
 import ZLoader from '@/components/ui/loader';
 
 interface AuthContextState {
@@ -17,12 +17,20 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const app = useFirebaseApp();
-  const auth = getAuth(app);
+  const { auth } = useFirebase();
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Check if auth is initialized (it might be an empty object if config failed)
+    // We check for onAuthStateChanged because dummy object won't have it
+    // @ts-ignore - checking for property existence on potentially empty object
+    if (!auth || !auth.onAuthStateChanged) {
+        console.warn("Firebase Auth not initialized in AuthProvider. Skipping listener.");
+        setIsLoading(false);
+        return;
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setIsLoading(false);
@@ -54,6 +62,6 @@ export const useUser = (): AuthContextState => {
 };
 
 export const useAuth = (): Auth => {
-    const app = useFirebaseApp();
-    return getAuth(app);
+    const { auth } = useFirebase();
+    return auth;
 }

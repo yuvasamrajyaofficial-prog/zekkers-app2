@@ -19,6 +19,7 @@ interface FirebaseProviderProps {
   firebaseApp: FirebaseApp;
   firestore: Firestore;
   storage: FirebaseStorage;
+  auth: Auth;
 }
 
 // Simplified context state
@@ -42,8 +43,8 @@ export const FirebaseProvider: React.FC<FirebaseProviderProps> = ({
   firebaseApp,
   firestore,
   storage,
+  auth,
 }) => {
-  const auth = getAuth(firebaseApp);
   
   // Memoize the context value
   const contextValue = useMemo(
