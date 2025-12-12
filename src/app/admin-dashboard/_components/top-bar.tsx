@@ -26,7 +26,7 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
                 <Menu className="h-5 w-5"/>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-[280px] flex flex-col">
+            <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
                <SheetHeader className="p-4 border-b">
                 <SheetTitle>Admin Menu</SheetTitle>
                 <SheetDescription>Platform Control</SheetDescription>

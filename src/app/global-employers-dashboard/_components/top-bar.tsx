@@ -31,7 +31,7 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
                 <Menu className="h-4 w-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-[280px] flex flex-col">
+            <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
                <SheetHeader className="p-4 border-b">
                 <SheetTitle>Global Employer Menu</SheetTitle>
                 <SheetDescription>Manage your global hiring.</SheetDescription>
