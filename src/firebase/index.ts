@@ -22,19 +22,42 @@ export function initializeFirebase(): FirebaseServices {
     return firebaseServices;
   }
 
-  let app: FirebaseApp;
-  if (!getApps().length) {
-      app = initializeApp(firebaseConfig);
-  } else {
-    app = getApp();
+  const isConfigValid = Object.values(firebaseConfig).every(value => !!value);
+
+  if (!isConfigValid) {
+      console.warn("Firebase configuration is missing. Returning dummy services to prevent crash.");
+      // Return dummy objects to prevent crash on property access
+      return {
+          firebaseApp: {} as FirebaseApp,
+          firestore: {} as Firestore,
+          storage: {} as FirebaseStorage,
+          auth: {} as Auth
+      };
   }
 
-  firebaseServices = {
-    firebaseApp: app,
-    firestore: getFirestore(app),
-    storage: getStorage(app),
-    auth: getAuth(app),
-  };
+  let app: FirebaseApp;
+  try {
+    if (!getApps().length) {
+        app = initializeApp(firebaseConfig);
+    } else {
+        app = getApp();
+    }
+
+    firebaseServices = {
+        firebaseApp: app,
+        firestore: getFirestore(app),
+        storage: getStorage(app),
+        auth: getAuth(app),
+    };
+  } catch (error) {
+      console.error("Failed to initialize Firebase:", error);
+      return {
+          firebaseApp: {} as FirebaseApp,
+          firestore: {} as Firestore,
+          storage: {} as FirebaseStorage,
+          auth: {} as Auth
+      };
+  }
 
   return firebaseServices;
 }
