@@ -21,6 +21,7 @@ export default function OrganizationSettingsPage() {
     };
 
   return (
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
     <Card>
         <CardHeader>
             <CardTitle className="flex items-center gap-2"><Building /> Organization Information</CardTitle>
@@ -89,5 +90,6 @@ export default function OrganizationSettingsPage() {
             </div>
         </CardContent>
     </Card>
+    </div>
   );
 }

@@ -142,7 +142,7 @@ const UsageMeter = ({ title, used, limit }: { title: string, used: number, limit
 
 export default function EmployerBillingPage() {
   return (
-    <div className="p-4 md:p-6">
+    <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <motion.div
         variants={containerVariants}
         initial="hidden"
