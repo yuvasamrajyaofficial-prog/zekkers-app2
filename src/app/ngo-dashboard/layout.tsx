@@ -4,6 +4,7 @@ import React from 'react';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import NgoSidebar from './_components/ngo-sidebar';
 import Topbar from './_components/top-bar';
+import AuthGuard from '@/components/auth-guard';
 
 export default function NgoDashboardLayout({
   children,
@@ -12,16 +13,18 @@ export default function NgoDashboardLayout({
 }) {
 
   return (
-    <div className="light flex flex-col min-h-screen">
-      <SidebarProvider>
-        <NgoSidebar />
-        <SidebarInset>
-          <Topbar dashboardName="NGO Dashboard" />
-          <main className="flex-1 bg-white overflow-y-auto">
-            {children}
-          </main>
-        </SidebarInset>
-      </SidebarProvider>
-    </div>
+    <AuthGuard allowedRoles={['ngo']}>
+      <div className="light flex flex-col min-h-screen">
+        <SidebarProvider>
+          <NgoSidebar />
+          <SidebarInset>
+            <Topbar dashboardName="NGO Dashboard" />
+            <main className="flex-1 bg-white overflow-y-auto">
+              {children}
+            </main>
+          </SidebarInset>
+        </SidebarProvider>
+      </div>
+    </AuthGuard>
   );
 }
