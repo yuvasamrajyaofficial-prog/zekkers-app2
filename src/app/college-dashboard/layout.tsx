@@ -3,7 +3,7 @@
 import React from 'react';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import CollegeSidebar from './_components/college-sidebar';
-import Topbar from '../employer-dashboard/_components/top-bar';
+import Topbar from './_components/top-bar';
 
 export default function CollegeDashboardLayout({
   children,

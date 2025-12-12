@@ -184,14 +184,14 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
         item.subItems ? (
           <Collapsible key={item.key} defaultOpen={isItemActive(item)}>
             <CollapsibleTrigger
-              className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-yellow-400 hover:text-gray-900 ${
-                isItemActive(item) ? 'bg-yellow-500 text-gray-900' : ''
+              className={`group flex items-center justify-between w-full gap-3 p-2 rounded-md ${
+                isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
               }`}
             >
               <div className="flex items-center gap-3">
                 <div
-                  className={`text-orange-700 group-hover:text-gray-900 ${
-                    isItemActive(item) ? 'text-gray-900' : ''
+                  className={`text-slate-600 group-hover:text-primary ${
+                    isItemActive(item) ? 'text-primary' : ''
                   }`}
                 >
                   {item.icon}
@@ -209,13 +209,13 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
                     onClick={closeSheet}
                     className={`group flex items-center gap-3 p-2 rounded-md text-sm ${
                       pathname === subItem.to
-                        ? 'bg-orange-100'
-                        : 'hover:bg-orange-50'
+                        ? 'bg-slate-100'
+                        : 'hover:bg-slate-50'
                     }`}
                   >
                     <div
-                      className={`text-white group-hover:text-gray-900 ${
-                        pathname === subItem.to ? 'text-gray-900' : ''
+                      className={`text-slate-600 group-hover:text-primary ${
+                        pathname === subItem.to ? 'text-primary' : ''
                       }`}
                     >
                       {subItem.icon}
@@ -234,12 +234,12 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
             href={item.to}
             onClick={closeSheet}
             className={`group flex items-center gap-3 p-2 rounded-md ${
-              isItemActive(item) ? 'bg-orange-100' : 'hover:bg-orange-50'
+              isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
             }`}
           >
             <div
-              className={`text-orange-700 group-hover:text-gray-900 ${
-                isItemActive(item) ? 'text-gray-900' : ''
+              className={`text-slate-600 group-hover:text-primary ${
+                isItemActive(item) ? 'text-primary' : ''
               }`}
             >
               {item.icon}

@@ -54,23 +54,23 @@ export default function MobileNgoSidebar({ closeSheet }: MobileNgoSidebarProps) 
   return (
     <nav className="flex flex-col gap-1 p-2 flex-1 overflow-y-auto">
       {menuItems.map((item) => (
-        <Link
-          key={item.key}
-          href={item.to}
-          onClick={closeSheet}
-          className={`group flex items-center gap-3 p-2 rounded-md hover:bg-yellow-400 hover:text-gray-900 ${
-            isItemActive(item) ? 'bg-yellow-500 text-gray-900' : ''
-          }`}
-        >
-          <div
-            className={`text-orange-700 group-hover:text-gray-900 ${
-              isItemActive(item) ? 'text-gray-900' : ''
+          <Link
+            key={item.key}
+            href={item.to}
+            onClick={closeSheet}
+            className={`group flex items-center gap-3 p-2 rounded-md ${
+              isItemActive(item) ? 'bg-slate-100' : 'hover:bg-slate-50'
             }`}
           >
-            {item.icon}
-          </div>
-          <div className="text-sm font-semibold">{item.label}</div>
-        </Link>
+            <div
+              className={`text-slate-600 group-hover:text-primary ${
+                isItemActive(item) ? 'text-primary' : ''
+              }`}
+            >
+              {item.icon}
+            </div>
+            <div className="text-sm font-semibold">{item.label}</div>
+          </Link>
       ))}
     </nav>
   );

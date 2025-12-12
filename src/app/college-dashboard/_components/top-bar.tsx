@@ -6,12 +6,11 @@ import {
   LogOut,
   Menu,
   Bell,
-  Briefcase,
 } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import MobileGlobalSidebar from './mobile-global-sidebar';
+import MobileCollegeSidebar from './mobile-college-sidebar';
 
 function Topbar({ dashboardName }: { dashboardName: string }) {
   const router = useRouter();
@@ -32,11 +31,11 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="p-0 w-[280px] flex flex-col">
-               <SheetHeader className="p-4 border-b">
-                <SheetTitle>Global Employer Menu</SheetTitle>
-                <SheetDescription>Manage your global hiring.</SheetDescription>
+              <SheetHeader className="p-4 border-b">
+                <SheetTitle>College Menu</SheetTitle>
+                <SheetDescription>Navigate your college dashboard.</SheetDescription>
               </SheetHeader>
-              <MobileGlobalSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
+              <MobileCollegeSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
             </SheetContent>
           </Sheet>
         </div>
@@ -47,14 +46,8 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
       </div>
 
       <div className="flex items-center gap-4 shrink-0">
-        <Button asChild>
-          <Link href="/global-employers-dashboard/jobs/create" className="gap-2">
-            <Briefcase size={16} />
-            <span className="hidden sm:inline">Post Job</span>
-          </Link>
-        </Button>
         <Button asChild variant="ghost" size="icon">
-            <Link href="#">
+            <Link href="/college-dashboard/notifications">
                 <Bell size={16} />
             </Link>
         </Button>
