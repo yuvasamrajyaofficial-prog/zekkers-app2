@@ -12,6 +12,8 @@ import { useDoc, useFirestore, useUser } from '@/firebase';
 import { doc } from 'firebase/firestore';
 import { ProfileData } from '@/services/profile';
 import { scoreJobForUser } from '@/lib/job-scoring';
+import { applyForJob } from '@/services/applications';
+import { useToast } from '@/hooks/use-toast';
 
 interface JobsDetailClientProps {
   job: Job | null;
@@ -19,6 +21,7 @@ interface JobsDetailClientProps {
 
 export default function JobsDetailClient({ job: initialJob }: JobsDetailClientProps) {
   const router = useRouter();
+  const { toast } = useToast();
   const { user } = useUser();
   const firestore = useFirestore();
 
@@ -66,6 +69,34 @@ export default function JobsDetailClient({ job: initialJob }: JobsDetailClientPr
   
   const atsScore = job.aiMatch || 0;
 
+
+  const handleApply = async () => {
+    if (!user || !firestore || !job) return;
+    
+    try {
+      setIsLoading(true);
+      await applyForJob(firestore, {
+        jobId: job.id,
+        studentId: user.uid,
+        employerId: job.companyId || 'unknown', // Fallback if companyId is missing
+        jobTitle: job.title,
+        companyName: job.company,
+        resumeUrl: userProfile?.resumeUrl || '',
+      });
+      toast({
+        title: "Application Submitted",
+        description: `You have successfully applied for ${job.title}.`,
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Application Failed",
+        description: error.message,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="p-4 md:p-6 max-w-4xl mx-auto">
@@ -159,7 +190,9 @@ export default function JobsDetailClient({ job: initialJob }: JobsDetailClientPr
             </div>
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Button size="lg">Apply Now</Button>
+            <Button size="lg" onClick={handleApply} disabled={isLoading}>
+                {isLoading ? 'Applying...' : 'Apply Now'}
+            </Button>
             <Button variant="outline" size="lg">
               Save Job
             </Button>

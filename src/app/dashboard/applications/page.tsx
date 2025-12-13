@@ -22,86 +22,28 @@ import {
   ChevronRight,
   Star,
 } from 'lucide-react';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useUser, useFirestore } from '@/firebase';
+import { fetchStudentApplications, Application } from '@/services/applications';
+import ZLoader from '@/components/ui/loader';
 
-const mockApplications = [
-  {
-    id: 1,
-    title: 'Frontend Developer',
-    company: 'Innovate Inc.',
-    logo: PlaceHolderImages.find(p => p.id === 'company1')!.imageUrl,
-    status: 'Viewed',
-    appliedOn: '2024-07-28T10:00:00Z',
-    atsScore: 88,
-  },
-  {
-    id: 2,
-    title: 'UX/UI Designer',
-    company: 'Creative Solutions',
-    logo: PlaceHolderImages.find(p => p.id === 'company2')!.imageUrl,
-    status: 'Interview Scheduled',
-    interviewDate: '2024-08-05T14:00:00Z',
-    appliedOn: '2024-07-25T09:00:00Z',
-    atsScore: 92,
-  },
-  {
-    id: 3,
-    title: 'Data Analyst (Intern)',
-    company: 'DataDriven Co.',
-    logo: PlaceHolderImages.find(p => p.id === 'company3')!.imageUrl,
-    status: 'Applied',
-    appliedOn: '2024-07-29T11:00:00Z',
-    atsScore: 75,
-  },
-  {
-    id: 4,
-    title: 'Backend Engineer',
-    company: 'TechCorp',
-    logo: PlaceHolderImages.find(p => p.id === 'company4')!.imageUrl,
-    status: 'Shortlisted',
-    appliedOn: '2024-07-22T15:00:00Z',
-    atsScore: 81,
-  },
-  {
-    id: 5,
-    title: 'Product Manager',
-    company: 'ZekkTech',
-    logo: PlaceHolderImages.find(p => p.id === 'logo')!.imageUrl,
-    status: 'Offer Received',
-    appliedOn: '2024-07-15T18:00:00Z',
-    atsScore: 95,
-  },
-  {
-    id: 6,
-    title: 'DevOps Engineer',
-    company: 'CloudNine',
-    logo: PlaceHolderImages.find(p => p.id === 'company5')!.imageUrl,
-    status: 'Rejected',
-    appliedOn: '2024-07-18T12:00:00Z',
-    atsScore: 65,
-  },
-];
 
 const statusStyles: { [key: string]: string } = {
-  Applied: 'bg-slate-100 text-slate-600',
-  Viewed: 'bg-blue-100 text-blue-600',
-  Shortlisted: 'bg-indigo-100 text-indigo-600',
-  'Interview Scheduled': 'bg-purple-100 text-purple-600',
-  'Offer Received': 'bg-green-100 text-green-600',
-  Rejected: 'bg-red-100 text-red-600',
+  applied: 'bg-slate-100 text-slate-600',
+  screening: 'bg-blue-100 text-blue-600',
+  interview: 'bg-purple-100 text-purple-600',
+  offer: 'bg-green-100 text-green-600',
+  rejected: 'bg-red-100 text-red-600',
 };
 
 const statusIcons: { [key: string]: React.ReactNode } = {
-  Applied: <FileText className="w-4 h-4" />,
-  Viewed: <Eye className="w-4 h-4" />,
-  Shortlisted: <CheckCircle2 className="w-4 h-4" />,
-  'Interview Scheduled': <Clock className="w-4 h-4" />,
-  'Offer Received': <Star className="w-4 h-4 text-green-500" />,
-  Rejected: <XCircle className="w-4 h-4" />,
+  applied: <FileText className="w-4 h-4" />,
+  screening: <Eye className="w-4 h-4" />,
+  interview: <Clock className="w-4 h-4" />,
+  offer: <Star className="w-4 h-4 text-green-500" />,
+  rejected: <XCircle className="w-4 h-4" />,
 };
 
-const ApplicationCard = ({ app }: { app: (typeof mockApplications)[0] }) => (
+const ApplicationCard = ({ app }: { app: Application }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -109,27 +51,23 @@ const ApplicationCard = ({ app }: { app: (typeof mockApplications)[0] }) => (
     className="bg-white p-4 rounded-xl border hover:shadow-lg hover:-translate-y-1 transition-transform"
   >
     <div className="flex items-start gap-4">
-      <Image
-        src={app.logo}
-        alt={`${app.company} logo`}
-        width={40}
-        height={40}
-        className="rounded-lg"
-      />
+      <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-600">
+        {app.companyName?.slice(0, 2).toUpperCase() || 'CO'}
+      </div>
       <div className="flex-1">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-bold text-slate-800">{app.title}</h3>
-            <p className="text-sm text-slate-500">{app.company}</p>
+            <h3 className="font-bold text-slate-800">{app.jobTitle}</h3>
+            <p className="text-sm text-slate-500">{app.companyName}</p>
           </div>
-          <Badge className={`${statusStyles[app.status]} font-semibold gap-1.5`}>
+          <Badge className={`${statusStyles[app.status]} font-semibold gap-1.5 capitalize`}>
             {statusIcons[app.status]}
             {app.status}
           </Badge>
         </div>
         <div className="mt-4 flex justify-between items-center">
           <p className="text-xs text-slate-400">
-            Applied on {new Date(app.appliedOn).toLocaleDateString()}
+            Applied on {app.appliedAt ? new Date(app.appliedAt.seconds * 1000 || app.appliedAt).toLocaleDateString() : 'N/A'}
           </p>
           <Button variant="ghost" size="sm" className="text-primary h-auto">
             View Details <ChevronRight className="w-4 h-4 ml-1" />
@@ -140,32 +78,31 @@ const ApplicationCard = ({ app }: { app: (typeof mockApplications)[0] }) => (
   </motion.div>
 );
 
-const KanbanBoard = () => {
+const KanbanBoard = ({ applications }: { applications: Application[] }) => {
   const stages = [
-    'Applied',
-    'Viewed',
-    'Shortlisted',
-    'Interview Scheduled',
-    'Offer Received',
-    'Rejected',
+    'applied',
+    'screening',
+    'interview',
+    'offer',
+    'rejected',
   ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {stages.map((stage) => (
         <div key={stage} className="bg-slate-50/70 p-3 rounded-lg">
-          <h3 className="font-semibold text-slate-600 p-2">
-            {stage} ({mockApplications.filter((a) => a.status === stage).length})
+          <h3 className="font-semibold text-slate-600 p-2 capitalize">
+            {stage} ({applications.filter((a) => a.status === stage).length})
           </h3>
           <div className="space-y-3">
-            {mockApplications
+            {applications
               .filter((a) => a.status === stage)
               .map((app) => (
                 <div
                   key={app.id}
                   className="bg-white p-3 rounded-md border shadow-sm"
                 >
-                  <p className="font-semibold text-sm">{app.title}</p>
-                  <p className="text-xs text-slate-500">{app.company}</p>
+                  <p className="font-semibold text-sm">{app.jobTitle}</p>
+                  <p className="text-xs text-slate-500">{app.companyName}</p>
                 </div>
               ))}
           </div>
@@ -176,6 +113,27 @@ const KanbanBoard = () => {
 };
 
 export default function ApplicationsPage() {
+  const { user } = useUser();
+  const firestore = useFirestore();
+  const [applications, setApplications] = React.useState<Application[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const loadApplications = async () => {
+        if (!user || !firestore) return;
+        setLoading(true);
+        try {
+            const apps = await fetchStudentApplications(firestore, user.uid);
+            setApplications(apps);
+        } catch (error) {
+            console.error("Failed to fetch applications:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    loadApplications();
+  }, [user, firestore]);
+
   return (
     <div className="p-4 md:p-6 bg-slate-50/50 min-h-full">
       <Card>
@@ -196,13 +154,19 @@ export default function ApplicationsPage() {
             </TabsList>
             <TabsContent value="list" className="mt-6">
               <div className="space-y-4">
-                {mockApplications.map((app) => (
-                  <ApplicationCard key={app.id} app={app} />
-                ))}
+                {loading ? (
+                    <div className="flex justify-center py-8"><ZLoader /></div>
+                ) : applications.length > 0 ? (
+                    applications.map((app) => (
+                        <ApplicationCard key={app.id} app={app} />
+                    ))
+                ) : (
+                    <div className="text-center py-8 text-muted-foreground">No applications found.</div>
+                )}
               </div>
             </TabsContent>
             <TabsContent value="kanban" className="mt-6">
-              <KanbanBoard />
+              <KanbanBoard applications={applications} />
             </TabsContent>
           </Tabs>
         </CardContent>
