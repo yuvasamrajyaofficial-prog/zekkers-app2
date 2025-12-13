@@ -40,10 +40,10 @@
 **Zekkers** is a comprehensive career platform that bridges the gap between job seekers and verified employers through AI-driven matching, secure profiles, and transparent hiring workflows. The platform caters to multiple stakeholders including:
 
 - 🎓 **Students & Job Seekers** — Browse government, private, and global opportunities
-- 🏢 **Employers** — Post jobs, manage ATS, access AI-powered candidate matching
+- 🏢 **Global Employers** — Post jobs, manage ATS, access AI-powered candidate matching
 - 🏫 **Colleges** — Track placements, manage campus drives, analytics
 - 🤝 **NGOs** — Support skill development and placements
-- 🌍 **Global Employers** — International hiring and remote opportunities
+
 - 👨‍💼 **Admin** — Platform management and oversight
 
 ---
@@ -54,11 +54,6 @@
 
 ![Student Dashboard - AI Job Matching](docs/screenshots/student-dashboard.png)
 _Smart job recommendations with AI-powered match scores for government, private, and international opportunities_
-
-### Employer Dashboard
-
-![Employer Dashboard - ATS & Hiring](docs/screenshots/employer-dashboard.png)
-_Complete hiring dashboard with ATS pipeline, AI insights, and candidate management_
 
 ### College Dashboard
 
@@ -99,7 +94,7 @@ _Comprehensive donor management with commitment tracking and program funding ana
 - **Interview Prep** — AI mock interviews with real-time feedback
 - **Competition Tracking** — Track coding competitions and hackathons
 
-### 💼 For Employers
+### 💼 For Global Employers
 
 - **Applicant Tracking System (ATS)** — Kanban-style candidate management
 - **AI Candidate Finder** — Intelligent candidate search and ranking
@@ -180,7 +175,6 @@ _Comprehensive donor management with commitment tracking and program funding ana
 - Firebase account (for backend services)
 - Git
 
-
 ### Environment Variables
 
 See `.env.example` for all available configuration options.
@@ -222,7 +216,7 @@ zekkers-app2/
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   │   ├── dashboard/          # Job seeker dashboard
-│   │   ├── employer-dashboard/ # Employer dashboard
+
 │   │   ├── college-dashboard/  # College dashboard
 │   │   ├── ngo-dashboard/      # NGO dashboard
 │   │   └── admin-dashboard/    # Admin dashboard
@@ -282,14 +276,6 @@ Conducts AI-powered mock interviews with:
 - Competition tracker
 - Interview preparation
 - Skill roadmaps
-
-### Employer Dashboard (`/employer-dashboard`)
-
-- Job posting management
-- ATS and candidate pipeline
-- AI candidate finder
-- Campus hiring
-- Analytics and insights
 
 ### College Dashboard (`/college-dashboard`)
 
