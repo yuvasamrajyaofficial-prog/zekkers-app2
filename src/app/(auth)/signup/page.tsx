@@ -57,7 +57,7 @@ export default function SignupPage() {
           router.push('/dashboard');
           break;
         case 'employer':
-          router.push('/employer-dashboard');
+          router.push('/global-employers-dashboard');
           break;
         case 'admin':
           router.push('/admin-dashboard');
@@ -140,10 +140,9 @@ export default function SignupPage() {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="student">Student / Job Seeker</SelectItem>
-              <SelectItem value="employer">Employer</SelectItem>
+              <SelectItem value="global_employer">Employer</SelectItem>
               <SelectItem value="college">College / University</SelectItem>
               <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
-              <SelectItem value="global_employer">Global Employer</SelectItem>
               {/* Admin role is usually hidden or invite-only, but keeping for demo */}
               <SelectItem value="admin">Administrator</SelectItem>
             </SelectContent>

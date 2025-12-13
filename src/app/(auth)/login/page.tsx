@@ -39,7 +39,7 @@ export default function LoginPage() {
             router.push('/dashboard');
             break;
           case 'employer':
-            router.push('/employer-dashboard');
+            router.push('/global-employers-dashboard');
             break;
           case 'admin':
             router.push('/admin-dashboard');

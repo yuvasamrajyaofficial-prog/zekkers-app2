@@ -1,7 +1,7 @@
 
 'use client';
 import React, { useState, useMemo } from 'react';
-import { AtsBoard } from '@/app/employer-dashboard/ats/_components/ats-board';
+import { AtsBoard } from '@/app/global-employers-dashboard/ats/_components/ats-board';
 import { MOCK_ATS_CANDIDATES, MOCK_STAGES, AtsCandidate } from '@/types/ats';
 import {
   Select,

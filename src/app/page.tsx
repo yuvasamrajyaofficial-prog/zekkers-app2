@@ -80,16 +80,13 @@ export default function ZekkersLanding() {
                     <Link href="/dashboard">Students/Job Seekers</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href="/employer-dashboard">Employers</Link>
+                    <Link href="/global-employers-dashboard">Employers</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                     <Link href="/college-dashboard">Colleges</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                     <Link href="/ngo-dashboard">NGO</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                    <Link href="/global-employers-dashboard">Global Employers</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                     <Link href="/admin-dashboard">Admin</Link>
@@ -123,10 +120,9 @@ export default function ZekkersLanding() {
                         <DropdownMenuSubTrigger>Dashboards</DropdownMenuSubTrigger>
                         <DropdownMenuSubContent>
                         <DropdownMenuItem asChild><Link href="/dashboard">Students/Job Seekers</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/employer-dashboard">Employers</Link></DropdownMenuItem>
+                        <DropdownMenuItem asChild><Link href="/global-employers-dashboard">Employers</Link></DropdownMenuItem>
                         <DropdownMenuItem asChild><Link href="/college-dashboard">Colleges</Link></DropdownMenuItem>
                         <DropdownMenuItem asChild><Link href="/ngo-dashboard">NGO</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/global-employers-dashboard">Global Employers</Link></DropdownMenuItem>
                         <DropdownMenuItem asChild>
                             <Link href="/admin-dashboard">Admin</Link>
                         </DropdownMenuItem>
@@ -173,7 +169,7 @@ export default function ZekkersLanding() {
                     <Link href="/dashboard">For Students/Seekers</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-slate-700 hover:bg-slate-800 hover:text-white">
-                    <Link href="/employer-dashboard">For Employers</Link>
+                    <Link href="/global-employers-dashboard">For Employers</Link>
                 </Button>
               </div>
             </MotionFade>
@@ -228,7 +224,7 @@ export default function ZekkersLanding() {
                 </Link>
              </Button>
             <Button asChild size="lg" variant="outline" className="text-primary border-white/50 bg-transparent hover:bg-white transition-colors">
-              <Link href="/employer-dashboard">Post a Job</Link>
+              <Link href="/global-employers-dashboard">Post a Job</Link>
             </Button>
           </div>
         </div>
@@ -266,10 +262,9 @@ export default function ZekkersLanding() {
               <h4 className="font-semibold text-slate-50">Product</h4>
               <ul className="mt-4 space-y-2 text-sm">
                 <li><Link href="/dashboard" className="text-slate-400 hover:text-primary">For Students</Link></li>
-                <li><Link href="/employer-dashboard" className="text-slate-400 hover:text-primary">For Employers</Link></li>
+                <li><Link href="/global-employers-dashboard" className="text-slate-400 hover:text-primary">For Employers</Link></li>
                 <li><Link href="/college-dashboard" className="text-slate-400 hover:text-primary">For Colleges</Link></li>
                 <li><Link href="/ngo-dashboard" className="text-slate-400 hover:text-primary">For NGOs</Link></li>
-                <li><Link href="/global-employers-dashboard" className="text-slate-400 hover:text-primary">For Global Employers</Link></li>
                 <li><Link href="/dashboard/jobs" className="text-slate-400 hover:text-primary">Jobs</Link></li>
                 <li><Link href="/dashboard/competitions" className="text-slate-400 hover:text-primary">Competitions</Link></li>
                 <li><Link href="/dashboard/roadmap" className="text-slate-400 hover:text-primary">AI Roadmap</Link></li>
