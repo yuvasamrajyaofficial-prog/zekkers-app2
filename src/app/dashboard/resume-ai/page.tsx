@@ -239,11 +239,11 @@ export default function ResumeAIPage() {
               Build, analyze, and optimize your resume for any job description.
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="analyzer">
-                <TabsList>
-                    <TabsTrigger value="analyzer">AI Analyzer</TabsTrigger>
-                    <TabsTrigger value="builder">Resume Builder</TabsTrigger>
+          <CardContent className="p-4 md:p-6">
+            <Tabs defaultValue="analyzer" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 h-auto p-1">
+                    <TabsTrigger value="analyzer" className="py-2">AI Analyzer</TabsTrigger>
+                    <TabsTrigger value="builder" className="py-2">Resume Builder</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="analyzer" className="mt-6">
