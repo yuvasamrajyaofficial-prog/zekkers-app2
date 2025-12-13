@@ -72,16 +72,17 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-4 gap-2 md:gap-4">
           {stats.map((stat, index) => (
-            <Card key={index} className="border-none shadow-sm hover:shadow-md transition-shadow bg-white">
-              <CardContent className="p-6 flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-slate-500">{stat.label}</p>
-                  <h3 className="text-2xl font-bold text-slate-900 mt-1">{stat.value}</h3>
+            <Card key={index} className="border-none shadow-sm hover:shadow-md transition-shadow bg-white overflow-hidden">
+              <CardContent className="p-2 md:p-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1 md:gap-0 text-center md:text-left h-full">
+                <div className="order-2 md:order-1">
+                  <p className="hidden md:block text-sm font-medium text-slate-500">{stat.label}</p>
+                  <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-900 mt-0 md:mt-1 truncate w-full">{stat.value}</h3>
+                  <p className="md:hidden text-[10px] text-slate-400 leading-tight truncate w-full px-1">{stat.label}</p>
                 </div>
-                <div className={`p-3 rounded-xl ${stat.bg}`}>
-                  <stat.icon className={`w-6 h-6 ${stat.color}`} />
+                <div className={`p-1.5 md:p-3 rounded-lg md:rounded-xl ${stat.bg} order-1 md:order-2 mb-1 md:mb-0`}>
+                  <stat.icon className={`w-4 h-4 md:w-6 md:h-6 ${stat.color}`} />
                 </div>
               </CardContent>
             </Card>
