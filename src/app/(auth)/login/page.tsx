@@ -70,22 +70,22 @@ export default function LoginPage() {
   };
 
   return (
-    <Card>
+    <Card className="bg-slate-950 border-slate-800 text-white shadow-xl">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Sign in</CardTitle>
-        <CardDescription className="text-center">
+        <CardTitle className="text-2xl font-bold text-center text-white">Sign in</CardTitle>
+        <CardDescription className="text-center text-slate-400">
           Enter your email and password to access your account
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleLogin} className="space-y-4">
           {error && (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className="bg-red-900/50 border-red-900 text-red-200">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-slate-200">Email</Label>
             <Input 
               id="email" 
               type="email" 
@@ -93,33 +93,35 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required 
+              className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-yellow-500"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-slate-200">Password</Label>
             <Input 
               id="password" 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required 
+              className="bg-slate-900 border-slate-800 text-white focus-visible:ring-yellow-500"
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-slate-950 font-bold" disabled={loading}>
             {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             Sign In
           </Button>
         </form>
       </CardContent>
       <CardFooter className="flex flex-col gap-2">
-        <div className="text-sm text-center text-slate-500">
+        <div className="text-sm text-center text-slate-400">
           Don't have an account?{' '}
-          <Link href="/signup" className="text-primary hover:underline">
+          <Link href="/signup" className="text-yellow-400 hover:underline font-medium">
             Sign up
           </Link>
         </div>
         <div className="text-sm text-center">
-            <Link href="/forgot-password" className="text-slate-500 hover:text-slate-800">
+            <Link href="/forgot-password" className="text-slate-500 hover:text-slate-300 transition-colors">
                 Forgot password?
             </Link>
         </div>

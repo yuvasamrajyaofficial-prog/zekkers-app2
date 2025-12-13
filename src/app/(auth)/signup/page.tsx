@@ -84,32 +84,33 @@ export default function SignupPage() {
   };
 
   return (
-    <Card>
+    <Card className="bg-slate-950 border-slate-800 text-white shadow-xl">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
-        <CardDescription className="text-center">
+        <CardTitle className="text-2xl font-bold text-center text-white">Create an account</CardTitle>
+        <CardDescription className="text-center text-slate-400">
           Enter your details below to create your account
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSignup} className="space-y-4">
           {error && (
-            <Alert variant="destructive">
+            <Alert variant="destructive" className="bg-red-900/50 border-red-900 text-red-200">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name" className="text-slate-200">Full Name</Label>
             <Input 
               id="name" 
               placeholder="John Doe" 
               value={name}
               onChange={(e) => setName(e.target.value)}
               required 
+              className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-yellow-500"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="text-slate-200">Email</Label>
             <Input 
               id="email" 
               type="email" 
@@ -117,10 +118,11 @@ export default function SignupPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required 
+              className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-yellow-500"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-slate-200">Password</Label>
             <Input 
               id="password" 
               type="password" 
@@ -128,35 +130,36 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
               required 
               minLength={6}
+              className="bg-slate-900 border-slate-800 text-white focus-visible:ring-yellow-500"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="role">I am a...</Label>
+            <Label htmlFor="role" className="text-slate-200">I am a...</Label>
             <Select value={role} onValueChange={setRole}>
-              <SelectTrigger>
+              <SelectTrigger className="bg-slate-900 border-slate-800 text-white focus:ring-yellow-500">
                 <SelectValue placeholder="Select your role" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="student">Student / Job Seeker</SelectItem>
-                <SelectItem value="employer">Employer</SelectItem>
-                <SelectItem value="college">College / University</SelectItem>
-                <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
-                <SelectItem value="global_employer">Global Employer</SelectItem>
+              <SelectContent className="bg-slate-900 border-slate-800 text-white">
+                <SelectItem value="student" className="focus:bg-slate-800 focus:text-white">Student / Job Seeker</SelectItem>
+                <SelectItem value="employer" className="focus:bg-slate-800 focus:text-white">Employer</SelectItem>
+                <SelectItem value="college" className="focus:bg-slate-800 focus:text-white">College / University</SelectItem>
+                <SelectItem value="ngo" className="focus:bg-slate-800 focus:text-white">NGO / Non-Profit</SelectItem>
+                <SelectItem value="global_employer" className="focus:bg-slate-800 focus:text-white">Global Employer</SelectItem>
                 {/* Admin role is usually hidden or invite-only, but keeping for demo */}
-                <SelectItem value="admin">Administrator</SelectItem>
+                <SelectItem value="admin" className="focus:bg-slate-800 focus:text-white">Administrator</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-slate-950 font-bold" disabled={loading}>
             {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             Sign Up
           </Button>
         </form>
       </CardContent>
       <CardFooter>
-        <div className="text-sm text-center text-slate-500 w-full">
+        <div className="text-sm text-center text-slate-400 w-full">
           Already have an account?{' '}
-          <Link href="/login" className="text-primary hover:underline">
+          <Link href="/login" className="text-yellow-400 hover:underline font-medium">
             Sign in
           </Link>
         </div>
