@@ -19,7 +19,7 @@ import { doc } from 'firebase/firestore';
 import Link from 'next/link';
 import { User } from 'firebase/auth';
 
-import { useAuth } from '@/firebase/auth/use-user';
+import { useAuth } from '@/context/auth-context';
 
 const emptyProfile: Omit<ProfileData, 'id' | 'email'> = {
   name: '',
