@@ -1,100 +1,132 @@
 
 
 'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
+} from '@/components/ui/sidebar';
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { ChevronDown } from 'lucide-react';
-import {
-  Sidebar,
-  useSidebar,
-} from '@/components/ui/sidebar';
+import { ChevronRight, LogOut, Globe } from 'lucide-react';
 import { menuItems } from './menu-items';
-import { cn } from '@/lib/utils';
+import { useAuth } from '@/context/auth-context';
 
-function GlobalSidebar() {
+export default function GlobalSidebar() {
   const pathname = usePathname();
-  const { state: sidebarState } = useSidebar();
+  const { logout } = useAuth();
 
   const isItemActive = (item: any) => {
     if (item.subItems) {
       return item.subItems.some((sub: any) => pathname.startsWith(sub.to));
     }
-    return item.to ? pathname.startsWith(item.to) : false;
+    return item.to ? pathname === item.to : false;
   };
 
   return (
-    <Sidebar className="flex flex-col bg-white border-r border-slate-200">
-       <Link
-        href="/global-employers-dashboard"
-        className="flex items-center gap-3 px-3 py-4 hover:bg-slate-100 transition-colors"
-      >
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold">
-            ZK
-        </div>
-        {sidebarState === 'expanded' && (
-          <div className="overflow-hidden">
-            <div className="font-semibold">GlobalCorp</div>
-            <div className="text-xs text-slate-500 truncate">Global Employer</div>
+    <Sidebar collapsible="icon">
+      <SidebarHeader>
+        <div className="flex items-center gap-3 p-2">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
+            <Globe className="h-6 w-6" />
           </div>
-        )}
-      </Link>
+          <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
+            <span className="truncate font-semibold">GlobalCorp</span>
+            <span className="truncate text-xs text-muted-foreground">Global Employer</span>
+          </div>
+        </div>
+      </SidebarHeader>
 
-      <nav className="flex flex-col gap-1 p-2 flex-1 overflow-y-auto">
-        {menuItems.map((item) =>
-          item.subItems ? (
-            <Collapsible key={item.key} defaultOpen={isItemActive(item)}>
-              <CollapsibleTrigger
-                className={cn('group flex items-center justify-between w-full gap-3 p-2 rounded-md hover:bg-slate-100', isItemActive(item) ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700')}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={cn('text-slate-500 group-hover:text-primary', isItemActive(item) ? 'text-primary' : '')}
-                  >
-                    {item.icon}
-                  </div>
-                  {sidebarState === 'expanded' && <div className="text-sm">{item.label}</div>}
-                </div>
-                {sidebarState === 'expanded' && <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180" />}
-              </CollapsibleTrigger>
-              <CollapsibleContent className={cn("pl-6", sidebarState === 'collapsed' && 'hidden')}>
-                <div className="flex flex-col gap-1 mt-1 border-l-2 border-slate-200 pl-2">
-                  {item.subItems.map((subItem) => (
-                    <Link
-                      key={subItem.key}
-                      href={subItem.to}
-                      className={cn('group flex items-center gap-3 p-2 rounded-md text-sm', pathname === subItem.to ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900')}
-                    >
-                      <div className="text-xs">
-                        {subItem.label}
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </CollapsibleContent>
-            </Collapsible>
-          ) : (
-            <Link
-              key={item.key}
-              href={item.to || '#'}
-              className={cn('group flex items-center gap-3 p-2 rounded-md', isItemActive(item) ? 'bg-primary/10 text-primary font-semibold' : 'text-slate-700 hover:bg-slate-100')}
-            >
-              <div
-                className={cn('text-slate-500 group-hover:text-primary', isItemActive(item) ? 'text-primary' : '')}
-              >
-                {item.icon}
-              </div>
-              {sidebarState === 'expanded' && <div className="text-sm">{item.label}</div>}
-            </Link>
-          )
-        )}
-      </nav>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <Collapsible
+                  key={item.key}
+                  asChild
+                  defaultOpen={isItemActive(item)}
+                  className="group/collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip={item.label}
+                        isActive={isItemActive(item)}
+                      >
+                        {item.icon}
+                        <span>{item.label}</span>
+                        {item.subItems && (
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        )}
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    {item.subItems && (
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.subItems.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.key}>
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={pathname === subItem.to}
+                              >
+                                <Link href={subItem.to}>
+                                  <span>{subItem.label}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    )}
+                    {!item.subItems && (
+                        <SidebarMenuButton
+                            asChild
+                            tooltip={item.label}
+                            isActive={isItemActive(item)}
+                        >
+                            <Link href={item.to}>
+                                {item.icon}
+                                <span>{item.label}</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    )}
+                  </SidebarMenuItem>
+                </Collapsible>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={logout} tooltip="Logout">
+              <LogOut />
+              <span>Logout</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
-export default GlobalSidebar;

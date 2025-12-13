@@ -47,6 +47,7 @@ import {
   Cell,
   Legend,
 } from 'recharts';
+import { useAuth } from '@/context/auth-context';
 
 // --- Animation Variants ---
 const containerVariants = {
@@ -119,6 +120,8 @@ const Section = ({ title, icon, children, action }: { title: string, icon: React
 
 // --- Main Component ---
 export default function GlobalEmployersDashboardPage() {
+  const { user } = useAuth();
+
   return (
     <div className="p-4 md:p-6 bg-slate-50 min-h-full">
       <motion.div
@@ -130,7 +133,7 @@ export default function GlobalEmployersDashboardPage() {
         {/* Header */}
         <motion.div variants={itemVariants}>
             <h1 className="text-3xl font-bold text-slate-800">Global Hiring Overview</h1>
-            <p className="text-slate-500 mt-1">Welcome to your international talent command center.</p>
+            <p className="text-slate-500 mt-1">Welcome back, {user?.displayName || 'Global Partner'}. Here is your international talent command center.</p>
         </motion.div>
 
         {/* KPIs */}

@@ -10,8 +10,6 @@ import {
 } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import MobileGlobalSidebar from './mobile-global-sidebar';
 
 function Topbar({ dashboardName }: { dashboardName: string }) {
   const router = useRouter();
@@ -24,19 +22,8 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
   return (
     <div className="flex items-center justify-between p-3 border-b bg-white gap-4">
       <div className="flex items-center gap-3 shrink-0">
-        <div className="md:hidden">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Menu className="h-4 w-4" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
-
-              <MobileGlobalSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
-            </SheetContent>
-          </Sheet>
-        </div>
+        <SidebarTrigger className="md:hidden" />
+        <SidebarTrigger className="hidden md:block" />
         <SidebarTrigger className="hidden md:block" />
         <div className="hidden md:block font-semibold text-lg">
           {dashboardName}
