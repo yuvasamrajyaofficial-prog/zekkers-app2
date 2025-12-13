@@ -39,10 +39,10 @@ import Link from 'next/link';
 
 // --- Mock Data ---
 const MOCK_JOBS: Job[] = [
-  { id: 'j1', title: 'Senior Cloud Engineer', company: 'GlobalCorp', location: 'Berlin', country: 'Germany', category: 'international', type: 'remote', status: 'published', salaryMin: 90000, currency: 'EUR', postedAt: new Date(Date.now() - 2 * 24 * 3600 * 1000) },
-  { id: 'j2', title: 'Marketing Lead, APAC', company: 'GlobalCorp', location: 'Singapore', country: 'Singapore', category: 'international', type: 'hybrid', status: 'published', salaryMin: 120000, currency: 'SGD', postedAt: new Date(Date.now() - 5 * 24 * 3600 * 1000) },
-  { id: 'j3', title: 'Lead Data Scientist', company: 'GlobalCorp', location: 'New York', country: 'USA', category: 'international', type: 'onsite', status: 'paused', salaryMin: 150000, currency: 'USD', postedAt: new Date(Date.now() - 10 * 24 * 3600 * 1000) },
-  { id: 'j4', title: 'Junior DevOps Engineer', company: 'GlobalCorp', location: 'London', country: 'UK', category: 'international', type: 'onsite', status: 'draft', salaryMin: 50000, currency: 'GBP', postedAt: new Date(Date.now() - 1 * 24 * 3600 * 1000) },
+  { id: 'j1', title: 'Senior Cloud Engineer', company: 'GlobalCorp', location: 'Berlin', country: 'Germany', category: 'international', type: 'remote', status: 'published', salaryMin: 90000, currency: 'EUR', postedAt: new Date(Date.now() - 2 * 24 * 3600 * 1000), employerId: 'mock-employer-id' },
+  { id: 'j2', title: 'Marketing Lead, APAC', company: 'GlobalCorp', location: 'Singapore', country: 'Singapore', category: 'international', type: 'hybrid', status: 'published', salaryMin: 120000, currency: 'SGD', postedAt: new Date(Date.now() - 5 * 24 * 3600 * 1000), employerId: 'mock-employer-id' },
+  { id: 'j3', title: 'Lead Data Scientist', company: 'GlobalCorp', location: 'New York', country: 'USA', category: 'international', type: 'onsite', status: 'paused', salaryMin: 150000, currency: 'USD', postedAt: new Date(Date.now() - 10 * 24 * 3600 * 1000), employerId: 'mock-employer-id' },
+  { id: 'j4', title: 'Junior DevOps Engineer', company: 'GlobalCorp', location: 'London', country: 'UK', category: 'international', type: 'onsite', status: 'draft', salaryMin: 50000, currency: 'GBP', postedAt: new Date(Date.now() - 1 * 24 * 3600 * 1000), employerId: 'mock-employer-id' },
 ];
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.05 } } };
