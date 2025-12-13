@@ -25,7 +25,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, Sparkles } from 'lucide-react';
 import { Job, JobCategory, JobType } from '@/types/job';
-import { useFirestore } from '@/firebase';
+import { useFirestore, useUser } from '@/firebase';
 import { collection, serverTimestamp } from 'firebase/firestore';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
@@ -37,6 +37,7 @@ export default function EmployerCreateJobPage() {
   const { toast } = useToast();
   const router = useRouter();
   const firestore = useFirestore();
+  const { user } = useUser();
 
   const [jobDetails, setJobDetails] = useState<Partial<Job>>({
     title: '',
@@ -112,8 +113,18 @@ export default function EmployerCreateJobPage() {
     }
     setIsLoading(true);
 
+    if (!user) {
+        toast({ variant: 'destructive', title: 'You must be logged in' });
+        return;
+    }
+
     try {
-        await createJob(firestore, jobDetails as any); // Type assertion for now, validation should be stricter
+        const jobData = {
+            ...jobDetails,
+            employerId: user.uid,
+            companyId: user.uid, // Assuming companyId is same as employerId for now, or we can fetch it
+        };
+        await createJob(firestore, jobData as any);
         toast({
             title: 'Job Created Successfully',
             description: `${jobDetails.title} has been published.`,

@@ -8,6 +8,7 @@ export type Job = {
   title: string;
   company: string;
   companyId?: string;
+  employerId: string;
   location: string;
   category: JobCategory;
   country?: string; 
