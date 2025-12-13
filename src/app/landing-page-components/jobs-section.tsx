@@ -55,7 +55,7 @@ const featuredJobs = [
 
 export default function JobsSection() {
   return (
-    <section className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+    <section className="px-6 md:px-12 py-24 bg-background relative overflow-hidden">
         {/* Background Gradients */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -66,7 +66,7 @@ export default function JobsSection() {
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
                 Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Opportunities</span>
                 </h2>
-                <p className="text-lg text-slate-400">
+                <p className="text-lg text-muted-foreground">
                 Explore top roles from verified employers across the globe.
                 </p>
             </div>
@@ -83,7 +83,7 @@ export default function JobsSection() {
             {featuredJobs.map((job, index) => (
                 <MotionFade key={job.id} delay={index * 0.1}>
                     <div className="min-w-[280px] md:min-w-0 h-full snap-center">
-                        <div className="group relative h-full p-6 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 flex flex-col">
+                        <div className="group relative h-full p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 flex flex-col">
                             <div className="flex items-start justify-between mb-4">
                                 <div className={cn(
                                     "w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg",
@@ -99,14 +99,14 @@ export default function JobsSection() {
                             <h3 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
                                 {job.title}
                             </h3>
-                            <p className="text-slate-400 text-sm mb-4">{job.company}</p>
+                            <p className="text-muted-foreground text-sm mb-4">{job.company}</p>
                             
                             <div className="space-y-2 mb-6">
-                                <div className="flex items-center gap-2 text-xs text-slate-500">
+                                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                     <MapPin className="w-3.5 h-3.5" />
                                     {job.location}
                                 </div>
-                                <div className="flex items-center gap-2 text-xs text-slate-500">
+                                <div className="flex items-center gap-2 text-xs text-muted-foreground">
                                     <DollarSign className="w-3.5 h-3.5" />
                                     {job.salary}
                                 </div>

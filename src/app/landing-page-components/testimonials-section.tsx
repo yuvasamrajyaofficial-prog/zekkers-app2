@@ -50,17 +50,17 @@ const testimonials = [
 ];
 
 const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
-    <div className="w-[350px] p-6 rounded-2xl bg-slate-900/50 border border-white/5 backdrop-blur-sm mx-4 flex flex-col h-full">
+    <div className="w-[350px] p-6 rounded-2xl bg-card border border-white/5 backdrop-blur-sm mx-4 flex flex-col h-full hover:border-primary/20 transition-colors">
         <div className="flex items-center gap-4 mb-4">
             <div className={cn("w-12 h-12 rounded-full flex items-center justify-center text-2xl border", t.color)}>
                 {t.avatar}
             </div>
             <div>
                 <div className="font-bold text-white">{t.name}</div>
-                <div className="text-xs text-slate-400">{t.role}</div>
+                <div className="text-xs text-muted-foreground">{t.role}</div>
             </div>
         </div>
-        <p className="text-slate-300 text-sm leading-relaxed flex-1">
+        <p className="text-muted-foreground text-sm leading-relaxed flex-1">
             "{t.quote}"
         </p>
     </div>
@@ -68,7 +68,7 @@ const TestimonialCard = ({ t }: { t: typeof testimonials[0] }) => (
 
 export default function TestimonialsSection() {
     return (
-        <section id="testimonials" className="py-24 bg-slate-950 relative overflow-hidden">
+        <section id="testimonials" className="py-24 bg-background relative overflow-hidden">
              {/* Background Gradients */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -78,7 +78,7 @@ export default function TestimonialsSection() {
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             Success Stories
                         </h2>
-                        <p className="text-lg text-slate-400">
+                        <p className="text-lg text-muted-foreground">
                             Real people. Real outcomes. Join the community.
                         </p>
                     </div>
@@ -114,8 +114,8 @@ export default function TestimonialsSection() {
             </div>
             
             {/* Fade Edges */}
-            <div className="absolute top-0 left-0 bottom-0 w-24 bg-gradient-to-r from-slate-950 to-transparent z-20 pointer-events-none" />
-            <div className="absolute top-0 right-0 bottom-0 w-24 bg-gradient-to-l from-slate-950 to-transparent z-20 pointer-events-none" />
+            <div className="absolute top-0 left-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+            <div className="absolute top-0 right-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
         </section>
     );
 }

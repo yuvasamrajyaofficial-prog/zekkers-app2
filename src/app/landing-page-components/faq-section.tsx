@@ -27,14 +27,14 @@ const faqs = [
 
 export default function FaqSection() {
     return (
-        <section id="faq" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+        <section id="faq" className="px-6 md:px-12 py-24 bg-background relative overflow-hidden">
             <div className="max-w-4xl mx-auto relative z-10">
             <MotionFade>
                 <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold flex items-center justify-center gap-3 text-white">
                     <HelpCircle className="text-primary w-8 h-8"/> Frequently Asked Questions
                 </h2>
-                <p className="mt-3 text-slate-400">
+                <p className="mt-3 text-muted-foreground">
                     Your questions, answered. Building trust through transparency.
                 </p>
                 </div>
@@ -42,9 +42,9 @@ export default function FaqSection() {
             <MotionFade delay={0.1}>
                 <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, i) => (
-                    <AccordionItem value={`item-${i}`} key={faq.question} className="border border-white/10 rounded-xl bg-slate-900/50 px-4">
+                    <AccordionItem value={`item-${i}`} key={faq.question} className="border border-white/10 rounded-xl bg-card px-4 hover:border-primary/20 transition-colors">
                     <AccordionTrigger className="font-semibold text-lg text-left text-white hover:text-primary hover:no-underline py-4">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-slate-400 text-base pb-4">
+                    <AccordionContent className="text-muted-foreground text-base pb-4">
                         {faq.answer}
                     </AccordionContent>
                     </AccordionItem>

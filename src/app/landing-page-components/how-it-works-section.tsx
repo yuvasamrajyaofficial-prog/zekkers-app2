@@ -64,10 +64,10 @@ export default function HowItWorksSection() {
   const steps = activeTab === 'seeker' ? seekerSteps : employerSteps;
 
   return (
-    <section id="how" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+    <section id="how" className="px-6 md:px-12 py-24 bg-background relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-5xl mx-auto relative z-10">
         <MotionFade>
@@ -75,18 +75,18 @@ export default function HowItWorksSection() {
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               How Zekkers Works
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               Simple, transparent, and effective. Whether you're hiring or hunting, we've streamlined the process.
             </p>
             
-            <div className="inline-flex p-1 rounded-full bg-slate-900 border border-white/10">
+            <div className="inline-flex p-1 rounded-full bg-card border border-white/10">
                 <button
                     onClick={() => setActiveTab('seeker')}
                     className={cn(
                         "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300",
                         activeTab === 'seeker' 
-                            ? "bg-white text-slate-900 shadow-lg" 
-                            : "text-slate-400 hover:text-white"
+                            ? "bg-primary text-primary-foreground shadow-lg" 
+                            : "text-muted-foreground hover:text-white"
                     )}
                 >
                     For Job Seekers
@@ -96,8 +96,8 @@ export default function HowItWorksSection() {
                     className={cn(
                         "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300",
                         activeTab === 'employer' 
-                            ? "bg-white text-slate-900 shadow-lg" 
-                            : "text-slate-400 hover:text-white"
+                            ? "bg-primary text-primary-foreground shadow-lg" 
+                            : "text-muted-foreground hover:text-white"
                     )}
                 >
                     For Employers
@@ -108,7 +108,7 @@ export default function HowItWorksSection() {
 
         <div className="relative">
             {/* Central Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 md:-translate-x-1/2">
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-1/2">
                 <motion.div 
                     className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent"
                     initial={{ height: 0 }}
@@ -134,11 +134,11 @@ export default function HowItWorksSection() {
                         {/* Content Side */}
                         <div className="flex-1 pl-20 md:pl-0 md:px-12 w-full">
                             <div className={cn(
-                                "p-6 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-white/10 transition-colors",
+                                "p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/20 transition-colors",
                                 index % 2 === 0 ? "md:text-left" : "md:text-right"
                             )}>
                                 <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                                <p className="text-slate-400 text-sm leading-relaxed">
+                                <p className="text-muted-foreground text-sm leading-relaxed">
                                     {step.description}
                                 </p>
                             </div>
@@ -147,7 +147,7 @@ export default function HowItWorksSection() {
                         {/* Icon Node */}
                         <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
                             <div className={cn(
-                                "w-16 h-16 rounded-full border-4 border-slate-950 flex items-center justify-center shadow-xl z-10",
+                                "w-16 h-16 rounded-full border-4 border-background flex items-center justify-center shadow-xl z-10",
                                 step.color
                             )}>
                                 <div className="text-white">

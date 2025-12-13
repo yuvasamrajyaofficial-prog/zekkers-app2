@@ -151,35 +151,35 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute top-1/4 left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
             >
-                <div className="p-2 rounded-lg bg-green-500/20 text-green-400">
+                <div className="p-2 rounded-lg bg-primary/20 text-primary">
                     <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
                     <div className="text-sm font-semibold text-white">Verified Employer</div>
-                    <div className="text-xs text-slate-400">Trust Score: 100%</div>
+                    <div className="text-xs text-muted-foreground">Trust Score: 100%</div>
                 </div>
             </motion.div>
 
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-1/4 right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute bottom-1/4 right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
             >
-                <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                <div className="p-2 rounded-lg bg-accent/20 text-accent">
                     <Search className="w-6 h-6" />
                 </div>
                 <div>
                     <div className="text-sm font-semibold text-white">AI Job Match</div>
-                    <div className="text-xs text-slate-400">98% Compatibility</div>
+                    <div className="text-xs text-muted-foreground">98% Compatibility</div>
                 </div>
             </motion.div>
 
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-1/3 right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/30 backdrop-blur-sm border border-white/5"
+                className="absolute top-1/3 right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-card/30 backdrop-blur-sm border border-white/5"
             >
                 <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
                     <Globe className="w-4 h-4" />
@@ -202,21 +202,21 @@ export default function ZekkersLanding() {
             <MotionFade delay={0.1}>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
                 <span className="block text-white">Smart Seekers.</span>
-                <span className="block bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 bg-clip-text text-transparent pb-2">
+                <span className="block bg-gradient-to-r from-primary via-blue-400 to-accent bg-clip-text text-transparent pb-2">
                   Verified Futures.
                 </span>
               </h1>
             </MotionFade>
             
             <MotionFade delay={0.2}>
-              <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 The unified career ecosystem connecting students, professionals, and global employers through AI-driven matching and transparent hiring.
               </p>
             </MotionFade>
 
             <MotionFade delay={0.3}>
               <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                 <Button asChild size="lg" className="h-14 px-8 text-base rounded-full bg-white text-slate-900 hover:bg-slate-200 font-bold shadow-lg shadow-white/10 transition-all hover:scale-105">
+                 <Button asChild size="lg" className="h-14 px-8 text-base rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105">
                     <Link href="/dashboard">Find a Job</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
@@ -225,11 +225,11 @@ export default function ZekkersLanding() {
               </div>
               <div className="mt-6 flex items-center justify-center gap-6 text-sm text-slate-500">
                 <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
                     <span>No credit card required</span>
                 </div>
                 <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    <CheckCircle2 className="w-4 h-4 text-primary" />
                     <span>Free for students</span>
                 </div>
               </div>
@@ -251,7 +251,7 @@ export default function ZekkersLanding() {
             <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
               Ready to launch your career?
             </h3>
-            <p className="mt-4 text-lg text-slate-400 max-w-lg mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground max-w-lg mx-auto">
               Join thousands of others and take the next step in your career with confidence.
             </p>
             <div className="mt-8">
@@ -270,7 +270,7 @@ export default function ZekkersLanding() {
 
       {/* CTA */}
       <section className="px-6 md:px-12 py-20">
-        <div className="max-w-7xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-8 md:p-16 text-center md:text-left shadow-2xl relative overflow-hidden group">
+        <div className="max-w-7xl mx-auto rounded-3xl bg-gradient-to-br from-card to-background border border-white/10 p-8 md:p-16 text-center md:text-left shadow-2xl relative overflow-hidden group">
           <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
           <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500" />
           
@@ -298,7 +298,7 @@ export default function ZekkersLanding() {
       </section>
 
       {/* FOOTER */}
-      <footer className="px-6 md:px-12 py-16 bg-slate-950 border-t border-white/5">
+      <footer className="px-6 md:px-12 py-16 bg-background border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex flex-col md:flex-row justify-between items-start gap-12">
             <div className="max-w-sm">

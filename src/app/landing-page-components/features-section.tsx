@@ -91,7 +91,7 @@ const features = [
 
 export default function FeaturesSection() {
     return (
-        <section id="features" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+        <section id="features" className="px-6 md:px-12 py-24 bg-background relative overflow-hidden">
              {/* Background Gradients */}
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
@@ -102,7 +102,7 @@ export default function FeaturesSection() {
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Zekkers?</span>
                         </h2>
-                        <p className="text-lg text-slate-400">
+                        <p className="text-lg text-muted-foreground">
                             Trusted, intelligent, and built for the future of work.
                         </p>
                     </div>
@@ -112,7 +112,7 @@ export default function FeaturesSection() {
                     {features.map((feature, index) => (
                         <MotionFade key={feature.title} delay={index * 0.1}>
                             <div className={cn(
-                                "group relative h-full p-6 rounded-3xl bg-slate-900/50 border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5",
+                                "group relative h-full p-6 rounded-3xl bg-card border border-white/5 overflow-hidden hover:border-primary/20 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5",
                                 feature.className
                             )}>
                                 <div className={cn(
@@ -122,13 +122,13 @@ export default function FeaturesSection() {
                                 
                                 <div className="relative z-10 flex flex-col h-full">
                                     <div className="flex items-start justify-between mb-4">
-                                        <div className="p-3 rounded-2xl bg-slate-950/50 border border-white/5 text-white group-hover:scale-110 transition-transform duration-300">
+                                        <div className="p-3 rounded-2xl bg-background/50 border border-white/5 text-white group-hover:scale-110 transition-transform duration-300">
                                             {feature.icon}
                                         </div>
                                     </div>
                                     
                                     <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-auto">
+                                    <p className="text-muted-foreground text-sm leading-relaxed mb-auto">
                                         {feature.description}
                                     </p>
                                     
