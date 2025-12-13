@@ -4,32 +4,91 @@
 
 @layer base {
   :root {
+    /* Default Light Theme (Base for Dashboards) */
+    --background: 210 40% 98%; /* Light Gray/White */
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%; /* Default Blue */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Default Sidebar (Light) */
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  /* Landing Page Theme (Dark Blue & Gold) */
+  .theme-landing {
     --background: 224 71% 4%;
     --foreground: 210 40% 98%;
     --card: 222 47% 11%;
     --card-foreground: 210 40% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%; /* Vibrant Blue */
+    --primary: 217 91% 60%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 48 96% 53%; /* Gold */
+    --accent: 48 96% 53%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --border: 217 33% 17%;
     --input: 217 33% 17%;
     --ring: 217 91% 60%;
-    --radius: 0.5rem;
-    --sidebar: 222 47% 11%;
+  }
+
+  /* Student Dashboard Theme (Violet/Purple) */
+  .theme-student {
+    --primary: 262 83% 58%; /* Violet */
+    --primary-foreground: 210 40% 98%;
+    --sidebar: 262 47% 11%; /* Dark Violet Sidebar */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-accent: 262 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 262 33% 17%;
+  }
+
+  /* Employer Dashboard Theme (Navy/Teal) */
+  .theme-employer {
+    --primary: 175 84% 32%; /* Teal */
+    --primary-foreground: 210 40% 98%;
+    --sidebar: 222 47% 11%; /* Dark Navy Sidebar */
     --sidebar-foreground: 210 40% 98%;
     --sidebar-accent: 217 33% 17%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+  }
+
+  /* Admin Dashboard Theme (Slate/Red) */
+  .theme-admin {
+    --primary: 346 84% 61%; /* Rose/Red */
+    --primary-foreground: 210 40% 98%;
+    --sidebar: 240 10% 3.9%; /* Dark Slate Sidebar */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
   }
 
   .dark {

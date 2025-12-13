@@ -40,7 +40,7 @@ export default function ZekkersLanding() {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="theme-landing min-h-screen bg-background text-foreground overflow-x-hidden">
       <StarrySky />
       
       {/* NAV */}

@@ -13,7 +13,7 @@ export default function DashboardLayout({
 }) {
   return (
     <AuthGuard allowedRoles={['student']}>
-      <div className="light flex flex-col min-h-screen bg-background">
+      <div className="theme-student flex flex-col min-h-screen bg-background">
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>

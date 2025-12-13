@@ -14,7 +14,7 @@ export default function GlobalEmployersDashboardLayout({
 }) {
   return (
     <AuthGuard allowedRoles={['global_employer']}>
-      <div className="light flex flex-col min-h-screen">
+      <div className="theme-employer flex flex-col min-h-screen bg-background">
         <SidebarProvider>
           <GlobalSidebar />
           <SidebarInset>
