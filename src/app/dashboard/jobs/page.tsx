@@ -1,6 +1,5 @@
-
 'use client';
-import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import JobsClient from './_components/jobs-client';
 import { Job } from '@/types/job';
 import { fetchJobs } from '@/services/jobs';
@@ -24,5 +23,9 @@ export default function JobsPage() {
     loadJobs();
   }, []);
 
-  return <JobsClient allJobs={jobs || []} isLoading={isLoading} />;
+  return (
+    <div className="min-h-full w-full bg-slate-50">
+      <JobsClient allJobs={jobs || []} isLoading={isLoading} />
+    </div>
+  );
 }
