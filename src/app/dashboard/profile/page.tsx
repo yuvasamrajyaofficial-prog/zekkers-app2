@@ -19,11 +19,7 @@ import { doc } from 'firebase/firestore';
 import Link from 'next/link';
 import { User } from 'firebase/auth';
 
-const MOCK_USER = {
-    uid: 'mock-user-id',
-    displayName: 'Prashant Kumar',
-    email: 'prashant.kumar@example.com',
-};
+import { useAuth } from '@/firebase/auth/use-user';
 
 const emptyProfile: Omit<ProfileData, 'id' | 'email'> = {
   name: '',
@@ -47,7 +43,7 @@ const emptyProfile: Omit<ProfileData, 'id' | 'email'> = {
 };
 
 export default function ProfilePage() {
-  const user = MOCK_USER as User; // Using mock user
+  const { user } = useAuth();
   const firestore = useFirestore();
   const storage = useStorage();
 
