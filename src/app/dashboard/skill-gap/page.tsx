@@ -64,16 +64,22 @@ export default function SkillGapPage() {
 
   useEffect(() => {
     async function loadJobs() {
+      if (!firestore) return;
       setLoading(true);
-      const fetchedJobs = await fetchJobs('all');
-      setJobs(fetchedJobs);
-      if (fetchedJobs.length > 0) {
-        setSelectedJobId(fetchedJobs[0].id);
+      try {
+        const fetchedJobs = await fetchJobs(firestore, 'all');
+        setJobs(fetchedJobs);
+        if (fetchedJobs.length > 0) {
+            setSelectedJobId(fetchedJobs[0].id);
+        }
+      } catch (error) {
+        console.error("Failed to fetch jobs:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     loadJobs();
-  }, []);
+  }, [firestore]);
 
   const analysis = useMemo(() => {
     if (!selectedJobId || !userProfile || !jobs.length) return null;

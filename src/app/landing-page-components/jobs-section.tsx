@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import MotionFade from '@/components/motion-fade';
 import { fetchJobs } from '@/services/jobs';
 import { Job } from '@/types/job';
+import { useFirestore } from '@/firebase';
 
 const JobCard = ({ job, i }: { job: Job, i: number }) => (
     <MotionFade key={job.id} delay={i * 0.04}>
@@ -52,12 +53,15 @@ export default function JobsSection() {
     const [jobs, setJobs] = useState<Job[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const firestore = useFirestore();
+
     useEffect(() => {
         async function loadJobs() {
+            if (!firestore) return;
             setLoading(true);
             try {
                 // Call the mock client-side service
-                const fetchedJobs = await fetchJobs('all');
+                const fetchedJobs = await fetchJobs(firestore, 'all');
                 setJobs(fetchedJobs.slice(0, 6)); // Take first 6
             } catch (error) {
                 console.error("Failed to fetch jobs:", error);
@@ -66,7 +70,7 @@ export default function JobsSection() {
             }
         }
         loadJobs();
-    }, []);
+    }, [firestore]);
 
     return (
         <section
