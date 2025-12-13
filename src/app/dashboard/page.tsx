@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth-context';
-import { useFirestore } from '@/firebase';
+import { useFirestore, useUser } from '@/firebase';
 import { fetchJobs } from '@/services/jobs';
+import { fetchStudentApplications, Application } from '@/services/applications';
+import { getUserProfile, ProfileData } from '@/services/profile';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -18,33 +20,36 @@ import {
   MapPin,
   Building2,
   Clock,
-  Calendar
+  Calendar,
+  CheckCircle2
 } from 'lucide-react';
 import ChatWindow from './_components/ChatWindow';
+import ZLoader from '@/components/ui/loader';
 
 export default function DashboardPage() {
-  const { user } = useAuth();
+  const { user } = useUser();
+  const firestore = useFirestore();
   const userName = user?.displayName?.split(' ')[0] || 'Student';
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
-  // Mock Data
-  const stats = [
-    { label: 'Jobs Applied', value: '12', icon: Briefcase, color: 'text-blue-600', bg: 'bg-blue-100' },
-    { label: 'Profile Views', value: '48', icon: Eye, color: 'text-purple-600', bg: 'bg-purple-100' },
-    { label: 'Interviews', value: '3', icon: Calendar, color: 'text-orange-600', bg: 'bg-orange-100' },
-    { label: 'Response Rate', value: '25%', icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-100' },
-  ];
-
-  const firestore = useFirestore();
   const [recommendedJobs, setRecommendedJobs] = React.useState<any[]>([]);
-  const [loadingJobs, setLoadingJobs] = React.useState(true);
+  const [applications, setApplications] = React.useState<Application[]>([]);
+  const [userProfile, setUserProfile] = React.useState<ProfileData | null>(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    const loadRecommendedJobs = async () => {
-        if (!firestore) return;
+    const loadDashboardData = async () => {
+        if (!firestore || !user) return;
+        setLoading(true);
         try {
-            const jobs = await fetchJobs(firestore, 'all');
-            // Simple recommendation: just take the first 3 for now
+            // Parallel data fetching
+            const [jobs, apps, profile] = await Promise.all([
+                fetchJobs(firestore, 'all'),
+                fetchStudentApplications(firestore, user.uid),
+                getUserProfile(firestore, user.uid)
+            ]);
+
+            // Process Jobs
             setRecommendedJobs(jobs.slice(0, 3).map(job => ({
                 id: job.id,
                 title: job.title,
@@ -55,20 +60,79 @@ export default function DashboardPage() {
                 posted: job.postedAt ? new Date(job.postedAt.seconds * 1000 || job.postedAt).toLocaleDateString() : 'Recently',
                 logo: job.company.substring(0, 2).toUpperCase()
             })));
+
+            // Process Applications
+            setApplications(apps);
+
+            // Process Profile
+            setUserProfile(profile);
+
         } catch (e) {
-            console.error(e);
+            console.error("Error loading dashboard data:", e);
         } finally {
-            setLoadingJobs(false);
+            setLoading(false);
         }
     }
-    loadRecommendedJobs();
-  }, [firestore]);
+    loadDashboardData();
+  }, [firestore, user]);
 
-  const recentActivity = [
-    { id: 1, action: 'Applied to Backend Engineer', company: 'FinTech Solutions', time: '2 hours ago' },
-    { id: 2, action: 'Profile viewed by Recruiter', company: 'Global Systems', time: '5 hours ago' },
-    { id: 3, action: 'Updated Resume', company: '', time: 'Yesterday' },
-  ];
+  // Derived Stats
+  const stats = useMemo(() => {
+    const appliedCount = applications.length;
+    const interviewCount = applications.filter(a => a.status === 'interview').length;
+    const responseRate = appliedCount > 0 ? Math.round((applications.filter(a => a.status !== 'applied').length / appliedCount) * 100) : 0;
+    
+    // Mocking profile views for now as we don't track it yet
+    const profileViews = 48; 
+
+    return [
+        { label: 'Jobs Applied', value: appliedCount.toString(), icon: Briefcase, color: 'text-blue-600', bg: 'bg-blue-100' },
+        { label: 'Profile Views', value: profileViews.toString(), icon: Eye, color: 'text-purple-600', bg: 'bg-purple-100' },
+        { label: 'Interviews', value: interviewCount.toString(), icon: Calendar, color: 'text-orange-600', bg: 'bg-orange-100' },
+        { label: 'Response Rate', value: `${responseRate}%`, icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-100' },
+    ];
+  }, [applications]);
+
+  // Recent Activity from Applications
+  const recentActivity = useMemo(() => {
+      const activities = applications.slice(0, 5).map(app => ({
+          id: app.id,
+          action: `Applied to ${app.jobTitle}`,
+          company: app.companyName,
+          time: app.appliedAt ? new Date(app.appliedAt.seconds * 1000 || app.appliedAt).toLocaleDateString() : 'Recently'
+      }));
+      
+      // Add a "Profile Updated" activity if profile exists
+      if (userProfile?.updatedAt) {
+          activities.push({
+              id: 'profile-update',
+              action: 'Updated Profile',
+              company: '',
+              time: new Date(userProfile.updatedAt.seconds * 1000 || userProfile.updatedAt).toLocaleDateString()
+          });
+      }
+      
+      // Sort by time (simple string sort for now, ideally timestamp)
+      return activities.slice(0, 5); 
+  }, [applications, userProfile]);
+
+  // Calculate Profile Completion
+  const profileCompletion = useMemo(() => {
+      if (!userProfile) return 0;
+      let score = 0;
+      if (userProfile.name) score += 10;
+      if (userProfile.email) score += 10;
+      if (userProfile.about) score += 20;
+      if (userProfile.skills?.length > 0) score += 20;
+      if (userProfile.experience?.length > 0) score += 20;
+      if (userProfile.education?.length > 0) score += 20;
+      return Math.min(score, 100);
+  }, [userProfile]);
+
+
+  if (loading) {
+      return <div className="flex h-screen items-center justify-center"><ZLoader /></div>;
+  }
 
   return (
     <div className="min-h-full w-full bg-slate-50 p-4 md:p-6 lg:p-8">
@@ -97,17 +161,16 @@ export default function DashboardPage() {
         </div>
 
         {/* Stats Grid - Mobile Optimized (4 cols) */}
-        <div className="grid grid-cols-4 gap-2 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
           {stats.map((stat, index) => (
             <Card key={index} className="border-none shadow-sm hover:shadow-md transition-shadow bg-white overflow-hidden">
-              <CardContent className="p-2 md:p-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1 md:gap-0 text-center md:text-left h-full">
-                <div className="order-2 md:order-1 w-full">
-                  <p className="hidden md:block text-sm font-medium text-slate-500">{stat.label}</p>
-                  <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-900 mt-0 md:mt-1 truncate w-full text-center md:text-left">{stat.value}</h3>
-                  <p className="md:hidden text-[10px] text-slate-400 leading-tight truncate w-full px-0.5 text-center">{stat.label}</p>
+              <CardContent className="p-4 flex flex-col items-center justify-center text-center h-full gap-2">
+                <div className={`p-2 rounded-full ${stat.bg} mb-1`}>
+                  <stat.icon className={`w-5 h-5 ${stat.color}`} />
                 </div>
-                <div className={`p-1.5 md:p-3 rounded-lg md:rounded-xl ${stat.bg} order-1 md:order-2 mb-1 md:mb-0 shrink-0`}>
-                  <stat.icon className={`w-4 h-4 md:w-6 md:h-6 ${stat.color}`} />
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900">{stat.value}</h3>
+                  <p className="text-xs font-medium text-slate-500">{stat.label}</p>
                 </div>
               </CardContent>
             </Card>
@@ -126,7 +189,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="space-y-4">
-              {recommendedJobs.map((job) => (
+              {recommendedJobs.length > 0 ? recommendedJobs.map((job) => (
                 <Card key={job.id} className="group hover:border-primary/50 transition-colors cursor-pointer bg-white border-slate-200">
                   <CardContent className="p-4 md:p-5 flex flex-col sm:flex-row items-start gap-4">
                     <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-600 text-lg shrink-0">
@@ -159,7 +222,14 @@ export default function DashboardPage() {
                     </div>
                   </CardContent>
                 </Card>
-              ))}
+              )) : (
+                  <div className="text-center py-10 bg-white rounded-xl border border-dashed">
+                      <p className="text-slate-500">No recommended jobs found at the moment.</p>
+                      <Link href="/dashboard/jobs">
+                        <Button variant="link" className="mt-2">Browse all jobs</Button>
+                      </Link>
+                  </div>
+              )}
             </div>
           </div>
 
@@ -173,7 +243,7 @@ export default function DashboardPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  {recentActivity.map((activity, index) => (
+                  {recentActivity.length > 0 ? recentActivity.map((activity, index) => (
                     <div key={index} className="flex gap-3 relative">
                       {index !== recentActivity.length - 1 && (
                         <div className="absolute left-[11px] top-8 bottom-[-24px] w-[2px] bg-slate-100" />
@@ -187,7 +257,9 @@ export default function DashboardPage() {
                         <p className="text-xs text-slate-400 mt-1">{activity.time}</p>
                       </div>
                     </div>
-                  ))}
+                  )) : (
+                      <p className="text-sm text-slate-500 text-center py-4">No recent activity.</p>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -203,14 +275,14 @@ export default function DashboardPage() {
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
                   <span>Profile Completion</span>
-                  <span className="font-bold text-yellow-400">65%</span>
+                  <span className="font-bold text-yellow-400">{profileCompletion}%</span>
                 </div>
                 <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-yellow-400 w-[65%]" />
+                  <div className="h-full bg-yellow-400" style={{ width: `${profileCompletion}%` }} />
                 </div>
                 <Link href="/dashboard/profile" className="block pt-2">
                   <Button className="w-full bg-white text-slate-900 hover:bg-slate-100 font-semibold">
-                    Complete Profile
+                    {profileCompletion === 100 ? 'Update Profile' : 'Complete Profile'}
                   </Button>
                 </Link>
               </CardContent>

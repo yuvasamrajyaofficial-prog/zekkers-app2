@@ -1,8 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { LogOut, Menu, Bell } from 'lucide-react';
+import { LogOut, Bell, User } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import {
   DropdownMenu,
@@ -13,63 +13,46 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
-import MobileEmployerSidebar from './mobile-employer-sidebar';
+import { useAuth } from '@/context/auth-context';
 
 function Topbar({ dashboardName }: { dashboardName: string }) {
   const router = useRouter();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { logout } = useAuth();
 
   const handleLogout = async () => {
+    await logout();
     router.push('/');
   };
 
   const profileLink = '/employer-dashboard/settings';
 
   return (
-    <div className="flex h-16 items-center justify-between p-3 border-b bg-white gap-4">
+    <div className="flex h-16 items-center justify-between px-4 border-b bg-white gap-4 sticky top-0 z-10">
       {/* Left side */}
       <div className="flex items-center gap-2 flex-shrink-0">
-        <div className="md:hidden">
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-5 w-5"/>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="left" className="p-0 w-[280px] flex flex-col bg-white">
-
-                <MobileEmployerSidebar closeSheet={() => setIsMobileMenuOpen(false)} />
-              </SheetContent>
-            </Sheet>
-        </div>
-        <SidebarTrigger className="hidden md:block" />
-        <div className="hidden md:block font-semibold text-lg">
+        <SidebarTrigger />
+        <div className="font-semibold text-lg hidden md:block">
           {dashboardName}
         </div>
       </div>
       
-      {/* Center (Search) - can be added later if needed */}
-      <div className="flex-1" />
-
       {/* Right side */}
-      <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-          <Button asChild className="hidden sm:inline-flex">
+      <div className="flex items-center gap-2 flex-shrink-0">
+          <Button asChild className="hidden sm:inline-flex" size="sm">
             <Link href="/employer-dashboard/jobs/create">Post a Job</Link>
           </Button>
         <Button asChild variant="ghost" size="icon">
           <Link href="/employer-dashboard/notifications">
-            <Bell size={16} />
+            <Bell size={18} />
           </Link>
         </Button>
         
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="rounded-full h-9 w-9 p-0">
+              <Button variant="ghost" className="rounded-full h-8 w-8 p-0">
                 <Avatar className="w-8 h-8">
-                  <AvatarFallback>
-                    A
+                  <AvatarFallback className="bg-primary/10 text-primary">
+                    <User className="w-4 h-4" />
                   </AvatarFallback>
                 </Avatar>
               </Button>
