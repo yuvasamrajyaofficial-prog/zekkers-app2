@@ -2,133 +2,141 @@
 'use client';
 import React from 'react';
 import MotionFade from '@/components/motion-fade';
-import { Search, ShieldCheck, Globe, School, Zap, Bell, GitBranch, Check } from 'lucide-react';
+import { Search, ShieldCheck, Globe, School, Zap, Bell, GitBranch, Check, Sparkles, ArrowRight } from 'lucide-react';
 import { RoadmapVisual } from './roadmap-visual';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-const newFeatures = [
+const features = [
   {
-    icon: <Search className="w-6 h-6" />,
     title: 'AI Job Matching',
     description: 'Our AI delivers explainable, personalized job recommendations that match your complete profile, skills, and career goals—not just keywords.',
-    points: [
-      'Personalized match scores with clear reasoning',
-      'Highlights skill gaps and suggests improvements',
-      'Adapts in real-time to your activity',
-      'Generates automated skill roadmaps',
-    ],
+    icon: <Sparkles className="w-6 h-6 text-yellow-400" />,
+    className: "md:col-span-2 md:row-span-2",
+    gradient: "from-yellow-500/20 to-orange-500/20",
+    content: (
+        <div className="mt-6 relative h-48 rounded-xl bg-slate-950/50 border border-white/5 overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute top-4 left-4 right-4 flex items-center gap-3 p-3 rounded-lg bg-slate-900/80 border border-white/10 backdrop-blur-md">
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
+                    <span className="text-xl">👨‍💻</span>
+                </div>
+                <div className="flex-1">
+                    <div className="h-2 w-24 bg-slate-700 rounded mb-1.5"></div>
+                    <div className="h-1.5 w-16 bg-slate-800 rounded"></div>
+                </div>
+                <div className="text-green-400 font-bold text-sm">98% Match</div>
+            </div>
+             <div className="absolute top-20 left-8 right-8 flex items-center gap-3 p-3 rounded-lg bg-slate-900/60 border border-white/5 backdrop-blur-sm scale-95 opacity-60">
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center">
+                    <span className="text-xl">🎨</span>
+                </div>
+                <div className="flex-1">
+                    <div className="h-2 w-20 bg-slate-700 rounded mb-1.5"></div>
+                    <div className="h-1.5 w-12 bg-slate-800 rounded"></div>
+                </div>
+                <div className="text-yellow-400 font-bold text-sm">85% Match</div>
+            </div>
+        </div>
+    )
   },
   {
-    icon: <ShieldCheck className="w-6 h-6" />,
     title: 'Verified Employers',
-    description: 'Every employer undergoes multi-layer KYC verification, including document checks and activity audits, to ensure a safe and trustworthy hiring ecosystem.',
-    points: [
-      'Company Verification Badge & Trust Score',
-      'AI-powered fraud and spam detection',
-      'Manual review of job posts for quality',
-      'Secure and transparent communication channels',
-    ],
+    description: 'Every employer undergoes multi-layer KYC verification to ensure a safe hiring ecosystem.',
+    icon: <ShieldCheck className="w-6 h-6 text-green-400" />,
+    className: "md:col-span-1",
+    gradient: "from-green-500/20 to-emerald-500/20",
   },
   {
-    icon: <Globe className="w-6 h-6" />,
-    title: 'Govt + Private + Global',
-    description: 'Access government vacancies, private sector roles, and international opportunities all in one unified, easy-to-use platform.',
-    points: [
-      'Verified government job announcements',
-      'Domestic private sector jobs',
-      'Global hiring across 54+ countries',
-      'Remote, hybrid, and WFH opportunities',
-    ],
+    title: 'Global Opportunities',
+    description: 'Access government vacancies, private sector roles, and international opportunities in 54+ countries.',
+    icon: <Globe className="w-6 h-6 text-blue-400" />,
+    className: "md:col-span-1",
+    gradient: "from-blue-500/20 to-cyan-500/20",
   },
   {
-    icon: <School className="w-6 h-6" />,
     title: 'Campus & NGO Portals',
-    description: 'Dedicated dashboards for colleges, universities, and NGOs to manage placements, track student progress, and connect with verified employers.',
-    points: [
-      'Placement analytics and skill-gap reports',
-      'Simplified campus drive management',
-      'Community hiring programs for NGOs',
-      'Admin-level control and reporting',
-    ],
+    description: 'Dedicated dashboards for colleges and NGOs to manage placements and track impact.',
+    icon: <School className="w-6 h-6 text-purple-400" />,
+    className: "md:col-span-1",
+    gradient: "from-purple-500/20 to-pink-500/20",
   },
   {
-    icon: <Zap className="w-6 h-6" />,
     title: 'One-Click Apply',
-    description: 'Apply for jobs instantly. Zekkers pre-fills your entire application using your verified profile, resume, and documents from your secure vault.',
-    points: [
-      'Auto-attaches the best version of your resume',
-      'Generates custom cover letters with AI',
-      'Track all applications in a unified dashboard',
-      'Smart Document Vault integration',
-    ],
+    description: 'Zekkers pre-fills your entire application using your verified profile and documents.',
+    icon: <Zap className="w-6 h-6 text-red-400" />,
+    className: "md:col-span-1",
+    gradient: "from-red-500/20 to-rose-500/20",
   },
   {
-    icon: <Bell className="w-6 h-6" />,
-    title: 'Intelligent Notifications',
-    description: 'Never miss an opportunity with instant alerts for matched jobs, application status updates, interview invites, and AI roadmap milestones.',
-    points: [
-      'New job match alerts',
-      'Application status updates',
-      'Interview and assessment reminders',
-      'AI-powered progress notifications',
-    ],
+    title: 'AI Skill Roadmaps',
+    description: 'Personalized learning paths generated by AI to bridge your skill gaps.',
+    icon: <GitBranch className="w-6 h-6 text-indigo-400" />,
+    className: "md:col-span-2",
+    gradient: "from-indigo-500/20 to-violet-500/20",
+    content: (
+        <div className="mt-4 flex items-center gap-2 overflow-hidden opacity-70 group-hover:opacity-100 transition-opacity">
+            <div className="px-3 py-1 rounded-full bg-slate-800 border border-white/10 text-xs text-slate-300">React</div>
+            <ArrowRight className="w-4 h-4 text-slate-600" />
+            <div className="px-3 py-1 rounded-full bg-slate-800 border border-white/10 text-xs text-slate-300">Next.js</div>
+            <ArrowRight className="w-4 h-4 text-slate-600" />
+            <div className="px-3 py-1 rounded-full bg-slate-800 border border-white/10 text-xs text-slate-300">TypeScript</div>
+            <ArrowRight className="w-4 h-4 text-slate-600" />
+            <div className="px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30 text-xs text-green-400">Hired</div>
+        </div>
+    )
   },
 ];
 
-const FeatureCard = ({ feature, index, children }: { feature: typeof newFeatures[0], index: number, children?: React.ReactNode }) => (
-    <MotionFade delay={index * 0.08}>
-      <div
-        className="p-6 rounded-2xl bg-card border border-border/50 shadow-lg hover:shadow-cyan-500/10 transform hover:-translate-y-1 transition-all duration-200 ease-out flex flex-col h-full"
-      >
-        <div className="flex items-center gap-4">
-          <div className="p-3 rounded-xl bg-primary/10 text-primary">
-            {feature.icon}
-          </div>
-          <h3 className="text-lg font-extrabold text-foreground">{feature.title}</h3>
-        </div>
-        <p className="mt-4 text-sm text-muted-foreground flex-1">{feature.description}</p>
-        {children || (
-            <ul className="mt-4 space-y-2 text-sm">
-                {feature.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                    <Check className="w-4 h-4 mt-0.5 text-green-500 shrink-0" />
-                    <span className="text-slate-400">{point}</span>
-                    </li>
-                ))}
-            </ul>
-        )}
-      </div>
-    </MotionFade>
-  );
-
 export default function FeaturesSection() {
-    const aiRoadmapFeature = {
-        icon: <GitBranch className="w-6 h-6" />,
-        title: 'AI Skill Roadmaps & Learning Guidance',
-        description: 'Zekkers doesn’t just show jobs — it prepares you for them. AI reads your resume, education, and career goals to build a personalized skill roadmap that covers everything you need to succeed.',
-        points: [] // We will replace this with the visual component
-    };
-
     return (
-        <section id="features" className="px-6 md:px-12 py-16">
-            <div className="max-w-7xl mx-auto">
+        <section id="features" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+             {/* Background Gradients */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="max-w-7xl mx-auto relative z-10">
                 <MotionFade>
-                    <div className="text-center max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">⭐ Why Zekkers?</h2>
-                        <p className="mt-3 text-muted-foreground">
-                            Trusted, intelligent, and built for students, professionals, colleges, NGOs, and verified employers.
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                            Why <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Zekkers?</span>
+                        </h2>
+                        <p className="text-lg text-slate-400">
+                            Trusted, intelligent, and built for the future of work.
                         </p>
                     </div>
                 </MotionFade>
 
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-                    {newFeatures.map((feature, index) => (
-                        <FeatureCard key={feature.title} feature={feature} index={index} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(180px,auto)]">
+                    {features.map((feature, index) => (
+                        <MotionFade key={feature.title} delay={index * 0.1}>
+                            <div className={cn(
+                                "group relative h-full p-6 rounded-3xl bg-slate-900/50 border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5",
+                                feature.className
+                            )}>
+                                <div className={cn(
+                                    "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                                    feature.gradient
+                                )} />
+                                
+                                <div className="relative z-10 flex flex-col h-full">
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className="p-3 rounded-2xl bg-slate-950/50 border border-white/5 text-white group-hover:scale-110 transition-transform duration-300">
+                                            {feature.icon}
+                                        </div>
+                                    </div>
+                                    
+                                    <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-auto">
+                                        {feature.description}
+                                    </p>
+                                    
+                                    {feature.content}
+                                </div>
+                            </div>
+                        </MotionFade>
                     ))}
-                    <div className="lg:col-span-3">
-                         <FeatureCard feature={aiRoadmapFeature} index={newFeatures.length}>
-                            <RoadmapVisual />
-                         </FeatureCard>
-                    </div>
                 </div>
             </div>
         </section>

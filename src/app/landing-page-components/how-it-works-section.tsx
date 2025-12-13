@@ -1,136 +1,168 @@
-
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import MotionFade from '@/components/motion-fade';
-import { UserPlus, Briefcase, FileCheck2, Check } from 'lucide-react';
+import { User, Building2, Search, FileText, Send, CheckCircle2, Briefcase, Users, MessageSquare, Award } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
-const howItWorksSeeker = {
-  title: 'For Job Seekers',
-  icon: <UserPlus className="w-6 h-6" />,
-  description: 'Your smart path from profile to placement.',
-  steps: [
-    {
-      title: 'Build Your Profile',
-      points: [
-        'Create your profile and upload documents.',
-        'AI analyzes your skills and career goals.',
-        'Get a personalized strength score.',
-      ],
-    },
-    {
-      title: 'Discover Opportunities',
-      points: [
-        'Receive AI-matched jobs (Govt, Private, Global).',
-        'Filter by salary, skills, location, and more.',
-        'Get an AI roadmap to fill skill gaps.',
-      ],
-    },
-    {
-      title: 'Apply & Grow',
-      points: [
-        'Apply with one click.',
-        'Track all applications in your dashboard.',
-        'Use AI tools to prep for interviews.',
-      ],
-    },
-  ],
-  outcome: 'A faster, safer, more intelligent pathway to your next job.',
-};
+const seekerSteps = [
+  {
+    title: 'Create Your Profile',
+    description: 'Sign up and build your comprehensive profile. Our AI analyzes your skills, education, and experience to create a verified digital identity.',
+    icon: <User className="w-6 h-6" />,
+    color: "bg-blue-500",
+  },
+  {
+    title: 'Get Matched',
+    description: 'Receive personalized job recommendations with match scores. See exactly why a job is a good fit for you based on your unique profile.',
+    icon: <Search className="w-6 h-6" />,
+    color: "bg-purple-500",
+  },
+  {
+    title: 'One-Click Apply',
+    description: 'Apply to verified jobs instantly. We pre-fill your application and attach your best resume, saving you time and effort.',
+    icon: <Send className="w-6 h-6" />,
+    color: "bg-green-500",
+  },
+  {
+    title: 'Get Hired',
+    description: 'Track your applications, schedule interviews, and accept offers—all within the Zekkers platform.',
+    icon: <CheckCircle2 className="w-6 h-6" />,
+    color: "bg-yellow-500",
+  },
+];
 
-const howItWorksEmployer = {
-  title: 'For Employers',
-  icon: <Briefcase className="w-6 h-6" />,
-  description: 'A streamlined flow from verification to hiring.',
-  steps: [
-    {
-      title: 'Verify Your Company',
-      points: [
-        'Complete KYC to earn a Verified Badge.',
-        'Enhance your Company Trust Score.',
-        'Set up your hiring team and permissions.',
-      ],
-    },
-    {
-      title: 'Post & Source Talent',
-      points: [
-        'Post jobs for local or global audiences.',
-        'Use AI to optimize job descriptions.',
-        'Source candidates from our verified talent pool.',
-      ],
-    },
-    {
-      title: 'Hire Efficiently',
-      points: [
-        'Receive AI-ranked and vetted applicants.',
-        'Manage candidates in a simple ATS pipeline.',
-        'Schedule interviews, send offers, and analyze results.',
-      ],
-    },
-  ],
-  outcome: 'A transparent, high-quality hiring process that saves time and finds the right talent.',
-};
-
-const HowItWorksCard = ({ path }: { path: typeof howItWorksSeeker }) => (
-    <div className="p-6 bg-card rounded-2xl border border-border/50 shadow-lg hover:shadow-cyan-500/10 transition-shadow h-full flex flex-col">
-      <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-primary/10 text-primary">{path.icon}</div>
-        <h3 className="font-semibold text-lg text-foreground">{path.title}</h3>
-      </div>
-      <p className="mt-3 text-sm text-muted-foreground">{path.description}</p>
-
-      <div className="mt-4 space-y-4 relative flex-1">
-        <div className="absolute left-[1.125rem] top-4 bottom-4 w-0.5 bg-border/50 -z-10"></div>
-        {path.steps.map((step, i) => (
-          <div key={step.title} className="relative z-10">
-            <div className="flex items-start">
-              <div className="flex-shrink-0 w-9 h-9 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-sm border-4 border-card">
-                {i + 1}
-              </div>
-              <div className="ml-3">
-                <h4 className="font-semibold text-foreground">{step.title}</h4>
-                <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
-                  {step.points.map((point, j) => (
-                    <li key={j} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 mt-0.5 text-green-500 shrink-0" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-6 p-4 rounded-lg bg-green-500/10 text-green-300 flex items-center gap-3">
-        <FileCheck2 className="w-5 h-5 shrink-0" />
-        <p className="font-semibold text-sm">{path.outcome}</p>
-      </div>
-    </div>
-  );
+const employerSteps = [
+  {
+    title: 'Post a Job',
+    description: 'Create detailed job listings with AI assistance. Specify requirements, skills, and screening questions to attract the right talent.',
+    icon: <Briefcase className="w-6 h-6" />,
+    color: "bg-orange-500",
+  },
+  {
+    title: 'AI Screening',
+    description: 'Our AI automatically screens and ranks applicants based on your criteria, highlighting the top candidates for your review.',
+    icon: <Users className="w-6 h-6" />,
+    color: "bg-red-500",
+  },
+  {
+    title: 'Connect & Interview',
+    description: 'Message candidates, schedule interviews, and manage the entire hiring process seamlessly from your dashboard.',
+    icon: <MessageSquare className="w-6 h-6" />,
+    color: "bg-pink-500",
+  },
+  {
+    title: 'Hire with Confidence',
+    description: 'Make offers and onboard your new team members. Zekkers ensures a smooth transition from applicant to employee.',
+    icon: <Award className="w-6 h-6" />,
+    color: "bg-cyan-500",
+  },
+];
 
 export default function HowItWorksSection() {
-    return (
-        <section id="how" className="px-6 md:px-12 py-16">
-            <div className="max-w-7xl mx-auto">
-                <MotionFade>
-                    <div className="text-center max-w-2xl mx-auto">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">⭐ How It Works</h2>
-                    <p className="mt-3 text-muted-foreground">
-                        Simple, fast, and intelligent for everyone.
-                    </p>
-                    </div>
-                </MotionFade>
+  const [activeTab, setActiveTab] = useState<'seeker' | 'employer'>('seeker');
+  const steps = activeTab === 'seeker' ? seekerSteps : employerSteps;
 
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    <MotionFade delay={0.1}>
-                    <HowItWorksCard path={howItWorksSeeker} />
-                    </MotionFade>
-                    <MotionFade delay={0.2}>
-                    <HowItWorksCard path={howItWorksEmployer} />
-                    </MotionFade>
-                </div>
+  return (
+    <section id="how" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        <MotionFade>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              How Zekkers Works
+            </h2>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
+              Simple, transparent, and effective. Whether you're hiring or hunting, we've streamlined the process.
+            </p>
+            
+            <div className="inline-flex p-1 rounded-full bg-slate-900 border border-white/10">
+                <button
+                    onClick={() => setActiveTab('seeker')}
+                    className={cn(
+                        "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300",
+                        activeTab === 'seeker' 
+                            ? "bg-white text-slate-900 shadow-lg" 
+                            : "text-slate-400 hover:text-white"
+                    )}
+                >
+                    For Job Seekers
+                </button>
+                <button
+                    onClick={() => setActiveTab('employer')}
+                    className={cn(
+                        "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300",
+                        activeTab === 'employer' 
+                            ? "bg-white text-slate-900 shadow-lg" 
+                            : "text-slate-400 hover:text-white"
+                    )}
+                >
+                    For Employers
+                </button>
             </div>
-      </section>
-    );
+          </div>
+        </MotionFade>
+
+        <div className="relative">
+            {/* Central Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 md:-translate-x-1/2">
+                <motion.div 
+                    className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent"
+                    initial={{ height: 0 }}
+                    whileInView={{ height: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeInOut" }}
+                />
+            </div>
+
+            <div className="space-y-12">
+                {steps.map((step, index) => (
+                    <motion.div 
+                        key={step.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className={cn(
+                            "relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center",
+                            index % 2 === 0 ? "md:flex-row-reverse" : ""
+                        )}
+                    >
+                        {/* Content Side */}
+                        <div className="flex-1 pl-20 md:pl-0 md:px-12 w-full">
+                            <div className={cn(
+                                "p-6 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-white/10 transition-colors",
+                                index % 2 === 0 ? "md:text-left" : "md:text-right"
+                            )}>
+                                <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                                <p className="text-slate-400 text-sm leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Icon Node */}
+                        <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div className={cn(
+                                "w-16 h-16 rounded-full border-4 border-slate-950 flex items-center justify-center shadow-xl z-10",
+                                step.color
+                            )}>
+                                <div className="text-white">
+                                    {step.icon}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Empty Side for Balance */}
+                        <div className="flex-1 hidden md:block" />
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+      </div>
+    </section>
+  );
 }

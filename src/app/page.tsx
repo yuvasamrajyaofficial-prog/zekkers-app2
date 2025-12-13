@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ChevronDown, Menu, Facebook, Instagram, Youtube } from 'lucide-react';
+import { ChevronDown, Menu, Facebook, Instagram, Youtube, CheckCircle2, Search, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MotionFade from '@/components/motion-fade';
 import FeaturesSection from '@/app/landing-page-components/features-section';
@@ -24,7 +24,7 @@ import FaqSection from '@/app/landing-page-components/faq-section';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import StarrySky from '@/components/starry-sky';
-
+import { motion } from 'framer-motion';
 
 export default function ZekkersLanding() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,55 +40,57 @@ export default function ZekkersLanding() {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <StarrySky />
+      
       {/* NAV */}
       <header className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled ? "p-2" : "p-4"
       )}>
         <div className={cn(
-          "w-full max-w-4xl mx-auto py-2 px-6 flex items-center justify-between rounded-md border transition-all duration-300",
-          isScrolled ? "bg-slate-800/50 backdrop-blur-md border-slate-700" : "bg-transparent border-slate-700"
+          "w-full max-w-7xl mx-auto py-3 px-6 flex items-center justify-between rounded-xl border transition-all duration-300",
+          isScrolled ? "bg-slate-900/60 backdrop-blur-xl border-slate-800 shadow-lg" : "bg-transparent border-transparent"
         )}>
             <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold shadow-glow">
                 ZK
             </div>
-            <div className="text-lg font-semibold font-headline text-white">Zekkers</div>
+            <div className="text-xl font-bold font-headline tracking-tight text-white">Zekkers</div>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-            <Link href="/dashboard/jobs" className="text-sm font-semibold text-slate-300 hover:text-primary transition-colors">
+            <nav className="hidden md:flex items-center gap-8">
+            <Link href="/dashboard/jobs" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                 Jobs
             </Link>
-            <a href="#features" className="text-sm font-semibold text-slate-300 hover:text-primary transition-colors">
+            <a href="#features" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                 Features
             </a>
-            <a href="#how" className="text-sm font-semibold text-slate-300 hover:text-primary transition-colors">
+            <a href="#how" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
                 How it works
             </a>
             
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1 text-sm font-semibold text-slate-300 hover:bg-slate-700 hover:text-white">
+                <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white data-[state=open]:bg-white/5 data-[state=open]:text-white">
                     Dashboards
-                    <ChevronDown className="h-4 w-4" />
+                    <ChevronDown className="h-4 w-4 opacity-50" />
                 </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                <DropdownMenuItem asChild>
+                <DropdownMenuContent align="end" className="w-56 bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
+                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                     <Link href="/dashboard">Students/Job Seekers</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                     <Link href="/global-employers-dashboard">Employers</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                     <Link href="/college-dashboard">Colleges</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                     <Link href="/ngo-dashboard">NGO</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
+                <DropdownMenuSeparator className="bg-slate-800" />
+                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                     <Link href="/admin-dashboard">Admin</Link>
                 </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -97,42 +99,42 @@ export default function ZekkersLanding() {
 
             <div className="flex items-center gap-4">
                 <div className="hidden md:flex items-center gap-3">
-                    <Button asChild variant="ghost" className="text-slate-300 hover:text-white hover:bg-slate-800">
+                    <Button asChild variant="ghost" className="text-slate-300 hover:text-white hover:bg-white/5">
                         <Link href="/login">Login</Link>
                     </Button>
-                    <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    <Button asChild className="bg-white text-slate-900 hover:bg-slate-200 font-semibold shadow-lg shadow-white/10">
                         <Link href="/signup">Get Started</Link>
                     </Button>
                 </div>
                 <div className="md:hidden">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon">
-                        <Menu className="h-4 w-4" />
+                    <Button variant="ghost" size="icon" className="text-slate-300 hover:bg-white/5 hover:text-white">
+                        <Menu className="h-6 w-6" />
                     </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                    <DropdownMenuItem asChild><Link href="/dashboard/jobs">Jobs</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild><a href="#features">Features</a></DropdownMenuItem>
-                    <DropdownMenuItem asChild><a href="#how">How it works</a></DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuContent align="end" className="w-64 bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
+                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/dashboard/jobs">Jobs</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><a href="#features">Features</a></DropdownMenuItem>
+                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><a href="#how">How it works</a></DropdownMenuItem>
+                    <DropdownMenuSeparator className="bg-slate-800" />
                     <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>Dashboards</DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent>
-                        <DropdownMenuItem asChild><Link href="/dashboard">Students/Job Seekers</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/global-employers-dashboard">Employers</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/college-dashboard">Colleges</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild><Link href="/ngo-dashboard">NGO</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild>
+                        <DropdownMenuSubTrigger className="focus:bg-white/10 focus:text-white cursor-pointer">Dashboards</DropdownMenuSubTrigger>
+                        <DropdownMenuSubContent className="bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
+                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/dashboard">Students/Job Seekers</Link></DropdownMenuItem>
+                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/global-employers-dashboard">Employers</Link></DropdownMenuItem>
+                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/college-dashboard">Colleges</Link></DropdownMenuItem>
+                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/ngo-dashboard">NGO</Link></DropdownMenuItem>
+                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                             <Link href="/admin-dashboard">Admin</Link>
                         </DropdownMenuItem>
                         </DropdownMenuSubContent>
                     </DropdownMenuSub>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
+                    <DropdownMenuSeparator className="bg-slate-800" />
+                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                         <Link href="/login" className="w-full">Login</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
+                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
                         <Link href="/signup" className="w-full font-semibold text-primary">Get Started</Link>
                     </DropdownMenuItem>
                     </DropdownMenuContent>
@@ -143,34 +145,93 @@ export default function ZekkersLanding() {
       </header>
 
       {/* HERO */}
-      <section className="relative overflow-hidden px-6 md:px-12 pt-32 pb-16">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="relative min-h-[100svh] flex items-center justify-center px-6 md:px-12 pt-20 pb-16 overflow-hidden">
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <motion.div 
+                animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/4 left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl"
+            >
+                <div className="p-2 rounded-lg bg-green-500/20 text-green-400">
+                    <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <div>
+                    <div className="text-sm font-semibold text-white">Verified Employer</div>
+                    <div className="text-xs text-slate-400">Trust Score: 100%</div>
+                </div>
+            </motion.div>
+
+            <motion.div 
+                animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-1/4 right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-xl"
+            >
+                <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                    <Search className="w-6 h-6" />
+                </div>
+                <div>
+                    <div className="text-sm font-semibold text-white">AI Job Match</div>
+                    <div className="text-xs text-slate-400">98% Compatibility</div>
+                </div>
+            </motion.div>
+
+             <motion.div 
+                animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute top-1/3 right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/30 backdrop-blur-sm border border-white/5"
+            >
+                <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
+                    <Globe className="w-4 h-4" />
+                </div>
+                <div className="text-xs font-medium text-slate-300">Global Reach</div>
+            </motion.div>
+        </div>
+
+        <div className="max-w-5xl mx-auto text-center relative z-10">
             <MotionFade>
-              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">
-                Zekkers — Smart Seekers. Verified Opportunities. AI-Powered Futures.
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 mb-8 backdrop-blur-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Now live in 54+ countries
+              </div>
+            </MotionFade>
+
+            <MotionFade delay={0.1}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
+                <span className="block text-white">Smart Seekers.</span>
+                <span className="block bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 bg-clip-text text-transparent pb-2">
+                  Verified Futures.
+                </span>
               </h1>
             </MotionFade>
             
-            <MotionFade delay={0.08}>
-              <h2 className="mt-4 text-lg font-semibold text-slate-400">
-                Government. Private. Global. Remote. Campus Hiring — all in one trusted ecosystem.
-              </h2>
-            </MotionFade>
-
-            <MotionFade delay={0.12}>
-              <p className="mt-5 text-muted-foreground max-w-3xl mx-auto">
-                Zekkers connects ambitious seekers with verified employers through AI-driven matching, secure profiles, and transparent hiring. Discover your next opportunity intelligently, confidently, and without limits.
+            <MotionFade delay={0.2}>
+              <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                The unified career ecosystem connecting students, professionals, and global employers through AI-driven matching and transparent hiring.
               </p>
             </MotionFade>
 
-            <MotionFade delay={0.2}>
-              <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-                 <Button asChild size="lg">
-                    <Link href="/dashboard">For Students/Seekers</Link>
+            <MotionFade delay={0.3}>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                 <Button asChild size="lg" className="h-14 px-8 text-base rounded-full bg-white text-slate-900 hover:bg-slate-200 font-bold shadow-lg shadow-white/10 transition-all hover:scale-105">
+                    <Link href="/dashboard">Find a Job</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="bg-transparent text-white border-slate-700 hover:bg-slate-800 hover:text-white">
-                    <Link href="/global-employers-dashboard">For Employers</Link>
+                <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
+                    <Link href="/global-employers-dashboard">Post a Job</Link>
                 </Button>
+              </div>
+              <div className="mt-6 flex items-center justify-center gap-6 text-sm text-slate-500">
+                <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    <span>No credit card required</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-slate-600" />
+                    <span>Free for students</span>
+                </div>
               </div>
             </MotionFade>
         </div>
@@ -183,17 +244,18 @@ export default function ZekkersLanding() {
       <HowItWorksSection />
       
       {/* MID-PAGE CTA */}
-      <section className="px-6 md:px-12 py-12">
+      <section className="px-6 md:px-12 py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-30 pointer-events-none" />
         <MotionFade>
-          <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">
-              Find Your Next Opportunity Today
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
+              Ready to launch your career?
             </h3>
-            <p className="mt-2 text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-4 text-lg text-slate-400 max-w-lg mx-auto">
               Join thousands of others and take the next step in your career with confidence.
             </p>
-            <div className="mt-6">
-               <Button asChild size="lg">
+            <div className="mt-8">
+               <Button asChild size="lg" className="h-12 px-8 rounded-full bg-gradient-to-r from-primary to-accent text-white hover:opacity-90 transition-opacity">
                 <Link href="/dashboard/jobs">Browse All Jobs</Link>
               </Button>
             </div>
@@ -207,102 +269,108 @@ export default function ZekkersLanding() {
 
 
       {/* CTA */}
-      <section className="px-6 md:px-12 py-12">
-        <div className="max-w-7xl mx-auto rounded-2xl bg-gradient-to-r from-primary to-accent p-8 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h3 className="text-2xl font-semibold text-navy">
-              Ready to start your career journey?
-            </h3>
-            <p className="mt-2 text-slate-800/80">
-              Browse jobs and see what opportunities await.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-             <Button asChild size="lg" className="bg-white text-primary transition-transform hover:bg-primary hover:text-primary-foreground hover:-translate-y-1">
-                <Link href="/signup">
-                    Get Started
-                </Link>
-             </Button>
-            <Button asChild size="lg" variant="outline" className="text-primary border-white/50 bg-transparent hover:bg-white transition-colors">
-              <Link href="/global-employers-dashboard">Post a Job</Link>
-            </Button>
+      <section className="px-6 md:px-12 py-20">
+        <div className="max-w-7xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 border border-white/10 p-8 md:p-16 text-center md:text-left shadow-2xl relative overflow-hidden group">
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+          <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-colors duration-500" />
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-2xl">
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Start your journey with Zekkers today.
+                </h3>
+                <p className="text-lg text-slate-300">
+                Whether you're hiring or hunting, we've got the tools you need to succeed in the modern world.
+                </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 shrink-0">
+                <Button asChild size="lg" className="h-14 px-8 rounded-full bg-white text-slate-900 hover:bg-slate-200 font-bold shadow-lg">
+                    <Link href="/signup">
+                        Get Started
+                    </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="h-14 px-8 rounded-full bg-transparent text-white border-white/20 hover:bg-white/10">
+                <Link href="/global-employers-dashboard">Post a Job</Link>
+                </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="px-6 md:px-12 py-16 bg-card text-foreground border-t border-border/50">
+      <footer className="px-6 md:px-12 py-16 bg-slate-950 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8 flex flex-col md:flex-row justify-between items-start gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold">
+          <div className="mb-12 flex flex-col md:flex-row justify-between items-start gap-12">
+            <div className="max-w-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold">
                   ZK
                 </div>
-                <div className="font-semibold text-lg text-slate-50">Zekkers</div>
+                <div className="font-bold text-xl text-white">Zekkers</div>
               </div>
-              <p className="text-sm text-slate-400 max-w-md">
-                A unified career ecosystem connecting students, professionals, employers, colleges, NGOs, and institutions with government, private, and global opportunities. Powered by AI matching, verified employers, and transparent hiring workflows.
+              <p className="text-sm text-slate-400 leading-relaxed">
+                A unified career ecosystem connecting students, professionals, employers, colleges, NGOs, and institutions with government, private, and global opportunities.
               </p>
             </div>
-            <div className="flex gap-4">
-              <a href="#" className="text-slate-400 hover:text-primary" aria-label="Zekkers on X">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            
+            <div className="flex gap-6">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all hover:scale-110" aria-label="Zekkers on X">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
                 </svg>
               </a>
-              <a href="#" className="text-slate-400 hover:text-primary" aria-label="Zekkers on Facebook"><Facebook size={20} /></a>
-              <a href="#" className="text-slate-400 hover:text-primary" aria-label="Zekkers on Instagram"><Instagram size={20} /></a>
-              <a href="#" className="text-slate-400 hover:text-primary" aria-label="Zekkers on Youtube"><Youtube size={20} /></a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all hover:scale-110" aria-label="Zekkers on Facebook"><Facebook size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all hover:scale-110" aria-label="Zekkers on Instagram"><Instagram size={18} /></a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white transition-all hover:scale-110" aria-label="Zekkers on Youtube"><Youtube size={18} /></a>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/5 pt-12">
             <div>
-              <h4 className="font-semibold text-slate-50">Product</h4>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link href="/dashboard" className="text-slate-400 hover:text-primary">For Students</Link></li>
-                <li><Link href="/global-employers-dashboard" className="text-slate-400 hover:text-primary">For Employers</Link></li>
-                <li><Link href="/college-dashboard" className="text-slate-400 hover:text-primary">For Colleges</Link></li>
-                <li><Link href="/ngo-dashboard" className="text-slate-400 hover:text-primary">For NGOs</Link></li>
-                <li><Link href="/dashboard/jobs" className="text-slate-400 hover:text-primary">Jobs</Link></li>
-                <li><Link href="/dashboard/competitions" className="text-slate-400 hover:text-primary">Competitions</Link></li>
-                <li><Link href="/dashboard/roadmap" className="text-slate-400 hover:text-primary">AI Roadmap</Link></li>
+              <h4 className="font-bold text-white mb-6">Product</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/dashboard" className="text-slate-400 hover:text-primary transition-colors">For Students</Link></li>
+                <li><Link href="/global-employers-dashboard" className="text-slate-400 hover:text-primary transition-colors">For Employers</Link></li>
+                <li><Link href="/college-dashboard" className="text-slate-400 hover:text-primary transition-colors">For Colleges</Link></li>
+                <li><Link href="/ngo-dashboard" className="text-slate-400 hover:text-primary transition-colors">For NGOs</Link></li>
+                <li><Link href="/dashboard/jobs" className="text-slate-400 hover:text-primary transition-colors">Jobs</Link></li>
+                <li><Link href="/dashboard/competitions" className="text-slate-400 hover:text-primary transition-colors">Competitions</Link></li>
+                <li><Link href="/dashboard/roadmap" className="text-slate-400 hover:text-primary transition-colors">AI Roadmap</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-slate-50">Company</h4>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link href="/about" className="text-slate-400 hover:text-primary">About Us</Link></li>
-                <li><Link href="/blog" className="text-slate-400 hover:text-primary">Blog & Insights</Link></li>
-                <li><Link href="/contact" className="text-slate-400 hover:text-primary">Contact & Support</Link></li>
-                <li><Link href="/privacy" className="text-slate-400 hover:text-primary">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-slate-400 hover:text-primary">Terms & Conditions</Link></li>
+              <h4 className="font-bold text-white mb-6">Company</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/about" className="text-slate-400 hover:text-primary transition-colors">About Us</Link></li>
+                <li><Link href="/blog" className="text-slate-400 hover:text-primary transition-colors">Blog & Insights</Link></li>
+                <li><Link href="/contact" className="text-slate-400 hover:text-primary transition-colors">Contact & Support</Link></li>
+                <li><Link href="/privacy" className="text-slate-400 hover:text-primary transition-colors">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-slate-400 hover:text-primary transition-colors">Terms & Conditions</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold text-slate-50">Resources</h4>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link href="/help-center" className="text-slate-400 hover:text-primary">Help Center</Link></li>
-                <li><Link href="/api-and-integrations" className="text-slate-400 hover:text-primary">API & Integrations</Link></li>
+              <h4 className="font-bold text-white mb-6">Resources</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/help-center" className="text-slate-400 hover:text-primary transition-colors">Help Center</Link></li>
+                <li><Link href="/api-and-integrations" className="text-slate-400 hover:text-primary transition-colors">API & Integrations</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold text-slate-50">Legal</h4>
-              <ul className="mt-4 space-y-2 text-sm">
-                <li><Link href="/data-protection" className="text-slate-400 hover:text-primary">Data Protection</Link></li>
-                <li><Link href="/cookie-preferences" className="text-slate-400 hover:text-primary">Cookie Preferences</Link></li>
-                <li><Link href="/report-abuse" className="text-slate-400 hover:text-primary">Report Abuse</Link></li>
-                <li><Link href="/accessibility" className="text-slate-400 hover:text-primary">Accessibility</Link></li>
+              <h4 className="font-bold text-white mb-6">Legal</h4>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/data-protection" className="text-slate-400 hover:text-primary transition-colors">Data Protection</Link></li>
+                <li><Link href="/cookie-preferences" className="text-slate-400 hover:text-primary transition-colors">Cookie Preferences</Link></li>
+                <li><Link href="/report-abuse" className="text-slate-400 hover:text-primary transition-colors">Report Abuse</Link></li>
+                <li><Link href="/accessibility" className="text-slate-400 hover:text-primary transition-colors">Accessibility</Link></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-slate-500">
+        <div className="mt-16 pt-8 border-t border-white/5 text-center text-sm text-slate-600">
           © 2025 Zekkers — Powered by MCT. All rights reserved.
         </div>
       </footer>

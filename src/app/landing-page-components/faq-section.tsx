@@ -27,24 +27,24 @@ const faqs = [
 
 export default function FaqSection() {
     return (
-        <section id="faq" className="px-6 md:px-12 py-16">
-            <div className="max-w-4xl mx-auto">
+        <section id="faq" className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+            <div className="max-w-4xl mx-auto relative z-10">
             <MotionFade>
-                <div className="text-center">
-                <h2 className="text-3xl font-bold flex items-center justify-center gap-3 bg-gradient-to-r from-yellow-400 to-green-500 bg-clip-text text-transparent">
-                    <HelpCircle className="text-primary"/> Frequently Asked Questions
+                <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold flex items-center justify-center gap-3 text-white">
+                    <HelpCircle className="text-primary w-8 h-8"/> Frequently Asked Questions
                 </h2>
-                <p className="mt-3 text-muted-foreground">
+                <p className="mt-3 text-slate-400">
                     Your questions, answered. Building trust through transparency.
                 </p>
                 </div>
             </MotionFade>
             <MotionFade delay={0.1}>
-                <Accordion type="single" collapsible className="w-full mt-8">
+                <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, i) => (
-                    <AccordionItem value={`item-${i}`} key={faq.question}>
-                    <AccordionTrigger className="font-semibold text-lg text-left">{faq.question}</AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground text-base">
+                    <AccordionItem value={`item-${i}`} key={faq.question} className="border border-white/10 rounded-xl bg-slate-900/50 px-4">
+                    <AccordionTrigger className="font-semibold text-lg text-left text-white hover:text-primary hover:no-underline py-4">{faq.question}</AccordionTrigger>
+                    <AccordionContent className="text-slate-400 text-base pb-4">
                         {faq.answer}
                     </AccordionContent>
                     </AccordionItem>

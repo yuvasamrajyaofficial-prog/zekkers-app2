@@ -1,115 +1,143 @@
-
 'use client';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import MotionFade from '@/components/motion-fade';
-import { fetchJobs } from '@/services/jobs';
-import { Job } from '@/types/job';
-import { useFirestore } from '@/firebase';
+import { Button } from '@/components/ui/button';
+import { MapPin, Building2, Clock, ArrowRight, DollarSign } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-const JobCard = ({ job, i }: { job: Job, i: number }) => (
-    <MotionFade key={job.id} delay={i * 0.04}>
-        <div
-        className="p-4 rounded-2xl bg-card border border-border/50 shadow-lg hover:shadow-cyan-500/10 hover:-translate-y-1 transition-all duration-200 ease-out"
-        >
-        <div className="flex items-start gap-3">
-            <div className="w-12 h-12 rounded-lg bg-border flex items-center justify-center text-slate-400 font-semibold">
-            {job.company.slice(0, 2)}
-            </div>
-            <div className="flex-1">
-            <div className="font-semibold text-foreground">{job.title}</div>
-            <div className="text-xs text-muted-foreground">
-                {job.company} • {job.location}
-            </div>
-            </div>
-            <div className="text-right">
-            <div className="text-sm font-medium text-foreground">{typeof job.salaryMin === 'number' ? `₹${(job.salaryMin / 100000).toFixed(1)}L` : 'N/A'}</div>
-            <div className="text-xs text-muted-foreground">
-                {job.type === 'remote' ? 'Remote' : 'Onsite'}
-            </div>
-            </div>
-        </div>
-
-        <div className="mt-3 flex gap-2">
-            <Button variant="secondary" size="sm" className="gap-2">
-            <Heart size={14} />
-            Save
-            </Button>
-            <Button asChild variant="secondary" size="sm">
-            <Link href={`/dashboard/jobs/${job.id}`}>View</Link>
-            </Button>
-            <Button size="sm" className="ml-auto">
-            Apply
-            </Button>
-        </div>
-        </div>
-    </MotionFade>
-);
-
+const featuredJobs = [
+  {
+    id: 1,
+    title: 'Senior Frontend Engineer',
+    company: 'TechCorp Global',
+    location: 'Remote (US/EU)',
+    type: 'Full-time',
+    salary: '$120k - $160k',
+    tags: ['React', 'Next.js', 'TypeScript'],
+    logo: 'TC',
+    color: 'bg-blue-500',
+  },
+  {
+    id: 2,
+    title: 'Product Designer',
+    company: 'Creative Studio',
+    location: 'London, UK',
+    type: 'Hybrid',
+    salary: '£60k - £80k',
+    tags: ['Figma', 'UI/UX', 'Motion'],
+    logo: 'CS',
+    color: 'bg-purple-500',
+  },
+  {
+    id: 3,
+    title: 'Data Scientist',
+    company: 'DataFlow Systems',
+    location: 'Bangalore, India',
+    type: 'Full-time',
+    salary: '₹25L - ₹40L',
+    tags: ['Python', 'ML', 'TensorFlow'],
+    logo: 'DF',
+    color: 'bg-green-500',
+  },
+  {
+    id: 4,
+    title: 'Marketing Manager',
+    company: 'Growth Inc.',
+    location: 'New York, USA',
+    type: 'On-site',
+    salary: '$90k - $110k',
+    tags: ['Growth', 'SEO', 'Content'],
+    logo: 'GI',
+    color: 'bg-orange-500',
+  },
+];
 
 export default function JobsSection() {
-    const [jobs, setJobs] = useState<Job[]>([]);
-    const [loading, setLoading] = useState(true);
+  return (
+    <section className="px-6 md:px-12 py-24 bg-slate-950 relative overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-    const firestore = useFirestore();
+      <div className="max-w-7xl mx-auto relative z-10">
+        <MotionFade>
+          <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Opportunities</span>
+                </h2>
+                <p className="text-lg text-slate-400">
+                Explore top roles from verified employers across the globe.
+                </p>
+            </div>
+            <Button asChild variant="outline" className="hidden md:flex border-white/10 text-white hover:bg-white/5">
+                <Link href="/dashboard/jobs" className="flex items-center gap-2">
+                    View All Jobs <ArrowRight className="w-4 h-4" />
+                </Link>
+            </Button>
+          </div>
+        </MotionFade>
 
-    useEffect(() => {
-        async function loadJobs() {
-            if (!firestore) return;
-            setLoading(true);
-            try {
-                // Call the mock client-side service
-                const fetchedJobs = await fetchJobs(firestore, 'all');
-                setJobs(fetchedJobs.slice(0, 6)); // Take first 6
-            } catch (error) {
-                console.error("Failed to fetch jobs:", error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        loadJobs();
-    }, [firestore]);
-
-    return (
-        <section
-            id="jobs"
-            className="px-6 md:px-12 py-12"
-        >
-            <div className="max-w-7xl mx-auto">
-            <MotionFade>
-                <div className="flex items-center justify-between">
-                <div>
-                    <h3 className="text-xl font-semibold text-foreground">Live Job Feed</h3>
-                    <p className="text-sm text-muted-foreground">
-                    Latest and trending roles curated for you.
-                    </p>
-                </div>
-                <div className="text-sm text-muted-foreground">
-                    Showing <strong>{jobs.length}</strong> jobs
-                </div>
-                </div>
-            </MotionFade>
-
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {loading ? (
-                    Array.from({length: 6}).map((_, i) => (
-                        <div key={i} className="p-4 rounded-2xl bg-card border border-border/50 h-[124px]">
-                            <div className="flex items-start gap-3 animate-pulse">
-                                <div className="w-12 h-12 rounded-lg bg-border"></div>
-                                <div className="flex-1 space-y-2">
-                                    <div className="h-4 bg-border rounded w-3/4"></div>
-                                    <div className="h-3 bg-border rounded w-1/2"></div>
+        {/* Horizontal Scroll on Mobile, Grid on Desktop */}
+        <div className="flex overflow-x-auto pb-8 -mx-6 px-6 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 md:mx-0 md:px-0 gap-6 snap-x snap-mandatory hide-scrollbar">
+            {featuredJobs.map((job, index) => (
+                <MotionFade key={job.id} delay={index * 0.1}>
+                    <div className="min-w-[280px] md:min-w-0 h-full snap-center">
+                        <div className="group relative h-full p-6 rounded-2xl bg-slate-900/50 border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 flex flex-col">
+                            <div className="flex items-start justify-between mb-4">
+                                <div className={cn(
+                                    "w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg",
+                                    job.color
+                                )}>
+                                    {job.logo}
+                                </div>
+                                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300">
+                                    {job.type}
+                                </span>
+                            </div>
+                            
+                            <h3 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                                {job.title}
+                            </h3>
+                            <p className="text-slate-400 text-sm mb-4">{job.company}</p>
+                            
+                            <div className="space-y-2 mb-6">
+                                <div className="flex items-center gap-2 text-xs text-slate-500">
+                                    <MapPin className="w-3.5 h-3.5" />
+                                    {job.location}
+                                </div>
+                                <div className="flex items-center gap-2 text-xs text-slate-500">
+                                    <DollarSign className="w-3.5 h-3.5" />
+                                    {job.salary}
                                 </div>
                             </div>
+
+                            <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                                <div className="flex gap-2">
+                                    {job.tags.slice(0, 2).map(tag => (
+                                        <span key={tag} className="text-[10px] px-2 py-1 rounded bg-white/5 text-slate-400">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                                <Button size="sm" variant="ghost" className="h-8 w-8 p-0 rounded-full hover:bg-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <ArrowRight className="w-4 h-4" />
+                                </Button>
+                            </div>
                         </div>
-                    ))
-                ) : (
-                    jobs.map((job, i) => <JobCard key={job.id} job={job} i={i} />)
-                )}
-            </div>
-            </div>
-      </section>
-    );
+                    </div>
+                </MotionFade>
+            ))}
+        </div>
+        
+        <div className="mt-8 md:hidden text-center">
+             <Button asChild variant="outline" className="w-full border-white/10 text-white hover:bg-white/5">
+                <Link href="/dashboard/jobs" className="flex items-center justify-center gap-2">
+                    View All Jobs <ArrowRight className="w-4 h-4" />
+                </Link>
+            </Button>
+        </div>
+      </div>
+    </section>
+  );
 }
