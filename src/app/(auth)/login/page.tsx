@@ -8,9 +8,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -70,62 +69,68 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="bg-slate-950 border-slate-800 text-white shadow-xl">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center text-white">Sign in</CardTitle>
-        <CardDescription className="text-center text-slate-400">
-          Enter your email and password to access your account
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleLogin} className="space-y-4">
-          {error && (
-            <Alert variant="destructive" className="bg-red-900/50 border-red-900 text-red-200">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-slate-200">Email</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="m@example.com" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required 
-              className="bg-slate-900 border-slate-800 text-white placeholder:text-slate-500 focus-visible:ring-yellow-500"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-slate-200">Password</Label>
-            <Input 
-              id="password" 
-              type="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required 
-              className="bg-slate-900 border-slate-800 text-white focus-visible:ring-yellow-500"
-            />
-          </div>
-          <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-slate-950 font-bold" disabled={loading}>
-            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-            Sign In
-          </Button>
-        </form>
-      </CardContent>
-      <CardFooter className="flex flex-col gap-2">
-        <div className="text-sm text-center text-slate-400">
-          Don't have an account?{' '}
-          <Link href="/signup" className="text-yellow-400 hover:underline font-medium">
-            Sign up
-          </Link>
+    <div className="space-y-6">
+      <div className="space-y-2 text-center lg:text-left">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Welcome back</h1>
+        <p className="text-slate-500">
+          Enter your email to access your account
+        </p>
+      </div>
+
+      <form onSubmit={handleLogin} className="space-y-4">
+        {error && (
+          <Alert variant="destructive" className="bg-red-50 border-red-200 text-red-600">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input 
+            id="email" 
+            type="email" 
+            placeholder="name@example.com" 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+            className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors"
+          />
         </div>
-        <div className="text-sm text-center">
-            <Link href="/forgot-password" className="text-slate-500 hover:text-slate-300 transition-colors">
-                Forgot password?
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="password">Password</Label>
+            <Link 
+              href="/forgot-password" 
+              className="text-sm font-medium text-primary hover:text-primary/80"
+            >
+              Forgot password?
             </Link>
+          </div>
+          <Input 
+            id="password" 
+            type="password" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+            className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors"
+          />
         </div>
-      </CardFooter>
-    </Card>
+        <Button 
+          type="submit" 
+          className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-semibold text-base shadow-lg shadow-primary/20 transition-all hover:shadow-primary/30" 
+          disabled={loading}
+        >
+          {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+          Sign In
+          {!loading && <ArrowRight className="ml-2 h-4 w-4" />}
+        </Button>
+      </form>
+
+      <div className="text-center text-sm text-slate-500">
+        Don't have an account?{' '}
+        <Link href="/signup" className="font-semibold text-primary hover:text-primary/80 hover:underline">
+          Sign up
+        </Link>
+      </div>
+    </div>
   );
 }
