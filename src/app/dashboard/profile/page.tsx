@@ -169,7 +169,7 @@ export default function ProfilePage() {
       <Card>
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row gap-6">
-            <div className="w-32">
+            <div className="flex flex-col items-center md:items-start w-full md:w-32 shrink-0">
               <div className="w-32 h-32 rounded-full bg-slate-100 overflow-hidden flex items-center justify-center">
                 {profile.avatarUrl ? (
                   <img
@@ -185,17 +185,17 @@ export default function ProfilePage() {
               </div>
 
               {editMode && (
-                <div className="mt-3">
+                <div className="mt-3 w-full">
                   <Input
                     type="file"
                     accept="image/*"
-                    className="text-xs"
+                    className="text-xs w-full"
                     onChange={(e) =>
                       setAvatarFile(e.target.files ? e.target.files[0] : null)
                     }
                   />
-                  <div className="mt-2 flex gap-2">
-                    <Button onClick={handleAvatarUpload} size="sm">
+                  <div className="mt-2 flex gap-2 justify-center md:justify-start">
+                    <Button onClick={handleAvatarUpload} size="sm" className="w-full">
                       Upload
                     </Button>
                   </div>
@@ -203,7 +203,7 @@ export default function ProfilePage() {
               )}
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 w-full">
               <ProfileAbout
                 profile={profile}
                 setProfile={setProfile}
@@ -220,7 +220,7 @@ export default function ProfilePage() {
                 setProfile={setProfile}
                 editMode={editMode}
               />
-              <div className="mt-4 text-xs text-slate-400">
+              <div className="mt-4 text-xs text-slate-400 text-center md:text-left">
                 Last updated: {getDisplayDate(profile.updatedAt)}
               </div>
             </div>

@@ -18,7 +18,9 @@ export function useWorkspaces(userId?: string) {
     const firestore = useFirestore();
 
     const workspacesCollection = useMemo(() => {
-        if (!firestore) return null;
+        // Check if firestore is initialized and has the 'app' property (real instance)
+        // The dummy instance returned by initializeFirebase when config is missing is just {}
+        if (!firestore || !firestore.app) return null;
         return collection(firestore, 'workspaces');
     }, [firestore]);
 

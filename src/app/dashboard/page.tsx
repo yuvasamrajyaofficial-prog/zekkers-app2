@@ -47,7 +47,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-full w-full bg-slate-50 p-4 md:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-8">
         
         {/* Welcome Section */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -71,17 +71,17 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Stats Grid */}
+        {/* Stats Grid - Mobile Optimized (4 cols) */}
         <div className="grid grid-cols-4 gap-2 md:gap-4">
           {stats.map((stat, index) => (
             <Card key={index} className="border-none shadow-sm hover:shadow-md transition-shadow bg-white overflow-hidden">
               <CardContent className="p-2 md:p-6 flex flex-col md:flex-row items-center justify-center md:justify-between gap-1 md:gap-0 text-center md:text-left h-full">
-                <div className="order-2 md:order-1">
+                <div className="order-2 md:order-1 w-full">
                   <p className="hidden md:block text-sm font-medium text-slate-500">{stat.label}</p>
-                  <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-900 mt-0 md:mt-1 truncate w-full">{stat.value}</h3>
-                  <p className="md:hidden text-[10px] text-slate-400 leading-tight truncate w-full px-1">{stat.label}</p>
+                  <h3 className="text-sm sm:text-lg md:text-2xl font-bold text-slate-900 mt-0 md:mt-1 truncate w-full text-center md:text-left">{stat.value}</h3>
+                  <p className="md:hidden text-[10px] text-slate-400 leading-tight truncate w-full px-0.5 text-center">{stat.label}</p>
                 </div>
-                <div className={`p-1.5 md:p-3 rounded-lg md:rounded-xl ${stat.bg} order-1 md:order-2 mb-1 md:mb-0`}>
+                <div className={`p-1.5 md:p-3 rounded-lg md:rounded-xl ${stat.bg} order-1 md:order-2 mb-1 md:mb-0 shrink-0`}>
                   <stat.icon className={`w-4 h-4 md:w-6 md:h-6 ${stat.color}`} />
                 </div>
               </CardContent>
@@ -89,7 +89,7 @@ export default function DashboardPage() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           
           {/* Main Column: Recommended Jobs */}
           <div className="lg:col-span-2 space-y-6">
@@ -103,7 +103,7 @@ export default function DashboardPage() {
             <div className="space-y-4">
               {recommendedJobs.map((job) => (
                 <Card key={job.id} className="group hover:border-primary/50 transition-colors cursor-pointer bg-white border-slate-200">
-                  <CardContent className="p-5 flex flex-col sm:flex-row items-start gap-4">
+                  <CardContent className="p-4 md:p-5 flex flex-col sm:flex-row items-start gap-4">
                     <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center font-bold text-slate-600 text-lg shrink-0">
                       {job.logo}
                     </div>
@@ -113,11 +113,11 @@ export default function DashboardPage() {
                           <h3 className="font-semibold text-lg text-slate-900 group-hover:text-primary transition-colors">{job.title}</h3>
                           <p className="text-slate-500 text-sm">{job.company}</p>
                         </div>
-                        <Badge variant="secondary" className="bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0">
+                        <Badge variant="secondary" className="bg-slate-100 text-slate-700 hover:bg-slate-200 shrink-0 self-start sm:self-center">
                           {job.type}
                         </Badge>
                       </div>
-                      <div className="mt-3 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+                      <div className="mt-3 flex flex-wrap items-center gap-3 md:gap-4 text-sm text-slate-500">
                         <div className="flex items-center gap-1">
                           <MapPin className="w-3.5 h-3.5" />
                           {job.location}

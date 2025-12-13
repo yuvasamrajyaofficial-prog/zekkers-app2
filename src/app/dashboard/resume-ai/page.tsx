@@ -1,4 +1,3 @@
-
 'use client';
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
@@ -424,4 +423,3 @@ export default function ResumeAIPage() {
     </div>
   );
 }
-
