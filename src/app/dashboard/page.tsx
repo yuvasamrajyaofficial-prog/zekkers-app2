@@ -3,6 +3,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/context/auth-context';
+import { useFirestore } from '@/firebase';
+import { fetchJobs } from '@/services/jobs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -33,11 +35,34 @@ export default function DashboardPage() {
     { label: 'Response Rate', value: '25%', icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-100' },
   ];
 
-  const recommendedJobs = [
-    { id: 1, title: 'Frontend Developer', company: 'TechCorp Inc.', location: 'Bangalore, Remote', type: 'Full-time', salary: '₹12-18 LPA', posted: '2 days ago', logo: 'TC' },
-    { id: 2, title: 'UX Designer', company: 'Creative Studio', location: 'Mumbai, On-site', type: 'Contract', salary: '₹8-12 LPA', posted: '5 hours ago', logo: 'CS' },
-    { id: 3, title: 'React Native Intern', company: 'Appify', location: 'Delhi, Hybrid', type: 'Internship', salary: '₹15k/mo', posted: '1 day ago', logo: 'AP' },
-  ];
+  const firestore = useFirestore();
+  const [recommendedJobs, setRecommendedJobs] = React.useState<any[]>([]);
+  const [loadingJobs, setLoadingJobs] = React.useState(true);
+
+  React.useEffect(() => {
+    const loadRecommendedJobs = async () => {
+        if (!firestore) return;
+        try {
+            const jobs = await fetchJobs(firestore, 'all');
+            // Simple recommendation: just take the first 3 for now
+            setRecommendedJobs(jobs.slice(0, 3).map(job => ({
+                id: job.id,
+                title: job.title,
+                company: job.company,
+                location: job.location,
+                type: job.type,
+                salary: job.salaryMin ? `${job.currency} ${job.salaryMin/100000} LPA` : 'Not disclosed',
+                posted: job.postedAt ? new Date(job.postedAt.seconds * 1000 || job.postedAt).toLocaleDateString() : 'Recently',
+                logo: job.company.substring(0, 2).toUpperCase()
+            })));
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setLoadingJobs(false);
+        }
+    }
+    loadRecommendedJobs();
+  }, [firestore]);
 
   const recentActivity = [
     { id: 1, action: 'Applied to Backend Engineer', company: 'FinTech Solutions', time: '2 hours ago' },

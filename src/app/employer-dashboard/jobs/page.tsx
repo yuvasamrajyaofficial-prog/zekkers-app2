@@ -24,20 +24,34 @@ import {
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 
-// ---------------------- Mock Data & Services ----------------------
-const MOCK_JOBS: Job[] = [
-  { id: 'j1', title: 'Frontend Engineer', company: 'ZekkTech', category: 'private', type: 'hybrid', location: 'Bengaluru, India', status: 'published', salaryMin: 1000000, currency: 'INR', postedAt: new Date(Date.now() - 2*24*60*60*1000) },
-  { id: 'j2', title: 'Government Clerk', company: 'Govt. Dept', category: 'government', type: 'onsite', location: 'Delhi, India', status: 'published', salaryMin: 400000, currency: 'INR', postedAt: new Date(Date.now() - 10*24*60*60*1000) },
-  { id: 'j3', title: 'Senior Backend Engineer', company: 'GlobalSoft', category: 'international', type: 'remote', location: 'Berlin, Germany', status: 'paused', salaryMin: 80000, currency: 'EUR', postedAt: new Date(Date.now() - 30*24*60*60*1000) },
-  { id: 'd1', title: 'UI Intern (Draft)', company: 'ZekkTech', category: 'private', type: 'internship', location: 'Remote', status: 'draft', postedAt: new Date() },
-];
-
+import { useFirestore } from '@/firebase';
+import { fetchJobs } from '@/services/jobs';
 
 export default function JobManagementPage(){
   const { toast } = useToast();
-  const [jobs, setJobs] = useState<Job[]>(MOCK_JOBS);
+  const firestore = useFirestore();
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
+
+  useEffect(() => {
+    const loadJobs = async () => {
+        setIsLoading(true);
+        try {
+            const fetchedJobs = await fetchJobs(firestore, 'all');
+            setJobs(fetchedJobs);
+        } catch (error) {
+            console.error("Failed to fetch jobs:", error);
+            toast({ variant: 'destructive', title: 'Failed to load jobs' });
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    if (firestore) {
+        loadJobs();
+    }
+  }, [firestore, toast]);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter(j => 
@@ -47,10 +61,12 @@ export default function JobManagementPage(){
   }, [jobs, searchQuery, statusFilter]);
 
   const handleUpdateStatus = (jobId: string, status: Job['status']) => {
+    // Ideally update in Firestore too
     setJobs(currentJobs => currentJobs.map(j => j.id === jobId ? { ...j, status } : j));
   };
 
   const handleDelete = (jobId: string) => {
+    // Ideally delete from Firestore too
     setJobs(jobs.filter(j => j.id !== jobId));
   };
 
@@ -113,13 +129,19 @@ export default function JobManagementPage(){
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {filteredJobs.length > 0 ? (
+                    {isLoading ? (
+                        <TableRow>
+                            <TableCell colSpan={6} className="text-center h-24">
+                                Loading jobs...
+                            </TableCell>
+                        </TableRow>
+                    ) : filteredJobs.length > 0 ? (
                     filteredJobs.map((job) => (
                         <TableRow key={job.id}>
                         <TableCell className="font-medium">{job.title}</TableCell>
                         <TableCell>{job.location}</TableCell>
                         <TableCell>{(job as any).applicants || 0}</TableCell>
-                        <TableCell>{job.postedAt ? new Date(job.postedAt).toLocaleDateString() : 'N/A'}</TableCell>
+                        <TableCell>{job.postedAt ? new Date(job.postedAt.seconds * 1000 || job.postedAt).toLocaleDateString() : 'N/A'}</TableCell>
                         <TableCell>
                             <Badge className={`${statusColors[job.status]}`}>{job.status}</Badge>
                         </TableCell>

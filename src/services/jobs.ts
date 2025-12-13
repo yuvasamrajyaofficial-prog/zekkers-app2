@@ -1,27 +1,69 @@
 
-
 import { Job, JobCategory } from "@/types/job";
-import { MOCK_JOBS } from "@/lib/mock-data/jobs";
+import { 
+  collection, 
+  addDoc, 
+  getDocs, 
+  query, 
+  where, 
+  orderBy, 
+  doc, 
+  getDoc, 
+  serverTimestamp,
+  Firestore
+} from "firebase/firestore";
 
-
-export async function fetchJobs(category: JobCategory | 'all'): Promise<Job[]> {
-    // In a real app, you'd fetch from Firestore here.
-    // e.g., const q = query(collection(db, 'jobs'), where('category', '==', category));
-    
-    const all: Job[] = MOCK_JOBS;
-    
-    if (category === 'all') {
-      return new Promise(resolve => setTimeout(() => resolve(all.sort((a,b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime())), 100));
-    }
-
-    const filtered = all.filter(j => j.category === category);
-    
-    return new Promise(resolve => setTimeout(() => resolve(filtered.sort((a,b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime())), 100));
+export async function createJob(firestore: Firestore, jobData: Omit<Job, 'id' | 'postedAt'>) {
+  try {
+    const docRef = await addDoc(collection(firestore, 'jobs'), {
+      ...jobData,
+      postedAt: serverTimestamp(),
+      status: 'published' // Default to published for now
+    });
+    return docRef.id;
+  } catch (error) {
+    console.error("Error creating job:", error);
+    throw error;
+  }
 }
 
-export async function fetchJobById(id: string): Promise<Job | null> {
-    const all: Job[] = MOCK_JOBS;
-    const job = all.find(j => j.id === id) || null;
+export async function fetchJobs(firestore: Firestore, category?: JobCategory | 'all'): Promise<Job[]> {
+    if (!firestore) return [];
+    
+    try {
+        const jobsRef = collection(firestore, 'jobs');
+        let q;
 
-    return new Promise(resolve => setTimeout(() => resolve(job), 100));
+        if (category && category !== 'all') {
+            q = query(jobsRef, where('category', '==', category), orderBy('postedAt', 'desc'));
+        } else {
+            q = query(jobsRef, orderBy('postedAt', 'desc'));
+        }
+
+        const snapshot = await getDocs(q);
+        return snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        } as Job));
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        return [];
+    }
+}
+
+export async function fetchJobById(firestore: Firestore, id: string): Promise<Job | null> {
+    if (!firestore) return null;
+    try {
+        const docRef = doc(firestore, 'jobs', id);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+            return { id: docSnap.id, ...docSnap.data() } as Job;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        console.error("Error fetching job:", error);
+        return null;
+    }
 }

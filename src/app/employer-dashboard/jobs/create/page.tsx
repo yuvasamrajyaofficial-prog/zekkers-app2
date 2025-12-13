@@ -31,6 +31,7 @@ import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { generateJobPost } from '@/ai/flows/ai-job-post-generator';
 import { addDocumentNonBlocking } from '@/firebase/non-blocking-updates';
+import { createJob } from '@/services/jobs';
 
 export default function EmployerCreateJobPage() {
   const { toast } = useToast();
@@ -100,7 +101,7 @@ export default function EmployerCreateJobPage() {
     }
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!firestore) {
       toast({
         variant: 'destructive',
@@ -111,18 +112,22 @@ export default function EmployerCreateJobPage() {
     }
     setIsLoading(true);
 
-    addDocumentNonBlocking(collection(firestore, 'jobs'), {
-      ...jobDetails,
-      postedAt: serverTimestamp(),
-      status: 'published',
-    });
-
-    toast({
-      title: 'Job Created Successfully',
-      description: `${jobDetails.title} has been published.`,
-    });
-
-    router.push('/employer-dashboard/jobs');
+    try {
+        await createJob(firestore, jobDetails as any); // Type assertion for now, validation should be stricter
+        toast({
+            title: 'Job Created Successfully',
+            description: `${jobDetails.title} has been published.`,
+        });
+        router.push('/employer-dashboard/jobs');
+    } catch (error: any) {
+        toast({
+            variant: 'destructive',
+            title: 'Failed to create job',
+            description: error.message
+        });
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   return (
