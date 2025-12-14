@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ChevronDown, Menu, Facebook, Instagram, Youtube, CheckCircle2, Search, Globe } from 'lucide-react';
+import { ChevronDown, Menu, Facebook, Instagram, Youtube, CheckCircle2, Search, Globe as GlobeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import MotionFade from '@/components/motion-fade';
@@ -25,6 +25,7 @@ import FaqSection from '@/app/landing-page-components/faq-section';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import StarrySky from '@/components/starry-sky';
+import { Globe } from '@/components/ui/globe';
 import { motion } from 'framer-motion';
 
 export default function ZekkersLanding() {
@@ -153,12 +154,21 @@ export default function ZekkersLanding() {
 
       {/* HERO */}
       <section className="relative min-h-[100svh] flex items-center justify-center px-6 md:px-12 pt-20 pb-16 overflow-hidden">
-        {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        
+        {/* Globe Background */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] opacity-40">
+                <Globe />
+            </div>
+        </div>
+
+        {/* Floating Elements (Opportunities) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+            {/* Existing Floating Elements - Kept for "Universe" feel */}
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute top-1/4 left-[5%] md:left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
             >
                 <div className="p-2 rounded-lg bg-primary/20 text-primary">
                     <CheckCircle2 className="w-6 h-6" />
@@ -172,7 +182,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-1/4 right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute bottom-1/4 right-[5%] md:right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
             >
                 <div className="p-2 rounded-lg bg-accent/20 text-accent">
                     <Search className="w-6 h-6" />
@@ -186,12 +196,35 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-1/3 right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-card/30 backdrop-blur-sm border border-white/5"
+                className="absolute top-1/3 right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-card/30 backdrop-blur-sm border border-white/5"
             >
                 <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
-                    <Globe className="w-4 h-4" />
+                    <GlobeIcon className="w-4 h-4" />
                 </div>
                 <div className="text-xs font-medium text-slate-300">Global Reach</div>
+            </motion.div>
+
+            {/* New "Opportunity" Labels simulating globe data */}
+            <motion.div 
+                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[20%] left-[20%] md:left-[30%] text-xs text-blue-400 font-mono hidden md:block"
+            >
+                USA: 12k+ Jobs
+            </motion.div>
+            <motion.div 
+                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-[30%] right-[20%] md:right-[30%] text-xs text-green-400 font-mono hidden md:block"
+            >
+                Europe: 8k+ Jobs
+            </motion.div>
+             <motion.div 
+                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                className="absolute top-[40%] right-[15%] text-xs text-purple-400 font-mono hidden md:block"
+            >
+                Asia: 15k+ Jobs
             </motion.div>
         </div>
 
@@ -207,7 +240,7 @@ export default function ZekkersLanding() {
             </MotionFade>
 
             <MotionFade delay={0.1}>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
+              <h1 className="text-4xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.1]">
                 <span className="block text-white">Smart Seekers.</span>
                 <span className="block bg-gradient-to-r from-primary via-blue-400 to-accent bg-clip-text text-transparent pb-2">
                   Verified Futures.
@@ -216,21 +249,21 @@ export default function ZekkersLanding() {
             </MotionFade>
             
             <MotionFade delay={0.2}>
-              <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="mt-6 md:mt-8 text-base md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
                 The unified career ecosystem connecting students, professionals, and global employers through AI-driven matching and transparent hiring.
               </p>
             </MotionFade>
 
             <MotionFade delay={0.3}>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                 <Button asChild size="lg" className="h-14 px-8 text-base rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105">
+              <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center px-4 md:px-0">
+                 <Button asChild size="lg" className="w-full sm:w-auto h-12 md:h-14 px-8 text-base rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105">
                     <Link href="/dashboard">Find a Job</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
+                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-12 md:h-14 px-8 text-base rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
                     <Link href="/global-employers-dashboard">Post a Job</Link>
                 </Button>
               </div>
-              <div className="mt-6 flex items-center justify-center gap-6 text-sm text-slate-500">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs md:text-sm text-slate-500">
                 <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-primary" />
                     <span>No credit card required</span>
