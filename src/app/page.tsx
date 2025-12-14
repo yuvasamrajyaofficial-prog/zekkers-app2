@@ -157,7 +157,7 @@ export default function ZekkersLanding() {
         
         {/* Globe Background */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[800px] h-[800px] md:w-[1000px] md:h-[1000px] opacity-40">
+            <div className="w-full h-full md:w-[1000px] md:h-[1000px] opacity-80 mix-blend-screen">
                 <Globe />
             </div>
         </div>
@@ -168,7 +168,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/4 left-[5%] md:left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute top-[15%] left-[5%] md:left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-xl z-20"
             >
                 <div className="p-2 rounded-lg bg-primary/20 text-primary">
                     <CheckCircle2 className="w-6 h-6" />
@@ -182,7 +182,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-1/4 right-[5%] md:right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-card/40 backdrop-blur-md border border-white/10 shadow-xl"
+                className="absolute bottom-[20%] right-[5%] md:right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-xl z-20"
             >
                 <div className="p-2 rounded-lg bg-accent/20 text-accent">
                     <Search className="w-6 h-6" />
@@ -196,7 +196,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-1/3 right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-card/30 backdrop-blur-sm border border-white/5"
+                className="absolute top-[25%] right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-white/5 z-20"
             >
                 <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
                     <GlobeIcon className="w-4 h-4" />
@@ -204,27 +204,30 @@ export default function ZekkersLanding() {
                 <div className="text-xs font-medium text-slate-300">Global Reach</div>
             </motion.div>
 
-            {/* New "Opportunity" Labels simulating globe data */}
+            {/* New "Opportunity" Labels simulating globe data - Styled for visibility */}
             <motion.div 
-                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[20%] left-[20%] md:left-[30%] text-xs text-blue-400 font-mono hidden md:block"
+                className="absolute top-[25%] left-[15%] md:left-[25%] px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
-                USA: 12k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-blue-400 inline-block mr-2 animate-pulse"/>
+                USA: 12,450+ Jobs
             </motion.div>
             <motion.div 
-                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[30%] right-[20%] md:right-[30%] text-xs text-green-400 font-mono hidden md:block"
+                className="absolute bottom-[35%] right-[15%] md:right-[25%] px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
-                Europe: 8k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-green-400 inline-block mr-2 animate-pulse"/>
+                Europe: 8,230+ Jobs
             </motion.div>
              <motion.div 
-                animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1, 0.9] }}
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[40%] right-[15%] text-xs text-purple-400 font-mono hidden md:block"
+                className="absolute top-[45%] right-[10%] md:right-[15%] px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
-                Asia: 15k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-purple-400 inline-block mr-2 animate-pulse"/>
+                Asia: 15,100+ Jobs
             </motion.div>
         </div>
 

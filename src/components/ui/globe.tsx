@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import createGlobe from "cobe";
 import { cn } from "@/lib/utils";
 
 interface GlobeProps {
@@ -11,101 +12,55 @@ export const Globe: React.FC<GlobeProps> = ({ className }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    let phi = 0;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!canvasRef.current) return;
 
-    let width = canvas.width = canvas.offsetWidth;
-    let height = canvas.height = canvas.offsetHeight;
-    
-    // Globe parameters
-    const GLOBE_RADIUS = width < 600 ? width * 0.35 : 250;
-    const DOT_RADIUS = 1.5;
-    const DOT_COUNT = 600;
-    const ROTATION_SPEED = 0.002;
-    
-    // Generate points on a sphere
-    const points: { x: number; y: number; z: number; phi: number; theta: number }[] = [];
-    for (let i = 0; i < DOT_COUNT; i++) {
-      const phi = Math.acos(-1 + (2 * i) / DOT_COUNT);
-      const theta = Math.sqrt(DOT_COUNT * Math.PI) * phi;
-      
-      points.push({
-        x: GLOBE_RADIUS * Math.cos(theta) * Math.sin(phi),
-        y: GLOBE_RADIUS * Math.sin(theta) * Math.sin(phi),
-        z: GLOBE_RADIUS * Math.cos(phi),
-        phi,
-        theta
-      });
-    }
-
-    let rotation = 0;
-
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-      
-      // Center of canvas
-      const cx = width / 2;
-      const cy = height / 2;
-
-      rotation += ROTATION_SPEED;
-
-      // Sort points by Z depth so back points are drawn first (or we can just fade them)
-      const projectedPoints = points.map(p => {
-        // Rotate around Y axis
-        const x = p.x * Math.cos(rotation) - p.z * Math.sin(rotation);
-        const z = p.x * Math.sin(rotation) + p.z * Math.cos(rotation);
-        const y = p.y;
-
-        // Simple perspective projection
-        const scale = 400 / (400 - z);
-        const alpha = (z + GLOBE_RADIUS) / (2 * GLOBE_RADIUS); // 0 to 1 based on depth
-
-        return {
-          x: cx + x, // Orthographic-ish for now, or add perspective
-          y: cy + y,
-          z: z,
-          alpha: Math.max(0.1, alpha)
-        };
-      });
-
-      // Draw points
-      projectedPoints.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, DOT_RADIUS, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(100, 149, 237, ${p.alpha})`; // Cornflower blueish
-        ctx.fill();
-      });
-      
-      // Draw some connecting lines for "constellation" effect (optional, maybe too heavy)
-      // Keeping it simple for performance: just dots for now to look like "universe" stars/cities
-
-      requestAnimationFrame(render);
-    };
-
-    const handleResize = () => {
-        if(canvas) {
-            width = canvas.width = canvas.offsetWidth;
-            height = canvas.height = canvas.offsetHeight;
-        }
-    };
-
-    window.addEventListener('resize', handleResize);
-    const animationId = requestAnimationFrame(render);
+    const globe = createGlobe(canvasRef.current, {
+      devicePixelRatio: 2,
+      width: 1000 * 2,
+      height: 1000 * 2,
+      phi: 0,
+      theta: 0,
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.1, 0.8, 1],
+      glowColor: [0.1, 0.1, 0.2], // Darker glow for "universe" feel
+      markers: [
+        // location: [latitude, longitude], size: [0..1]
+        { location: [37.7595, -122.4367], size: 0.03 }, // San Francisco
+        { location: [40.7128, -74.0060], size: 0.03 }, // New York
+        { location: [51.5074, -0.1278], size: 0.03 }, // London
+        { location: [35.6762, 139.6503], size: 0.03 }, // Tokyo
+        { location: [28.6139, 77.2090], size: 0.03 }, // New Delhi
+        { location: [-33.8688, 151.2093], size: 0.03 }, // Sydney
+        { location: [-23.5505, -46.6333], size: 0.03 }, // Sao Paulo
+        { location: [1.3521, 103.8198], size: 0.03 }, // Singapore
+        { location: [25.2048, 55.2708], size: 0.03 }, // Dubai
+        { location: [52.5200, 13.4050], size: 0.03 }, // Berlin
+      ],
+      onRender: (state) => {
+        // Called on every animation frame.
+        // `state` will be an empty object, return updated params.
+        state.phi = phi;
+        phi += 0.003;
+      },
+    });
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animationId);
+      globe.destroy();
     };
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={cn("w-full h-full opacity-60", className)}
-      style={{ width: '100%', height: '100%' }}
-    />
+    <div className={cn("w-full h-full flex items-center justify-center", className)}>
+        <canvas
+            ref={canvasRef}
+            style={{ width: 1000, height: 1000, maxWidth: "100%", aspectRatio: 1 }}
+        />
+    </div>
   );
 };
