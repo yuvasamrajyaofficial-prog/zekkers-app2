@@ -129,7 +129,7 @@ export default function HowItWorksSection() {
           </div>
         </MotionFade>
 
-        <div className="relative mt-20">
+        <div className="relative mt-16 md:mt-24">
             {/* Central Line - Desktop */}
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-slate-800 -translate-x-1/2 rounded-full overflow-hidden">
                 <motion.div 
@@ -146,7 +146,7 @@ export default function HowItWorksSection() {
                 />
             </div>
 
-            <div className="space-y-12 md:space-y-24">
+            <div className="space-y-8 md:space-y-12">
                 <AnimatePresence mode='wait'>
                     {steps.map((step, index) => (
                         <motion.div 
@@ -161,12 +161,12 @@ export default function HowItWorksSection() {
                             )}
                         >
                             {/* Content Side */}
-                            <div className="flex-1 w-full pl-16 md:pl-0 md:px-12">
+                            <div className="flex-1 w-full pl-16 md:pl-0 md:px-16">
                                 <motion.div 
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     className={cn(
-                                        "relative p-5 md:p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-lg overflow-hidden",
-                                        index % 2 === 0 ? "md:text-left" : "md:text-right"
+                                        "relative p-5 md:p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-lg overflow-hidden max-w-md",
+                                        index % 2 === 0 ? "mr-auto text-left" : "ml-auto text-right"
                                     )}
                                 >
                                     {/* Hover Shine Effect */}
