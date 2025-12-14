@@ -1,202 +1,178 @@
 'use client';
+
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Users, Briefcase, ShieldCheck, HeartPulse, AlertCircle, TrendingUp, Activity, DollarSign, UserPlus } from 'lucide-react';
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  BarChart,
-  Bar,
-} from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Users, Briefcase, FileText, DollarSign, Activity, UserPlus, AlertCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const kpiData = [
-  { title: 'Total Revenue', value: '$45,231.89', icon: <DollarSign className="w-4 h-4 text-muted-foreground" />, change: '+20.1% from last month', changeType: 'increase' },
-  { title: 'Subscriptions', value: '+2350', icon: <Users className="w-4 h-4 text-muted-foreground" />, change: '+180.1% from last month', changeType: 'increase' },
-  { title: 'Active Jobs', value: '+12,234', icon: <Briefcase className="w-4 h-4 text-muted-foreground" />, change: '+19% from last month', changeType: 'increase' },
-  { title: 'Active Now', value: '+573', icon: <Activity className="w-4 h-4 text-muted-foreground" />, change: '+201 since last hour', changeType: 'increase' },
-];
+export default function AdminDashboardHome() {
+  // Mock Data for Stats
+  const stats = [
+    {
+      title: 'Total Users',
+      value: '12,345',
+      change: '+12% from last month',
+      icon: Users,
+      color: 'text-blue-500',
+      bg: 'bg-blue-500/10',
+    },
+    {
+      title: 'Active Jobs',
+      value: '543',
+      change: '+5% from last month',
+      icon: Briefcase,
+      color: 'text-green-500',
+      bg: 'bg-green-500/10',
+    },
+    {
+      title: 'Total Applications',
+      value: '45,231',
+      change: '+18% from last month',
+      icon: FileText,
+      color: 'text-purple-500',
+      bg: 'bg-purple-500/10',
+    },
+    {
+      title: 'Revenue (YTD)',
+      value: '$124,500',
+      change: '+8% from last month',
+      icon: DollarSign,
+      color: 'text-yellow-500',
+      bg: 'bg-yellow-500/10',
+    },
+  ];
 
-const userGrowthData = [
-  { name: 'Jan', total: 1200 },
-  { name: 'Feb', total: 2100 },
-  { name: 'Mar', total: 1800 },
-  { name: 'Apr', total: 2400 },
-  { name: 'May', total: 3200 },
-  { name: 'Jun', total: 3800 },
-  { name: 'Jul', total: 4200 },
-];
+  // Mock Data for Recent Activity
+  const activities = [
+    {
+      id: 1,
+      user: 'John Doe',
+      action: 'registered as a Student',
+      time: '2 minutes ago',
+      icon: UserPlus,
+      color: 'text-blue-500',
+    },
+    {
+      id: 2,
+      user: 'TechCorp Inc.',
+      action: 'posted a new job: Senior React Dev',
+      time: '15 minutes ago',
+      icon: Briefcase,
+      color: 'text-green-500',
+    },
+    {
+      id: 3,
+      user: 'System',
+      action: 'Flagged suspicious activity from IP 192.168.1.1',
+      time: '1 hour ago',
+      icon: AlertCircle,
+      color: 'text-red-500',
+    },
+    {
+      id: 4,
+      user: 'Sarah Smith',
+      action: 'verified their email address',
+      time: '2 hours ago',
+      icon: UserPlus,
+      color: 'text-blue-500',
+    },
+  ];
 
-const revenueData = [
-  { name: 'Jan', revenue: 4000 },
-  { name: 'Feb', revenue: 3000 },
-  { name: 'Mar', revenue: 2000 },
-  { name: 'Apr', revenue: 2780 },
-  { name: 'May', revenue: 1890 },
-  { name: 'Jun', revenue: 2390 },
-  { name: 'Jul', revenue: 3490 },
-];
-
-const recentActivity = [
-  {
-    user: {
-      name: 'Olivia Martin',
-      email: 'olivia.martin@email.com',
-      avatar: '/avatars/01.png',
-    },
-    amount: '+$1,999.00',
-    status: 'New Subscription',
-  },
-  {
-    user: {
-      name: 'Jackson Lee',
-      email: 'jackson.lee@email.com',
-      avatar: '/avatars/02.png',
-    },
-    amount: '+$39.00',
-    status: 'Job Posting',
-  },
-  {
-    user: {
-      name: 'Isabella Nguyen',
-      email: 'isabella.nguyen@email.com',
-      avatar: '/avatars/03.png',
-    },
-    amount: '+$299.00',
-    status: 'Verified Badge',
-  },
-  {
-    user: {
-      name: 'William Kim',
-      email: 'will@email.com',
-      avatar: '/avatars/04.png',
-    },
-    amount: '+$99.00',
-    status: 'Resume AI',
-  },
-  {
-    user: {
-      name: 'Sofia Davis',
-      email: 'sofia.davis@email.com',
-      avatar: '/avatars/05.png',
-    },
-    amount: '+$39.00',
-    status: 'Job Posting',
-  },
-];
-
-export default function AdminDashboardPage() {
   return (
-    <div className="p-4 md:p-6 bg-slate-50 min-h-full space-y-6">
-      <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Admin Overview</h1>
+        <p className="text-slate-500">Welcome back, Administrator. Here's what's happening today.</p>
       </div>
-      
-      {/* KPI Cards */}
+
+      {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {kpiData.map((kpi, index) => (
-          <Card key={index}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                {kpi.title}
-              </CardTitle>
-              {kpi.icon}
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{kpi.value}</div>
-              <p className="text-xs text-muted-foreground">
-                {kpi.change}
-              </p>
-            </CardContent>
-          </Card>
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <Card className="border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium text-slate-600">
+                  {stat.title}
+                </CardTitle>
+                <div className={`p-2 rounded-full ${stat.bg}`}>
+                    <stat.icon className={`h-4 w-4 ${stat.color}`} />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold text-slate-900">{stat.value}</div>
+                <p className="text-xs text-slate-500 mt-1">{stat.change}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
 
-      {/* Charts Section */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Overview</CardTitle>
-          </CardHeader>
-          <CardContent className="pl-2">
-            <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={revenueData}>
-                <XAxis
-                  dataKey="name"
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="#888888"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                  tickFormatter={(value) => `$${value}`}
-                />
-                <Bar dataKey="revenue" fill="#adfa1d" radius={[4, 4, 0, 0]} className="fill-primary" />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-        <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
-            <CardDescription>
-              You made 265 sales this month.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-8">
-              {recentActivity.map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center font-bold text-primary">
-                      {item.user.name.charAt(0)}
-                  </div>
-                  <div className="ml-4 space-y-1">
-                    <p className="text-sm font-medium leading-none">{item.user.name}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {item.user.email}
-                    </p>
-                  </div>
-                  <div className="ml-auto font-medium">{item.amount}</div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-      
-      {/* User Growth Chart */}
-       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-7">
+      {/* Recent Activity & Quick Actions */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card className="border-slate-200 shadow-sm">
             <CardHeader>
-                <CardTitle>User Growth</CardTitle>
-                <CardDescription>New user registrations over the last 7 months</CardDescription>
+                <CardTitle className="flex items-center gap-2">
+                    <Activity className="w-5 h-5 text-primary" />
+                    Recent Activity
+                </CardTitle>
             </CardHeader>
             <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                    <AreaChart data={userGrowthData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-                        <defs>
-                            <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-                                <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-                            </linearGradient>
-                        </defs>
-                        <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                        <Tooltip />
-                        <Area type="monotone" dataKey="total" stroke="#8884d8" fillOpacity={1} fill="url(#colorTotal)" />
-                    </AreaChart>
-                </ResponsiveContainer>
+                <div className="space-y-8">
+                    {activities.map((activity) => (
+                        <div key={activity.id} className="flex items-center">
+                            <div className={`mr-4 rounded-full p-2 bg-slate-100 ${activity.color}`}>
+                                <activity.icon className="h-4 w-4" />
+                            </div>
+                            <div className="space-y-1">
+                                <p className="text-sm font-medium leading-none text-slate-900">
+                                    <span className="font-bold">{activity.user}</span> {activity.action}
+                                </p>
+                                <p className="text-xs text-slate-500">
+                                    {activity.time}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </CardContent>
         </Card>
-       </div>
+
+        <Card className="border-slate-200 shadow-sm">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5 text-red-500" />
+                    Pending Actions
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 rounded-lg bg-yellow-50 border border-yellow-100">
+                        <div>
+                            <div className="font-semibold text-yellow-900">5 New Employer Verifications</div>
+                            <div className="text-xs text-yellow-700">Pending review for over 24 hours</div>
+                        </div>
+                        <button className="px-3 py-1.5 text-xs font-medium bg-white text-yellow-700 border border-yellow-200 rounded-md hover:bg-yellow-50">
+                            Review
+                        </button>
+                    </div>
+                    <div className="flex items-center justify-between p-4 rounded-lg bg-red-50 border border-red-100">
+                        <div>
+                            <div className="font-semibold text-red-900">3 Reported Jobs</div>
+                            <div className="text-xs text-red-700">Flagged by users as spam/scam</div>
+                        </div>
+                        <button className="px-3 py-1.5 text-xs font-medium bg-white text-red-700 border border-red-200 rounded-md hover:bg-red-50">
+                            Investigate
+                        </button>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
