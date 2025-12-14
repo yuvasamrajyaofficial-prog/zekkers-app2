@@ -139,62 +139,66 @@ export default function HowItWorksSection() {
             </div>
 
             {/* Mobile Timeline Line */}
-            <div className="md:hidden absolute left-8 top-0 bottom-0 w-0.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-slate-800 rounded-full overflow-hidden">
                  <motion.div 
                     className="w-full bg-gradient-to-b from-primary via-purple-500 to-accent"
                     style={{ height: lineHeight }}
                 />
             </div>
 
-            <div className="space-y-16 md:space-y-32">
+            <div className="space-y-12 md:space-y-24">
                 <AnimatePresence mode='wait'>
                     {steps.map((step, index) => (
                         <motion.div 
                             key={`${activeTab}-${index}`}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
+                            viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className={cn(
-                                "relative flex flex-col md:flex-row gap-8 md:gap-0 items-center",
+                                "relative flex flex-col md:flex-row gap-6 md:gap-0 items-center",
                                 index % 2 === 0 ? "md:flex-row-reverse" : ""
                             )}
                         >
                             {/* Content Side */}
-                            <div className="flex-1 w-full pl-20 md:pl-0 md:px-16">
+                            <div className="flex-1 w-full pl-16 md:pl-0 md:px-12">
                                 <motion.div 
-                                    whileHover={{ y: -5 }}
+                                    whileHover={{ y: -5, scale: 1.02 }}
                                     className={cn(
-                                        "p-8 rounded-3xl bg-card/50 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-2xl",
+                                        "relative p-5 md:p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-lg overflow-hidden",
                                         index % 2 === 0 ? "md:text-left" : "md:text-right"
                                     )}
                                 >
+                                    {/* Hover Shine Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shine pointer-events-none" />
+
                                     <div className={cn(
-                                        "inline-flex items-center justify-center w-10 h-10 rounded-xl mb-4 text-white font-bold text-lg",
+                                        "inline-flex md:hidden items-center justify-center w-8 h-8 rounded-lg mb-3 text-white font-bold text-sm",
                                         step.color, step.shadow
                                     )}>
                                         {index + 1}
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-primary transition-colors">{step.title}</h3>
-                                    <p className="text-slate-400 text-base leading-relaxed">
+                                    
+                                    <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{step.title}</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed">
                                         {step.description}
                                     </p>
                                 </motion.div>
                             </div>
 
                             {/* Icon Node */}
-                            <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
                                 <motion.div 
                                     initial={{ scale: 0 }}
                                     whileInView={{ scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ type: "spring", stiffness: 200, delay: 0.2 + (index * 0.1) }}
                                     className={cn(
-                                        "w-16 h-16 rounded-full border-4 border-background flex items-center justify-center shadow-[0_0_30px_-5px_rgba(0,0,0,0.5)] z-10 relative",
+                                        "w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-background flex items-center justify-center shadow-[0_0_20px_-5px_rgba(0,0,0,0.5)] z-10 relative",
                                         step.color
                                     )}
                                 >
-                                    <div className="text-white relative z-10">
+                                    <div className="text-white relative z-10 transform scale-75 md:scale-100">
                                         {step.icon}
                                     </div>
                                     {/* Pulse Effect */}
