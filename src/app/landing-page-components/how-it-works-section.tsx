@@ -161,7 +161,7 @@ export default function HowItWorksSection() {
                             )}
                         >
                             {/* Content Side */}
-                            <div className="flex-1 w-full pl-20 md:pl-0 md:px-24">
+                            <div className="flex-1 w-full pl-20 md:pl-0">
                                 <motion.div 
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     className={cn(
@@ -187,14 +187,14 @@ export default function HowItWorksSection() {
                             </div>
 
                             {/* Icon Node */}
-                            <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                            <div className="absolute left-6 md:static md:left-auto md:translate-x-0 flex items-center justify-center md:mx-6">
                                 <motion.div 
                                     initial={{ scale: 0 }}
                                     whileInView={{ scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ type: "spring", stiffness: 200, delay: 0.2 + (index * 0.1) }}
                                     className={cn(
-                                        "w-12 h-12 md:w-14 md:h-14 rounded-full border-4 border-background flex items-center justify-center shadow-[0_0_20px_-5px_rgba(0,0,0,0.5)] z-10 relative",
+                                        "w-12 h-12 md:w-16 md:h-16 rounded-full border-4 border-background flex items-center justify-center shadow-[0_0_20px_-5px_rgba(0,0,0,0.5)] z-10 relative",
                                         step.color
                                     )}
                                 >
