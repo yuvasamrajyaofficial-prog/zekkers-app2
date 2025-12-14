@@ -161,11 +161,11 @@ export default function HowItWorksSection() {
                             )}
                         >
                             {/* Content Side */}
-                            <div className="flex-1 w-full pl-16 md:pl-0 md:px-16">
+                            <div className="flex-1 w-full pl-20 md:pl-0 md:px-24">
                                 <motion.div 
                                     whileHover={{ y: -5, scale: 1.02 }}
                                     className={cn(
-                                        "relative p-5 md:p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-lg overflow-hidden max-w-md",
+                                        "relative p-5 md:p-6 rounded-2xl bg-card/40 backdrop-blur-md border border-white/5 hover:border-primary/20 transition-all duration-300 group shadow-lg overflow-hidden max-w-sm",
                                         index % 2 === 0 ? "mr-auto text-left" : "ml-auto text-right"
                                     )}
                                 >
