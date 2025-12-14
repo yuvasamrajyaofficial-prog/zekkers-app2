@@ -157,7 +157,7 @@ export default function ZekkersLanding() {
         
         {/* Globe Background */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div className="w-full h-full md:w-[1000px] md:h-[1000px] opacity-80 mix-blend-screen">
+            <div className="w-[600px] h-[600px] md:w-[800px] md:h-[800px] opacity-90 mix-blend-screen">
                 <Globe />
             </div>
         </div>
@@ -208,26 +208,50 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[25%] left-[15%] md:left-[25%] px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute top-[25%] left-[10%] md:left-[20%] px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
                 <span className="w-2 h-2 rounded-full bg-blue-400 inline-block mr-2 animate-pulse"/>
-                USA: 12,450+ Jobs
+                USA: 12k+
             </motion.div>
             <motion.div 
                 animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[35%] right-[15%] md:right-[25%] px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute bottom-[35%] right-[10%] md:right-[20%] px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
                 <span className="w-2 h-2 rounded-full bg-green-400 inline-block mr-2 animate-pulse"/>
-                Europe: 8,230+ Jobs
+                UK: 5k+
             </motion.div>
              <motion.div 
                 animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[45%] right-[10%] md:right-[15%] px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute top-[45%] right-[5%] md:right-[15%] px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono backdrop-blur-md hidden md:block"
             >
                 <span className="w-2 h-2 rounded-full bg-purple-400 inline-block mr-2 animate-pulse"/>
-                Asia: 15,100+ Jobs
+                India: 18k+
+            </motion.div>
+            <motion.div 
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute bottom-[25%] left-[15%] md:left-[25%] px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300 text-xs font-mono backdrop-blur-md hidden md:block"
+            >
+                <span className="w-2 h-2 rounded-full bg-orange-400 inline-block mr-2 animate-pulse"/>
+                Canada: 4k+
+            </motion.div>
+            <motion.div 
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+                className="absolute top-[15%] right-[25%] md:right-[35%] px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono backdrop-blur-md hidden md:block"
+            >
+                <span className="w-2 h-2 rounded-full bg-cyan-400 inline-block mr-2 animate-pulse"/>
+                Germany: 6k+
+            </motion.div>
+             <motion.div 
+                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+                className="absolute bottom-[15%] left-[30%] md:left-[40%] px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-mono backdrop-blur-md hidden md:block"
+            >
+                <span className="w-2 h-2 rounded-full bg-pink-400 inline-block mr-2 animate-pulse"/>
+                Australia: 3k+
             </motion.div>
         </div>
 
