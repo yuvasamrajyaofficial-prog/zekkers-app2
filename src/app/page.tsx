@@ -26,6 +26,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import StarrySky from '@/components/starry-sky';
 import { Globe } from '@/components/ui/globe';
+import { RightSideNav } from '@/components/right-side-nav';
 import { motion } from 'framer-motion';
 
 export default function ZekkersLanding() {
@@ -46,69 +47,20 @@ export default function ZekkersLanding() {
       <StarrySky />
       
       {/* NAV */}
-      <header className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "p-2" : "p-4"
-      )}>
-        <div className={cn(
-          "w-full max-w-7xl mx-auto py-3 px-6 flex items-center justify-between rounded-xl border transition-all duration-300",
-          isScrolled ? "bg-slate-900/60 backdrop-blur-xl border-slate-800 shadow-lg" : "bg-transparent border-transparent"
-        )}>
+      {/* NAV */}
+      <RightSideNav />
+      
+      {/* Mobile Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 p-4 md:hidden">
+        <div className="w-full py-3 px-6 flex items-center justify-between rounded-xl bg-slate-900/60 backdrop-blur-xl border border-slate-800 shadow-lg">
             <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold shadow-glow">
                 ZK
             </div>
             <div className="text-xl font-bold font-headline tracking-tight text-white">Zekkers</div>
             </div>
-            <nav className="hidden md:flex items-center gap-8">
-            <Link href="/dashboard/jobs" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                Jobs
-            </Link>
-            <a href="#features" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                Features
-            </a>
-            <a href="#how" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                How it works
-            </a>
-            
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-slate-300 hover:bg-white/5 hover:text-white data-[state=open]:bg-white/5 data-[state=open]:text-white">
-                    Dashboards
-                    <ChevronDown className="h-4 w-4 opacity-50" />
-                </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
-                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                    <Link href="/dashboard">Students/Job Seekers</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                    <Link href="/global-employers-dashboard">Employers</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                    <Link href="/college-dashboard">Colleges</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                    <Link href="/ngo-dashboard">NGO</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="bg-slate-800" />
-                <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                    <Link href="/admin-dashboard">Admin</Link>
-                </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-            </nav>
 
             <div className="flex items-center gap-4">
-                <div className="hidden md:flex items-center gap-3">
-                    <Button asChild variant="ghost" className="text-slate-300 hover:text-white hover:bg-white/5">
-                        <Link href="/login">Login</Link>
-                    </Button>
-                    <Button asChild className="bg-white text-slate-900 hover:bg-slate-200 font-semibold shadow-lg shadow-white/10">
-                        <Link href="/signup">Get Started</Link>
-                    </Button>
-                </div>
-                <div className="md:hidden">
                 <Sheet>
                     <SheetTrigger asChild>
                     <Button variant="ghost" size="icon" className="text-slate-300 hover:bg-white/5 hover:text-white">
@@ -147,7 +99,6 @@ export default function ZekkersLanding() {
                         </div>
                     </SheetContent>
                 </Sheet>
-                </div>
             </div>
         </div>
       </header>
