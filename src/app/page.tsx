@@ -15,6 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown, Menu, Facebook, Instagram, Youtube, CheckCircle2, Search, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import MotionFade from '@/components/motion-fade';
 import FeaturesSection from '@/app/landing-page-components/features-section';
 import HowItWorksSection from '@/app/landing-page-components/how-it-works-section';
@@ -107,38 +108,44 @@ export default function ZekkersLanding() {
                     </Button>
                 </div>
                 <div className="md:hidden">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
+                <Sheet>
+                    <SheetTrigger asChild>
                     <Button variant="ghost" size="icon" className="text-slate-300 hover:bg-white/5 hover:text-white">
                         <Menu className="h-6 w-6" />
                     </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-64 bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
-                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/dashboard/jobs">Jobs</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><a href="#features">Features</a></DropdownMenuItem>
-                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><a href="#how">How it works</a></DropdownMenuItem>
-                    <DropdownMenuSeparator className="bg-slate-800" />
-                    <DropdownMenuSub>
-                        <DropdownMenuSubTrigger className="focus:bg-white/10 focus:text-white cursor-pointer">Dashboards</DropdownMenuSubTrigger>
-                        <DropdownMenuSubContent className="bg-slate-900/95 backdrop-blur-xl border-slate-800 text-slate-200">
-                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/dashboard">Students/Job Seekers</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/global-employers-dashboard">Employers</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/college-dashboard">Colleges</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer"><Link href="/ngo-dashboard">NGO</Link></DropdownMenuItem>
-                        <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                            <Link href="/admin-dashboard">Admin</Link>
-                        </DropdownMenuItem>
-                        </DropdownMenuSubContent>
-                    </DropdownMenuSub>
-                    <DropdownMenuSeparator className="bg-slate-800" />
-                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                        <Link href="/login" className="w-full">Login</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild className="focus:bg-white/10 focus:text-white cursor-pointer">
-                        <Link href="/signup" className="w-full font-semibold text-primary">Get Started</Link>
-                    </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                    </SheetTrigger>
+                    <SheetContent side="right" className="w-full sm:w-[300px] bg-slate-950 border-slate-800 text-slate-200 p-6 overflow-y-auto">
+                        <div className="flex flex-col gap-6 mt-6">
+                            <div className="flex flex-col gap-4">
+                                <Link href="/dashboard/jobs" className="text-lg font-medium hover:text-primary transition-colors">Jobs</Link>
+                                <a href="#features" className="text-lg font-medium hover:text-primary transition-colors">Features</a>
+                                <a href="#how" className="text-lg font-medium hover:text-primary transition-colors">How it works</a>
+                            </div>
+                            
+                            <div className="h-px bg-slate-800" />
+                            
+                            <div className="flex flex-col gap-4">
+                                <div className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Dashboards</div>
+                                <Link href="/dashboard" className="text-lg font-medium hover:text-primary transition-colors pl-4 border-l-2 border-slate-800 hover:border-primary">Students</Link>
+                                <Link href="/global-employers-dashboard" className="text-lg font-medium hover:text-primary transition-colors pl-4 border-l-2 border-slate-800 hover:border-primary">Employers</Link>
+                                <Link href="/college-dashboard" className="text-lg font-medium hover:text-primary transition-colors pl-4 border-l-2 border-slate-800 hover:border-primary">Colleges</Link>
+                                <Link href="/ngo-dashboard" className="text-lg font-medium hover:text-primary transition-colors pl-4 border-l-2 border-slate-800 hover:border-primary">NGO</Link>
+                                <Link href="/admin-dashboard" className="text-lg font-medium hover:text-primary transition-colors pl-4 border-l-2 border-slate-800 hover:border-primary">Admin</Link>
+                            </div>
+
+                            <div className="h-px bg-slate-800" />
+
+                            <div className="flex flex-col gap-3">
+                                <Button asChild variant="ghost" className="w-full justify-start text-lg font-medium text-slate-300 hover:text-white hover:bg-white/5">
+                                    <Link href="/login">Login</Link>
+                                </Button>
+                                <Button asChild className="w-full h-12 text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
+                                    <Link href="/signup">Get Started</Link>
+                                </Button>
+                            </div>
+                        </div>
+                    </SheetContent>
+                </Sheet>
                 </div>
             </div>
         </div>

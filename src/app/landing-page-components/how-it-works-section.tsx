@@ -107,8 +107,8 @@ export default function HowItWorksSection() {
         </MotionFade>
 
         <div className="relative">
-            {/* Central Line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border md:-translate-x-1/2">
+            {/* Central Line - Hidden on Mobile */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2">
                 <motion.div 
                     className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary to-accent"
                     initial={{ height: 0 }}
@@ -118,7 +118,7 @@ export default function HowItWorksSection() {
                 />
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-12 md:space-y-24">
                 {steps.map((step, index) => (
                     <motion.div 
                         key={step.title}
@@ -127,14 +127,14 @@ export default function HowItWorksSection() {
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className={cn(
-                            "relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center",
+                            "relative flex flex-col md:flex-row gap-6 md:gap-0 items-center",
                             index % 2 === 0 ? "md:flex-row-reverse" : ""
                         )}
                     >
                         {/* Content Side */}
-                        <div className="flex-1 pl-24 md:pl-0 md:px-12 w-full">
+                        <div className="flex-1 w-full md:px-12">
                             <div className={cn(
-                                "p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/20 transition-colors",
+                                "p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/20 transition-colors text-center md:text-left",
                                 index % 2 === 0 ? "md:text-left" : "md:text-right"
                             )}>
                                 <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
@@ -145,7 +145,7 @@ export default function HowItWorksSection() {
                         </div>
 
                         {/* Icon Node */}
-                        <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                        <div className="relative md:absolute md:left-1/2 md:-translate-x-1/2 flex items-center justify-center order-first md:order-none mb-4 md:mb-0">
                             <div className={cn(
                                 "w-16 h-16 rounded-full border-4 border-background flex items-center justify-center shadow-xl z-10",
                                 step.color
