@@ -24,7 +24,6 @@ function Topbar({ dashboardName }: { dashboardName: string }) {
       <div className="flex items-center gap-3 shrink-0">
         <SidebarTrigger className="md:hidden" />
         <SidebarTrigger className="hidden md:block" />
-        <SidebarTrigger className="hidden md:block" />
         <div className="hidden md:block font-semibold text-lg">
           {dashboardName}
         </div>

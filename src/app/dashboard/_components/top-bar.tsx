@@ -46,15 +46,19 @@ export default function Topbar() {
 
       {/* Center (Search) */}
       <div className="flex-1 flex justify-center px-2 sm:px-4">
-        <div className="relative w-full max-w-md">
+        <div className="relative w-full max-w-md hidden md:block">
           <Input
             placeholder="Search jobs, skills..."
             className="rounded-full border px-4 py-2 w-full text-sm pl-10"
           />
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
             <Search size={20} />
           </div>
         </div>
+        {/* Mobile Search Icon */}
+        <Button variant="ghost" size="icon" className="md:hidden text-muted-foreground">
+            <Search size={20} />
+        </Button>
       </div>
 
       {/* Right side */}

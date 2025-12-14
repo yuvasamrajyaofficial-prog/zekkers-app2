@@ -132,7 +132,7 @@ export default function HowItWorksSection() {
                         )}
                     >
                         {/* Content Side */}
-                        <div className="flex-1 pl-20 md:pl-0 md:px-12 w-full">
+                        <div className="flex-1 pl-24 md:pl-0 md:px-12 w-full">
                             <div className={cn(
                                 "p-6 rounded-2xl bg-card border border-white/5 hover:border-primary/20 transition-colors",
                                 index % 2 === 0 ? "md:text-left" : "md:text-right"
