@@ -217,3 +217,4 @@ export default function HowItWorksSection() {
     </section>
   );
 }
+// Layout optimized for mobile and desktop
