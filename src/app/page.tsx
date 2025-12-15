@@ -141,7 +141,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[5%] right-[2%] md:right-[3%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute bottom-[5%] right-[12%] md:right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
                 <div className="p-2 rounded-lg bg-accent/20 text-accent shadow-inner shadow-accent/10">
                     <Search className="w-5 h-5" />
@@ -155,7 +155,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-[28%] right-[2%] md:right-[3%] hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute top-[28%] right-[10%] md:right-[12%] hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
                 <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
                     <GlobeIcon className="w-4 h-4" />
@@ -175,7 +175,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[20%] right-[3%] md:right-[5%] px-3 py-1.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
+                className="absolute bottom-[20%] right-[12%] md:right-[15%] px-3 py-1.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"/>
                 UK: 5k+
@@ -183,7 +183,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[45%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
+                className="absolute top-[45%] right-[8%] md:right-[10%] px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.8)]"/>
                 India: 18k+
@@ -225,7 +225,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
-                className="absolute top-[55%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-rose-500/20"
+                className="absolute top-[55%] right-[8%] md:right-[10%] px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-rose-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse shadow-[0_0_10px_rgba(251,113,133,0.8)]"/>
                 Japan: 7k+
@@ -241,7 +241,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 3.5 }}
-                className="absolute bottom-[35%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-amber-500/20"
+                className="absolute bottom-[35%] right-[8%] md:right-[10%] px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-amber-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]"/>
                 UAE: 2k+
@@ -249,7 +249,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 2.8 }}
-                className="absolute top-[12%] left-[35%] md:left-[40%] px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/50 text-teal-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-teal-500/20"
+                className="absolute top-[12%] left-[30%] md:left-[35%] px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/50 text-teal-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-teal-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shadow-[0_0_10px_rgba(45,212,191,0.8)]"/>
                 Singapore: 3k+
