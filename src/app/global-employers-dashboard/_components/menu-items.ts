@@ -71,12 +71,7 @@ export const menuItems = [
       { key: 'onboarding', label: 'Onboarding', to: '/global-employers-dashboard/ats/onboarding' },
     ],
   },
-  {
-    key: 'messages',
-    label: 'Messages',
-    to: '/global-employers-dashboard/messages',
-    icon: React.createElement(MessageSquare, { size: 20 }),
-  },
+
   {
     key: 'hiring-tools',
     label: 'Hiring Tools',
