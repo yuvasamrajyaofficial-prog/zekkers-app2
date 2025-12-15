@@ -57,12 +57,12 @@ export const RightSideNav = () => {
             asChild
             variant="ghost"
             size="icon"
-            className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg hover:shadow-primary/20 group relative overflow-hidden"
+            className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg hover:shadow-primary/20 group relative"
           >
             <Link href={item.href}>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
               <item.icon className="w-6 h-6 relative z-10" />
-              <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl">
+              <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl pointer-events-none">
                 {item.label}
               </span>
             </Link>
@@ -72,10 +72,10 @@ export const RightSideNav = () => {
         {/* Dashboards Dropdown */}
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg hover:shadow-primary/20 group relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Button variant="ghost" size="icon" className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg hover:shadow-primary/20 group relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
                     <LayoutDashboard className="w-6 h-6 relative z-10" />
-                    <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl">
+                    <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl pointer-events-none">
                         Dashboards
                     </span>
                 </Button>
@@ -147,12 +147,12 @@ export const RightSideNav = () => {
             asChild
             variant="ghost"
             size="icon"
-            className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg group relative overflow-hidden"
+            className="w-14 h-14 rounded-full bg-slate-900/40 backdrop-blur-xl border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all shadow-lg group relative"
         >
             <Link href="/login">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
                 <LogIn className="w-6 h-6 relative z-10" />
-                <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl">
+                <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl pointer-events-none">
                     Login
                 </span>
             </Link>
@@ -161,12 +161,12 @@ export const RightSideNav = () => {
         <Button
             asChild
             size="icon"
-            className="w-14 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group relative overflow-hidden"
+            className="w-14 h-14 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group relative"
         >
             <Link href="/signup">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
                 <UserPlus className="w-6 h-6 relative z-10" />
-                <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl">
+                <span className="absolute right-16 px-4 py-2 rounded-xl bg-slate-900/90 border border-white/10 text-sm font-medium text-white opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 whitespace-nowrap shadow-xl pointer-events-none">
                     Get Started
                 </span>
             </Link>
