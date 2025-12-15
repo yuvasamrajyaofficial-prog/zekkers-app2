@@ -123,11 +123,11 @@ export default function ZekkersLanding() {
 
         {/* Floating Elements (Opportunities) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-            {/* Enhanced Floating Elements - Smaller and moved outwards */}
+            {/* Enhanced Floating Elements - Adjusted to clear Header and Nav */}
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[5%] left-[1%] md:left-[2%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute top-[18%] left-[2%] md:left-[3%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
                 <div className="p-2 rounded-lg bg-primary/20 text-primary shadow-inner shadow-primary/10">
                     <CheckCircle2 className="w-5 h-5" />
@@ -141,7 +141,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[5%] right-[1%] md:right-[2%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute bottom-[5%] right-[2%] md:right-[3%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
                 <div className="p-2 rounded-lg bg-accent/20 text-accent shadow-inner shadow-accent/10">
                     <Search className="w-5 h-5" />
@@ -155,7 +155,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-[20%] right-[1%] md:right-[2%] hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute top-[28%] right-[2%] md:right-[3%] hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
                 <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
                     <GlobeIcon className="w-4 h-4" />
@@ -163,11 +163,11 @@ export default function ZekkersLanding() {
                 <div className="text-xs font-bold text-white">Global Reach</div>
             </motion.div>
 
-            {/* Enhanced "Opportunity" Labels - Smaller and moved outwards */}
+            {/* Enhanced "Opportunity" Labels - Adjusted positions */}
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[15%] left-[2%] md:left-[5%] px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/50 text-blue-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-blue-500/20"
+                className="absolute top-[32%] left-[2%] md:left-[4%] px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/50 text-blue-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-blue-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"/>
                 USA: 12k+
@@ -175,7 +175,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[30%] right-[1%] md:right-[5%] px-3 py-1.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
+                className="absolute bottom-[20%] right-[3%] md:right-[5%] px-3 py-1.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"/>
                 UK: 5k+
@@ -183,7 +183,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[40%] right-[0%] md:right-[2%] px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
+                className="absolute top-[45%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.8)]"/>
                 India: 18k+
@@ -199,7 +199,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-                className="absolute top-[8%] right-[15%] md:right-[20%] px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+                className="absolute top-[12%] right-[20%] md:right-[25%] px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-cyan-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"/>
                 Germany: 6k+
@@ -217,7 +217,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                className="absolute top-[60%] left-[0%] md:left-[2%] px-3 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/50 text-indigo-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-indigo-500/20"
+                className="absolute top-[60%] left-[1%] md:left-[3%] px-3 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/50 text-indigo-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-indigo-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse shadow-[0_0_10px_rgba(129,140,248,0.8)]"/>
                 France: 4k+
@@ -225,7 +225,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
-                className="absolute top-[50%] right-[0%] md:right-[1%] px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-rose-500/20"
+                className="absolute top-[55%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-rose-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse shadow-[0_0_10px_rgba(251,113,133,0.8)]"/>
                 Japan: 7k+
@@ -233,7 +233,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-                className="absolute bottom-[45%] left-[0%] md:left-[2%] px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+                className="absolute bottom-[45%] left-[1%] md:left-[3%] px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-emerald-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]"/>
                 Brazil: 5k+
@@ -241,7 +241,7 @@ export default function ZekkersLanding() {
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 3.5 }}
-                className="absolute bottom-[55%] right-[0%] md:right-[2%] px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-amber-500/20"
+                className="absolute bottom-[35%] right-[1%] md:right-[2%] px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-amber-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]"/>
                 UAE: 2k+
@@ -249,7 +249,7 @@ export default function ZekkersLanding() {
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 2.8 }}
-                className="absolute top-[2%] left-[35%] md:left-[45%] px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/50 text-teal-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-teal-500/20"
+                className="absolute top-[12%] left-[35%] md:left-[40%] px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/50 text-teal-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-teal-500/20"
             >
                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shadow-[0_0_10px_rgba(45,212,191,0.8)]"/>
                 Singapore: 3k+
