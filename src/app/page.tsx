@@ -123,94 +123,94 @@ export default function ZekkersLanding() {
 
         {/* Floating Elements (Opportunities) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-            {/* Existing Floating Elements - Kept for "Universe" feel */}
+            {/* Enhanced Floating Elements */}
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[15%] left-[5%] md:left-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-xl z-20"
+                className="absolute top-[15%] left-[5%] md:left-[10%] hidden lg:flex items-center gap-4 p-5 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-2 rounded-lg bg-primary/20 text-primary">
-                    <CheckCircle2 className="w-6 h-6" />
+                <div className="p-3 rounded-xl bg-primary/20 text-primary shadow-inner shadow-primary/10">
+                    <CheckCircle2 className="w-8 h-8" />
                 </div>
                 <div>
-                    <div className="text-sm font-semibold text-white">Verified Employer</div>
-                    <div className="text-xs text-muted-foreground">Trust Score: 100%</div>
+                    <div className="text-lg font-bold text-white">Verified Employer</div>
+                    <div className="text-sm text-slate-300">Trust Score: 100%</div>
                 </div>
             </motion.div>
 
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[20%] right-[5%] md:right-[10%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-white/10 shadow-xl z-20"
+                className="absolute bottom-[20%] right-[5%] md:right-[10%] hidden lg:flex items-center gap-4 p-5 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-2 rounded-lg bg-accent/20 text-accent">
-                    <Search className="w-6 h-6" />
+                <div className="p-3 rounded-xl bg-accent/20 text-accent shadow-inner shadow-accent/10">
+                    <Search className="w-8 h-8" />
                 </div>
                 <div>
-                    <div className="text-sm font-semibold text-white">AI Job Match</div>
-                    <div className="text-xs text-muted-foreground">98% Compatibility</div>
+                    <div className="text-lg font-bold text-white">AI Job Match</div>
+                    <div className="text-sm text-slate-300">98% Compatibility</div>
                 </div>
             </motion.div>
 
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-[25%] right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/80 backdrop-blur-sm border border-white/5 z-20"
+                className="absolute top-[25%] right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
-                    <GlobeIcon className="w-4 h-4" />
+                <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400">
+                    <GlobeIcon className="w-6 h-6" />
                 </div>
-                <div className="text-xs font-medium text-slate-300">Global Reach</div>
+                <div className="text-base font-bold text-white">Global Reach</div>
             </motion.div>
 
-            {/* New "Opportunity" Labels simulating globe data - Styled for visibility */}
+            {/* Enhanced "Opportunity" Labels - Larger and brighter */}
             <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[25%] left-[10%] md:left-[20%] px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute top-[25%] left-[10%] md:left-[20%] px-5 py-2.5 rounded-full bg-blue-500/20 border border-blue-400/50 text-blue-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-blue-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-blue-400 inline-block mr-2 animate-pulse"/>
-                USA: 12k+
+                <span className="w-3 h-3 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"/>
+                USA: 12k+ Jobs
             </motion.div>
             <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[35%] right-[10%] md:right-[20%] px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute bottom-[35%] right-[10%] md:right-[20%] px-5 py-2.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-green-400 inline-block mr-2 animate-pulse"/>
-                UK: 5k+
+                <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"/>
+                UK: 5k+ Jobs
             </motion.div>
              <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[45%] right-[5%] md:right-[15%] px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute top-[45%] right-[5%] md:right-[15%] px-5 py-2.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-purple-400 inline-block mr-2 animate-pulse"/>
-                India: 18k+
+                <span className="w-3 h-3 rounded-full bg-purple-400 animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.8)]"/>
+                India: 18k+ Jobs
             </motion.div>
             <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-[25%] left-[15%] md:left-[25%] px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/30 text-orange-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute bottom-[25%] left-[15%] md:left-[25%] px-5 py-2.5 rounded-full bg-orange-500/20 border border-orange-400/50 text-orange-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-orange-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-orange-400 inline-block mr-2 animate-pulse"/>
-                Canada: 4k+
+                <span className="w-3 h-3 rounded-full bg-orange-400 animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]"/>
+                Canada: 4k+ Jobs
             </motion.div>
             <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-                className="absolute top-[15%] right-[25%] md:right-[35%] px-3 py-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute top-[15%] right-[25%] md:right-[35%] px-5 py-2.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-cyan-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-cyan-400 inline-block mr-2 animate-pulse"/>
-                Germany: 6k+
+                <span className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"/>
+                Germany: 6k+ Jobs
             </motion.div>
              <motion.div 
-                animate={{ opacity: [0.6, 1, 0.6], scale: [0.95, 1.05, 0.95] }}
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                className="absolute bottom-[15%] left-[30%] md:left-[40%] px-3 py-1.5 rounded-lg bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-mono backdrop-blur-md hidden md:block"
+                className="absolute bottom-[15%] left-[30%] md:left-[40%] px-5 py-2.5 rounded-full bg-pink-500/20 border border-pink-400/50 text-pink-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-pink-500/20"
             >
-                <span className="w-2 h-2 rounded-full bg-pink-400 inline-block mr-2 animate-pulse"/>
-                Australia: 3k+
+                <span className="w-3 h-3 rounded-full bg-pink-400 animate-pulse shadow-[0_0_10px_rgba(244,114,182,0.8)]"/>
+                Australia: 3k+ Jobs
             </motion.div>
         </div>
 
@@ -242,10 +242,10 @@ export default function ZekkersLanding() {
 
             <MotionFade delay={0.3}>
               <div className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center px-4 md:px-0">
-                 <Button asChild size="lg" className="w-full sm:w-auto h-12 md:h-14 px-8 text-base rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-lg shadow-primary/20 transition-all hover:scale-105">
+                 <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-500 hover:to-blue-400 font-bold shadow-[0_8px_30px_rgb(37,99,235,0.3)] hover:shadow-[0_8px_30px_rgb(37,99,235,0.5)] transition-all hover:scale-105 border border-blue-400/20">
                     <Link href="/dashboard">Find a Job</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-12 md:h-14 px-8 text-base rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
+                <Button asChild size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-lg rounded-full bg-white/5 text-white border-white/10 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all hover:scale-105">
                     <Link href="/global-employers-dashboard">Post a Job</Link>
                 </Button>
               </div>
