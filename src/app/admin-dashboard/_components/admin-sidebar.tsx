@@ -93,7 +93,7 @@ export default function AdminSidebar() {
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
             <ShieldAlert className="size-4" />
           </div>
-          <span className="truncate font-semibold">Admin Panel</span>
+          <span className="truncate font-semibold group-data-[collapsible=icon]:hidden">Admin Panel</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
