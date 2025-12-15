@@ -212,6 +212,48 @@ export default function ZekkersLanding() {
                 <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse shadow-[0_0_10px_rgba(244,114,182,0.8)]"/>
                 Australia: 3k+
             </motion.div>
+
+            {/* NEW COUNTRIES ADDED */}
+            <motion.div 
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                className="absolute top-[60%] left-[2%] md:left-[5%] px-3 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/50 text-indigo-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-indigo-500/20"
+            >
+                <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse shadow-[0_0_10px_rgba(129,140,248,0.8)]"/>
+                France: 4k+
+            </motion.div>
+             <motion.div 
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
+                className="absolute top-[50%] right-[2%] md:right-[5%] px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-400/50 text-rose-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-rose-500/20"
+            >
+                <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse shadow-[0_0_10px_rgba(251,113,133,0.8)]"/>
+                Japan: 7k+
+            </motion.div>
+            <motion.div 
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+                className="absolute bottom-[45%] left-[2%] md:left-[8%] px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-emerald-500/20"
+            >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.8)]"/>
+                Brazil: 5k+
+            </motion.div>
+             <motion.div 
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 3.5 }}
+                className="absolute bottom-[55%] right-[2%] md:right-[8%] px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-amber-500/20"
+            >
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]"/>
+                UAE: 2k+
+            </motion.div>
+            <motion.div 
+                animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 2.8 }}
+                className="absolute top-[5%] left-[30%] md:left-[40%] px-3 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/50 text-teal-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-teal-500/20"
+            >
+                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shadow-[0_0_10px_rgba(45,212,191,0.8)]"/>
+                Singapore: 3k+
+            </motion.div>
         </div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
