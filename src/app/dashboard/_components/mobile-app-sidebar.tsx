@@ -1,6 +1,6 @@
 
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -31,9 +31,27 @@ import {
   Heart,
   ChevronDown,
   ClipboardList,
+  LayoutDashboard,
+  UserCheck,
+  Building2,
+  FileUser,
+  Shield,
+  BarChart3,
+  CreditCard,
+  Bell,
+  LifeBuoy,
+  Flag,
+  Activity,
+  Terminal,
+  Calendar,
+  Building,
+  BarChart,
+  HeartHandshake,
+  Plug,
 } from 'lucide-react';
+import { menuItems as globalEmployerMenuItems } from '@/app/global-employers-dashboard/_components/menu-items';
 
-const menuItems = [
+const studentMenuItems = [
   {
     key: 'dashboard',
     label: 'Dashboard',
@@ -161,12 +179,62 @@ const menuItems = [
   },
 ];
 
+const adminMenuItems = [
+  { key: 'dashboard', label: 'Dashboard', to: '/admin-dashboard', icon: <LayoutDashboard size={20} /> },
+  { key: 'users', label: 'Users', to: '/admin-dashboard/users', icon: <Users size={20} /> },
+  { key: 'verification', label: 'Verification', to: '/admin-dashboard/verification', icon: <UserCheck size={20} /> },
+  { key: 'tenants', label: 'Tenants', to: '/admin-dashboard/tenants', icon: <Building2 size={20} /> },
+  { key: 'jobs', label: 'Job Moderation', to: '/admin-dashboard/jobs', icon: <Briefcase size={20} /> },
+  { key: 'applicants', label: 'Applicants', to: '/admin-dashboard/applicants', icon: <FileUser size={20} /> },
+  { key: 'quizzes', label: 'Quizzes', to: '/admin-dashboard/quizzes', icon: <BrainCircuit size={20} /> },
+  { key: 'moderation', label: 'Moderation', to: '/admin-dashboard/moderation', icon: <Shield size={20} /> },
+  { key: 'analytics', label: 'Analytics', to: '/admin-dashboard/analytics', icon: <BarChart3 size={20} /> },
+  { key: 'billing', label: 'Billing', to: '/admin-dashboard/billing', icon: <CreditCard size={20} /> },
+  { key: 'notifications', label: 'Notifications', to: '/admin-dashboard/notifications', icon: <Bell size={20} /> },
+  { key: 'support', label: 'Support', to: '/admin-dashboard/support', icon: <LifeBuoy size={20} /> },
+  { key: 'feature-flags', label: 'Feature Flags', to: '/admin-dashboard/feature-flags', icon: <Flag size={20} /> },
+  { key: 'health', label: 'Health', to: '/admin-dashboard/health', icon: <Activity size={20} /> },
+  { key: 'functions', label: 'Functions', to: '/admin-dashboard/functions', icon: <Terminal size={20} /> },
+  { key: 'settings', label: 'Settings', to: '/admin-dashboard/settings', icon: <Settings size={20} /> },
+];
+
+const ngoMenuItems = [
+  { key: 'dashboard', label: 'Overview', to: '/ngo-dashboard', icon: <LayoutGrid size={20} /> },
+  { key: 'programs', label: 'Programs & Cohorts', to: '/ngo-dashboard/programs', icon: <Library size={20} /> },
+  { key: 'participants', label: 'Participants', to: '/ngo-dashboard/participants', icon: <Users size={20} /> },
+  { key: 'calendar', label: 'Training Calendar', to: '/ngo-dashboard/calendar', icon: <Calendar size={20} /> },
+  { key: 'assessments', label: 'Assessments', to: '/ngo-dashboard/assessments', icon: <ClipboardCheck size={20} /> },
+  { key: 'employers', label: 'Employer Partners', to: '/ngo-dashboard/employers', icon: <Building size={20} /> },
+  { key: 'placements', label: 'Placements & Job Pool', to: '/ngo-dashboard/placements', icon: <Briefcase size={20} /> },
+  { key: 'donors', label: 'Donor Reporting', to: '/ngo-dashboard/donors', icon: <HeartHandshake size={20} /> },
+  { key: 'analytics', label: 'Impact Analytics', to: '/ngo-dashboard/analytics', icon: <BarChart size={20} /> },
+  { key: 'resources', label: 'Resources', to: '/ngo-dashboard/resources', icon: <BookOpen size={20} /> },
+  { key: 'messages', label: 'Messages', to: '/ngo-dashboard/messages', icon: <MessageSquare size={20} /> },
+  { key: 'notifications', label: 'Send Notify', to: '/ngo-dashboard/notifications', icon: <Bell size={20} /> },
+  { key: 'settings', label: 'Settings', to: '/ngo-dashboard/settings', icon: <Settings size={20} /> },
+  { key: 'integrations', label: 'Integrations', to: '/ngo-dashboard/integrations', icon: <Plug size={20} /> },
+  { key: 'privacy', label: 'Privacy & Compliance', to: '/ngo-dashboard/privacy', icon: <Shield size={20} /> },
+];
+
 interface MobileAppSidebarProps {
   closeSheet: () => void;
 }
 
 export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) {
   const pathname = usePathname();
+
+  const menuItems = useMemo(() => {
+    if (pathname.startsWith('/admin-dashboard')) {
+      return adminMenuItems;
+    }
+    if (pathname.startsWith('/ngo-dashboard')) {
+      return ngoMenuItems;
+    }
+    if (pathname.startsWith('/global-employers-dashboard')) {
+      return globalEmployerMenuItems;
+    }
+    return studentMenuItems;
+  }, [pathname]);
 
   const isItemActive = (item: any) => {
     if (item.subItems) {
