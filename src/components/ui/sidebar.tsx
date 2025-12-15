@@ -217,7 +217,7 @@ const Sidebar = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          "group fixed hidden h-full md:flex flex-col text-sidebar-foreground bg-gray-100 border-r border-gray-200 z-50",
+          "group fixed hidden h-full md:flex flex-col text-sidebar-foreground bg-sidebar border-r border-sidebar-border z-50",
           state === 'collapsed' && 'w-[--sidebar-width-icon]',
           state === 'expanded' && 'w-[--sidebar-width]',
           'transition-all duration-200'

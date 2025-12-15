@@ -88,9 +88,9 @@ export default function AdminSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="h-16 border-b border-sidebar-border flex items-center px-4">
-        <div className="flex items-center gap-2 font-bold text-sidebar-foreground">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+      <SidebarHeader className="h-16 border-b border-sidebar-border flex items-center px-4 group-data-[collapsible=icon]:px-2 group-data-[collapsible=icon]:justify-center">
+        <div className="flex items-center gap-2 font-bold text-sidebar-foreground group-data-[collapsible=icon]:gap-0">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shrink-0">
             <ShieldAlert className="size-4" />
           </div>
           <span className="truncate font-semibold group-data-[collapsible=icon]:hidden">Admin Panel</span>
