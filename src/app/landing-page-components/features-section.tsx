@@ -4,6 +4,7 @@ import React from 'react';
 import MotionFade from '@/components/motion-fade';
 import { Search, ShieldCheck, Globe, School, Zap, Bell, GitBranch, Check, Sparkles, ArrowRight } from 'lucide-react';
 import { RoadmapVisual } from './roadmap-visual';
+import { VerificationAnimation } from './verification-animation';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -47,6 +48,7 @@ const features = [
     icon: <ShieldCheck className="w-6 h-6 text-green-400" />,
     className: "md:col-span-1",
     gradient: "from-green-500/20 to-emerald-500/20",
+    content: <VerificationAnimation />
   },
   {
     title: 'Global Opportunities',
