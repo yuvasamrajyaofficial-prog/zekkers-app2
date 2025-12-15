@@ -49,16 +49,6 @@ export const RightSideNav = () => {
       style={{ top: y }}
       className="fixed right-6 z-50 hidden md:flex flex-col gap-3 items-end pointer-events-none"
     >
-      {/* Logo - Only visible at top */}
-      <motion.div 
-        style={{ opacity: useTransform(scrollY, [0, 100], [1, 0]) }}
-        className="mb-4 pointer-events-auto"
-      >
-         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold shadow-glow text-xl">
-            ZK
-        </div>
-      </motion.div>
-
       {/* Navigation Items */}
       <div className="flex flex-col gap-3 pointer-events-auto">
         {navItems.map((item) => (

@@ -49,6 +49,14 @@ export default function ZekkersLanding() {
       {/* NAV */}
       {/* NAV */}
       <RightSideNav />
+
+      {/* Desktop Logo Header */}
+      <div className="fixed top-6 left-6 z-50 hidden md:flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-navy font-bold shadow-glow">
+            ZK
+        </div>
+        <div className="text-xl font-bold font-headline tracking-tight text-white">Zekkers</div>
+      </div>
       
       {/* Mobile Header */}
       <header className="fixed top-0 left-0 right-0 z-50 p-4 md:hidden">
