@@ -133,8 +133,16 @@ export default function NgoDashboardPage() {
                                 <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
                                 <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }} />
                                 <Legend />
-                                <Bar dataKey="completion" name="Completion Rate (%)" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
-                                <Bar dataKey="placement" name="Placement Rate (%)" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="completion" name="Completion Rate (%)" radius={[4, 4, 0, 0]}>
+                                    {programPerformance.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={`hsl(var(--chart-${(index % 5) + 1}))`} />
+                                    ))}
+                                </Bar>
+                                <Bar dataKey="placement" name="Placement Rate (%)" radius={[4, 4, 0, 0]}>
+                                     {programPerformance.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={`hsl(var(--chart-${(index % 5) + 2}))`} />
+                                    ))}
+                                </Bar>
                             </RechartsBarChart>
                         </ResponsiveContainer>
                     </CardContent>
@@ -149,7 +157,7 @@ export default function NgoDashboardPage() {
                         <ResponsiveContainer width="100%" height={300}>
                             <PieChart>
                                 <Pie data={genderData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                                    {genderData.map((entry) => <Cell key={entry.name} fill={entry.color} />)}
+                                    {genderData.map((entry, index) => <Cell key={entry.name} fill={`hsl(var(--chart-${index + 1}))`} />)}
                                 </Pie>
                                 <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }} />
                             </PieChart>

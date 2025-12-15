@@ -49,7 +49,7 @@ export default function GlobalSidebar() {
           </div>
           <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
             <span className="truncate font-semibold">GlobalCorp</span>
-            <span className="truncate text-xs text-muted-foreground">Global Employer</span>
+            <span className="truncate text-xs text-muted-foreground">Recruiter</span>
           </div>
         </div>
       </SidebarHeader>

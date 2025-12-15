@@ -18,7 +18,7 @@ export default function GlobalEmployersDashboardLayout({
         <SidebarProvider>
           <GlobalSidebar />
           <SidebarInset>
-            <Topbar dashboardName="Global Employers Dashboard" />
+            <Topbar dashboardName="Recruiter Dashboard" />
             <main className="flex-1 bg-white overflow-y-auto">
               {children}
             </main>

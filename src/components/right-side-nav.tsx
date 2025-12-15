@@ -101,7 +101,7 @@ export const RightSideNav = () => {
                             <Briefcase className="w-4 h-4" />
                         </div>
                         <div className="flex flex-col">
-                            <span className="font-medium text-white">Employer</span>
+                            <span className="font-medium text-white">Recruiter</span>
                             <span className="text-xs text-slate-400">Hire top talent</span>
                         </div>
                     </Link>

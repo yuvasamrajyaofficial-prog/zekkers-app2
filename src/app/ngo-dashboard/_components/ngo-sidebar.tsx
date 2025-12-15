@@ -88,12 +88,7 @@ const menuItems = [
     to: '/ngo-dashboard/resources',
     icon: <BookOpen size={20} />,
   },
-  {
-    key: 'messages',
-    label: 'Messages',
-    to: '/ngo-dashboard/messages',
-    icon: <MessageCircle size={20} />,
-  },
+
   {
     key: 'notifications',
     label: 'Send Notify',

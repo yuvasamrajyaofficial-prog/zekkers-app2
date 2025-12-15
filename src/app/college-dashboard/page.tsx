@@ -169,13 +169,17 @@ export default function CollegeDashboardPage() {
                     <CardContent>
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={placementData}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
+                                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                                <XAxis dataKey="name" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                                <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                                <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }} />
                                 <Legend />
-                                <Bar dataKey="placed" stackId="a" fill="#FFC107" name="Placed" />
-                                <Bar dataKey="total" fill="#EF4444" name="Total Students" />
+                                <Bar dataKey="placed" name="Placed" radius={[4, 4, 0, 0]}>
+                                    {placementData.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={`hsl(var(--chart-${(index % 5) + 1}))`} />
+                                    ))}
+                                </Bar>
+                                <Bar dataKey="total" name="Total Students" radius={[4, 4, 0, 0]} fill="hsl(var(--muted))" opacity={0.3} />
                             </BarChart>
                         </ResponsiveContainer>
                     </CardContent>
@@ -188,7 +192,7 @@ export default function CollegeDashboardPage() {
                         <CardTitle>Student Readiness</CardTitle>
                     </CardHeader>
                     <CardContent>
-                         <ResponsiveContainer width="100%" height={300}>
+                        <ResponsiveContainer width="100%" height={300}>
                            <PieChart>
                                 <Pie
                                     data={resumeData}
@@ -196,16 +200,15 @@ export default function CollegeDashboardPage() {
                                     cy="50%"
                                     labelLine={false}
                                     outerRadius={80}
-                                    fill="#8884d8"
                                     dataKey="value"
                                     nameKey="name"
                                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                                 >
                                     {resumeData.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                    <Cell key={`cell-${index}`} fill={`hsl(var(--chart-${index + 1}))`} />
                                     ))}
                                 </Pie>
-                                <Tooltip />
+                                <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }} />
                             </PieChart>
                         </ResponsiveContainer>
                     </CardContent>

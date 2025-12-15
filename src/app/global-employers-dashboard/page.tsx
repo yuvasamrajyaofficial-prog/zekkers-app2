@@ -203,7 +203,7 @@ export default function GlobalEmployersDashboardPage() {
                 <ResponsiveContainer width="100%" height={150}>
                     <PieChart>
                         <Pie data={visaStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={40} outerRadius={60} paddingAngle={5}>
-                             {visaStatusData.map((entry) => <Cell key={entry.name} fill={entry.color} />)}
+                             {visaStatusData.map((entry, index) => <Cell key={entry.name} fill={`hsl(var(--chart-${index + 1}))`} />)}
                         </Pie>
                          <Tooltip contentStyle={{ background: "hsl(var(--background))", border: "1px solid hsl(var(--border))" }} />
                          <Legend iconSize={10} layout="vertical" verticalAlign="middle" align="right"/>
