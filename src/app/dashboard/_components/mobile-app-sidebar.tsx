@@ -237,7 +237,7 @@ interface MobileAppSidebarProps {
 export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) {
   const pathname = usePathname();
 
-  const menuItems = useMemo(() => {
+  const menuItems: MenuItem[] = useMemo(() => {
     if (pathname.startsWith('/admin-dashboard')) {
       return adminMenuItems;
     }
@@ -245,7 +245,7 @@ export default function MobileAppSidebar({ closeSheet }: MobileAppSidebarProps) 
       return ngoMenuItems;
     }
     if (pathname.startsWith('/global-employers-dashboard')) {
-      return globalEmployerMenuItems;
+      return globalEmployerMenuItems as MenuItem[];
     }
     return studentMenuItems;
   }, [pathname]);
