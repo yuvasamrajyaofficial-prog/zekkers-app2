@@ -1,6 +1,7 @@
 'use client';
 
 import {
+import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -9,6 +10,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarRail,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
 } from '@/components/ui/sidebar';
 import { 
   LayoutDashboard, 
@@ -16,7 +20,20 @@ import {
   Briefcase, 
   Settings, 
   ShieldAlert,
-  LogOut
+  LogOut,
+  UserCheck,
+  Building2,
+  FileText,
+  BrainCircuit,
+  Shield,
+  BarChart3,
+  CreditCard,
+  Bell,
+  LifeBuoy,
+  Flag,
+  Activity,
+  Terminal,
+  FileUser
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -26,27 +43,48 @@ export default function AdminSidebar() {
   const pathname = usePathname();
   const { logout } = useAuth();
 
-  const menuItems = [
+  const menuGroups = [
     {
-      title: 'Overview',
-      url: '/admin-dashboard',
-      icon: LayoutDashboard,
+      label: 'Overview',
+      items: [
+        { title: 'Dashboard', url: '/admin-dashboard', icon: LayoutDashboard },
+      ]
     },
     {
-      title: 'User Management',
-      url: '/admin-dashboard/users',
-      icon: Users,
+      label: 'User Management',
+      items: [
+        { title: 'Users', url: '/admin-dashboard/users', icon: Users },
+        { title: 'Verification', url: '/admin-dashboard/verification', icon: UserCheck },
+        { title: 'Tenants', url: '/admin-dashboard/tenants', icon: Building2 },
+      ]
     },
     {
-      title: 'Job Moderation',
-      url: '/admin-dashboard/jobs',
-      icon: Briefcase,
+      label: 'Content & Jobs',
+      items: [
+        { title: 'Job Moderation', url: '/admin-dashboard/jobs', icon: Briefcase },
+        { title: 'Applicants', url: '/admin-dashboard/applicants', icon: FileUser },
+        { title: 'Quizzes', url: '/admin-dashboard/quizzes', icon: BrainCircuit },
+        { title: 'Moderation', url: '/admin-dashboard/moderation', icon: Shield },
+      ]
     },
     {
-      title: 'Settings',
-      url: '/admin-dashboard/settings',
-      icon: Settings,
+      label: 'Platform Ops',
+      items: [
+        { title: 'Analytics', url: '/admin-dashboard/analytics', icon: BarChart3 },
+        { title: 'Billing', url: '/admin-dashboard/billing', icon: CreditCard },
+        { title: 'Notifications', url: '/admin-dashboard/notifications', icon: Bell },
+        { title: 'Support', url: '/admin-dashboard/support', icon: LifeBuoy },
+      ]
     },
+    {
+      label: 'System',
+      items: [
+        { title: 'Feature Flags', url: '/admin-dashboard/feature-flags', icon: Flag },
+        { title: 'Health', url: '/admin-dashboard/health', icon: Activity },
+        { title: 'Functions', url: '/admin-dashboard/functions', icon: Terminal },
+        { title: 'Settings', url: '/admin-dashboard/settings', icon: Settings },
+      ]
+    }
   ];
 
   return (
@@ -60,23 +98,30 @@ export default function AdminSidebar() {
         </div>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarMenu className="p-2">
-          {menuItems.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                asChild
-                isActive={pathname === item.url}
-                tooltip={item.title}
-                className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground transition-colors"
-              >
-                <Link href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+        {menuGroups.map((group, index) => (
+          <SidebarGroup key={index}>
+            <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {group.items.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.url}
+                      tooltip={item.title}
+                      className="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground transition-colors"
+                    >
+                      <Link href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
       <SidebarFooter className="border-t border-sidebar-border p-2">
         <SidebarMenu>
