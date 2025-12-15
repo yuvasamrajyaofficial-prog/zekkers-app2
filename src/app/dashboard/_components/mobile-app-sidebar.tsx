@@ -52,7 +52,20 @@ import {
 } from 'lucide-react';
 import { menuItems as globalEmployerMenuItems } from '@/app/global-employers-dashboard/_components/menu-items';
 
-const studentMenuItems = [
+interface MenuItem {
+  key: string;
+  label: string;
+  to: string;
+  icon: React.ReactNode;
+  subItems?: {
+    key: string;
+    label: string;
+    to: string;
+    icon?: React.ReactNode;
+  }[];
+}
+
+const studentMenuItems: MenuItem[] = [
   {
     key: 'dashboard',
     label: 'Dashboard',
@@ -180,7 +193,7 @@ const studentMenuItems = [
   },
 ];
 
-const adminMenuItems = [
+const adminMenuItems: MenuItem[] = [
   { key: 'dashboard', label: 'Dashboard', to: '/admin-dashboard', icon: <LayoutDashboard size={20} /> },
   { key: 'users', label: 'Users', to: '/admin-dashboard/users', icon: <Users size={20} /> },
   { key: 'verification', label: 'Verification', to: '/admin-dashboard/verification', icon: <UserCheck size={20} /> },
@@ -199,7 +212,7 @@ const adminMenuItems = [
   { key: 'settings', label: 'Settings', to: '/admin-dashboard/settings', icon: <Settings size={20} /> },
 ];
 
-const ngoMenuItems = [
+const ngoMenuItems: MenuItem[] = [
   { key: 'dashboard', label: 'Overview', to: '/ngo-dashboard', icon: <LayoutGrid size={20} /> },
   { key: 'programs', label: 'Programs & Cohorts', to: '/ngo-dashboard/programs', icon: <Library size={20} /> },
   { key: 'participants', label: 'Participants', to: '/ngo-dashboard/participants', icon: <Users size={20} /> },
