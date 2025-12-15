@@ -123,94 +123,94 @@ export default function ZekkersLanding() {
 
         {/* Floating Elements (Opportunities) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
-            {/* Enhanced Floating Elements */}
+            {/* Enhanced Floating Elements - Smaller and moved outwards */}
             <motion.div 
                 animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[15%] left-[5%] md:left-[10%] hidden lg:flex items-center gap-4 p-5 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute top-[10%] left-[2%] md:left-[5%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-3 rounded-xl bg-primary/20 text-primary shadow-inner shadow-primary/10">
-                    <CheckCircle2 className="w-8 h-8" />
+                <div className="p-2 rounded-lg bg-primary/20 text-primary shadow-inner shadow-primary/10">
+                    <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div>
-                    <div className="text-lg font-bold text-white">Verified Employer</div>
-                    <div className="text-sm text-slate-300">Trust Score: 100%</div>
+                    <div className="text-sm font-bold text-white">Verified Employer</div>
+                    <div className="text-[10px] text-slate-300">Trust Score: 100%</div>
                 </div>
             </motion.div>
 
             <motion.div 
                 animate={{ y: [0, 25, 0], rotate: [0, -3, 0] }}
                 transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[20%] right-[5%] md:right-[10%] hidden lg:flex items-center gap-4 p-5 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute bottom-[15%] right-[2%] md:right-[5%] hidden lg:flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-3 rounded-xl bg-accent/20 text-accent shadow-inner shadow-accent/10">
-                    <Search className="w-8 h-8" />
+                <div className="p-2 rounded-lg bg-accent/20 text-accent shadow-inner shadow-accent/10">
+                    <Search className="w-5 h-5" />
                 </div>
                 <div>
-                    <div className="text-lg font-bold text-white">AI Job Match</div>
-                    <div className="text-sm text-slate-300">98% Compatibility</div>
+                    <div className="text-sm font-bold text-white">AI Job Match</div>
+                    <div className="text-[10px] text-slate-300">98% Compatibility</div>
                 </div>
             </motion.div>
 
              <motion.div 
                 animate={{ x: [0, 15, 0], y: [0, 10, 0] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute top-[25%] right-[10%] md:right-[15%] hidden lg:flex items-center gap-3 p-4 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
+                className="absolute top-[20%] right-[5%] md:right-[8%] hidden lg:flex items-center gap-2 p-3 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl z-20"
             >
-                <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400">
-                    <GlobeIcon className="w-6 h-6" />
+                <div className="p-1.5 rounded-md bg-purple-500/20 text-purple-400">
+                    <GlobeIcon className="w-4 h-4" />
                 </div>
-                <div className="text-base font-bold text-white">Global Reach</div>
+                <div className="text-xs font-bold text-white">Global Reach</div>
             </motion.div>
 
-            {/* Enhanced "Opportunity" Labels - Larger and brighter */}
+            {/* Enhanced "Opportunity" Labels - Smaller and moved outwards */}
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[25%] left-[10%] md:left-[20%] px-5 py-2.5 rounded-full bg-blue-500/20 border border-blue-400/50 text-blue-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-blue-500/20"
+                className="absolute top-[20%] left-[5%] md:left-[15%] px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/50 text-blue-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-blue-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"/>
-                USA: 12k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.8)]"/>
+                USA: 12k+
             </motion.div>
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[35%] right-[10%] md:right-[20%] px-5 py-2.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
+                className="absolute bottom-[30%] right-[5%] md:right-[15%] px-3 py-1.5 rounded-full bg-green-500/20 border border-green-400/50 text-green-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-green-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"/>
-                UK: 5k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_10px_rgba(74,222,128,0.8)]"/>
+                UK: 5k+
             </motion.div>
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute top-[45%] right-[5%] md:right-[15%] px-5 py-2.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
+                className="absolute top-[40%] right-[2%] md:right-[10%] px-3 py-1.5 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-purple-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-purple-400 animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.8)]"/>
-                India: 18k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse shadow-[0_0_10px_rgba(192,132,252,0.8)]"/>
+                India: 18k+
             </motion.div>
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                className="absolute bottom-[25%] left-[15%] md:left-[25%] px-5 py-2.5 rounded-full bg-orange-500/20 border border-orange-400/50 text-orange-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-orange-500/20"
+                className="absolute bottom-[20%] left-[10%] md:left-[20%] px-3 py-1.5 rounded-full bg-orange-500/20 border border-orange-400/50 text-orange-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-orange-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-orange-400 animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]"/>
-                Canada: 4k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse shadow-[0_0_10px_rgba(251,146,60,0.8)]"/>
+                Canada: 4k+
             </motion.div>
             <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-                className="absolute top-[15%] right-[25%] md:right-[35%] px-5 py-2.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+                className="absolute top-[12%] right-[20%] md:right-[30%] px-3 py-1.5 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-cyan-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"/>
-                Germany: 6k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_10px_rgba(34,211,238,0.8)]"/>
+                Germany: 6k+
             </motion.div>
              <motion.div 
                 animate={{ opacity: [0.8, 1, 0.8], scale: [0.98, 1.02, 0.98] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-                className="absolute bottom-[15%] left-[30%] md:left-[40%] px-5 py-2.5 rounded-full bg-pink-500/20 border border-pink-400/50 text-pink-200 text-sm md:text-base font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-pink-500/20"
+                className="absolute bottom-[10%] left-[25%] md:left-[35%] px-3 py-1.5 rounded-full bg-pink-500/20 border border-pink-400/50 text-pink-200 text-xs font-bold backdrop-blur-md hidden md:flex items-center gap-2 shadow-lg shadow-pink-500/20"
             >
-                <span className="w-3 h-3 rounded-full bg-pink-400 animate-pulse shadow-[0_0_10px_rgba(244,114,182,0.8)]"/>
-                Australia: 3k+ Jobs
+                <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse shadow-[0_0_10px_rgba(244,114,182,0.8)]"/>
+                Australia: 3k+
             </motion.div>
         </div>
 
