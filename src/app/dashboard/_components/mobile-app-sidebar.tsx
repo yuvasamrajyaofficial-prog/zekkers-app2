@@ -11,6 +11,7 @@ import {
 import {
   LayoutGrid,
   User,
+  Users,
   Briefcase,
   Sparkles,
   Trophy,
