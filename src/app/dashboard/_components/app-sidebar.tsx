@@ -32,6 +32,7 @@ import {
   Heart,
   ChevronDown,
   ClipboardList,
+  Gift,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -158,6 +159,12 @@ const menuItems = [
     label: 'Saved Jobs',
     to: '/dashboard/saved-jobs',
     icon: <Heart size={20} />,
+  },
+  {
+    key: 'referrals',
+    label: 'Referrals & Rewards',
+    to: '/dashboard/referrals',
+    icon: <Gift size={20} />,
   },
   {
     key: 'settings',

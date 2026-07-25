@@ -24,11 +24,11 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { generateCoverLetter } from '@/ai/flows/ai-cover-letter-generator';
 import { analyzeResumeAgainstJob, type ResumeAnalysis } from '@/ai/flows/resume-analyzer';
-import { parseResume } from '@/ai/flows/resume-parser';
+import { parseResume, type ParseResumeOutput } from '@/ai/flows/resume-parser';
 import { Badge } from '@/components/ui/badge';
 import { useUser, useFirestore, useDoc } from '@/firebase';
 import { doc } from 'firebase/firestore';
-import { ProfileData } from '@/services/profile';
+import { ProfileData, saveUserProfile } from '@/services/profile';
 import ZLoader from '@/components/ui/loader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
@@ -54,7 +54,7 @@ const formatProfileToText = (profile: ProfileData | null): string => {
   let resume = `${profile.name}\n${profile.email} | ${profile.phone || ''} | ${profile.location || ''}\n\n`;
   resume += `**About**\n${profile.about || 'Not provided.'}\n\n`;
   
-  if (profile.experience?.length > 0) {
+  if (profile.experience && profile.experience.length > 0) {
     resume += '**Work Experience**\n';
     profile.experience.forEach(exp => {
       resume += `- ${exp.role} at ${exp.company} (${exp.from} - ${exp.to})\n  - ${exp.description}\n`;
@@ -62,7 +62,7 @@ const formatProfileToText = (profile: ProfileData | null): string => {
     resume += '\n';
   }
 
-  if (profile.education?.length > 0) {
+  if (profile.education && profile.education.length > 0) {
     resume += '**Education**\n';
     profile.education.forEach(edu => {
       resume += `- ${edu.degree}, ${edu.school} (${edu.startYear} - ${edu.endYear})\n`;
@@ -70,7 +70,7 @@ const formatProfileToText = (profile: ProfileData | null): string => {
     resume += '\n';
   }
 
-  if (profile.skills?.length > 0) {
+  if (profile.skills && profile.skills.length > 0) {
     resume += '**Skills**\n';
     resume += profile.skills.map(skill => skill.name).join(', ') + '\n';
   }
@@ -99,6 +99,7 @@ export default function ResumeAIPage() {
   const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
   const [isLoadingCoverLetter, setIsLoadingCoverLetter] = useState(false);
   const [isParsingResume, setIsParsingResume] = useState(false);
+  const [parsedData, setParsedData] = useState<ParseResumeOutput | null>(null);
 
   const { user, isLoading: isUserLoading } = useUser();
   const firestore = useFirestore();
@@ -147,6 +148,7 @@ export default function ResumeAIPage() {
         const dataUri = e.target?.result as string;
         try {
             const parsed = await parseResume({ resumeDataUri: dataUri });
+            setParsedData(parsed);
             const extractedText = `Name: ${parsed.name}\nEmail: ${parsed.email}\nPhone: ${parsed.phone}\n\nEducation:\n${parsed.education.join('\n')}\n\nExperience:\n${parsed.experience.join('\n')}\n\nSkills:\n${parsed.skills.join(', ')}`;
             setResumeText(extractedText);
             toast({ title: "Resume Parsed Successfully" });
@@ -161,6 +163,59 @@ export default function ResumeAIPage() {
         setIsParsingResume(false);
       }
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSaveToProfile = async () => {
+    if (!user || !firestore || !parsedData) return;
+    try {
+      const mappedSkills = parsedData.skills.map(s => ({
+        name: s,
+        level: 4
+      }));
+
+      const mappedEducation = parsedData.education.map((edu, idx) => {
+        const parts = edu.split(',');
+        return {
+          id: `edu-${idx}-${Date.now()}`,
+          school: parts[0]?.trim() || edu,
+          degree: parts[1]?.trim() || 'Degree details',
+          startYear: 2020,
+          endYear: 2024
+        };
+      });
+
+      const mappedExperience = parsedData.experience.map((exp, idx) => {
+        const parts = exp.split(' at ');
+        return {
+          id: `exp-${idx}-${Date.now()}`,
+          company: parts[1]?.trim() || 'Company details',
+          role: parts[0]?.trim() || exp,
+          from: 'Jan 2022',
+          to: 'Present',
+          description: exp
+        };
+      });
+
+      const profilePayload: Partial<ProfileData> = {
+        name: parsedData.name || userProfile?.name || user.displayName || '',
+        phone: parsedData.phone || userProfile?.phone || '',
+        skills: mappedSkills,
+        education: mappedEducation,
+        experience: mappedExperience,
+      };
+
+      saveUserProfile(firestore, user.uid, profilePayload);
+      toast({
+        title: "Profile Updated",
+        description: "Your profile has been updated with the AI parser output.",
+      });
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "Failed to update profile",
+        description: err.message,
+      });
     }
   };
 
@@ -277,6 +332,11 @@ export default function ResumeAIPage() {
                             disabled={isParsingResume}
                             />
                              {isParsingResume && <div className="mt-2 text-sm text-muted-foreground flex items-center gap-2"><Loader2 className="animate-spin w-4 h-4" /> Parsing your resume...</div>}
+                             {parsedData && (
+                               <Button onClick={handleSaveToProfile} className="mt-3 w-full bg-green-600 hover:bg-green-700 text-white font-semibold flex items-center justify-center gap-2">
+                                 <BookUser size={16} /> Save Parsed Data to Profile
+                               </Button>
+                             )}
                         </CardContent>
                         </Card>
                         <Card>

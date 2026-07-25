@@ -17,12 +17,14 @@ import {
 } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowRight } from 'lucide-react';
+import { generateReferralCode, processReferralCode } from '@/services/referrals';
 
 export default function SignupPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<string>('student');
+  const [referralCodeInput, setReferralCodeInput] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -42,16 +44,26 @@ export default function SignupPage() {
         displayName: name,
       });
 
-      // 3. Create user document in Firestore with role
+      const userReferralCode = generateReferralCode(user.uid);
+
+      // 3. Create user document in Firestore with role and referral code
       await setDoc(doc(db, 'users', user.uid), {
         uid: user.uid,
         email: user.email,
         displayName: name,
         role: role,
+        referralCode: userReferralCode,
+        referralPoints: 0,
+        referralsCount: 0,
         createdAt: new Date().toISOString(),
       });
 
-      // 4. Redirect based on role
+      // 4. Process incoming referral code if present
+      if (referralCodeInput.trim()) {
+        await processReferralCode(db, user.uid, name, referralCodeInput);
+      }
+
+      // 5. Redirect based on role
       switch (role) {
         case 'student':
           router.push('/dashboard');
@@ -132,21 +144,33 @@ export default function SignupPage() {
             className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="role">I am a...</Label>
-          <Select value={role} onValueChange={setRole}>
-            <SelectTrigger className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors">
-              <SelectValue placeholder="Select your role" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="student">Student / Job Seeker</SelectItem>
-              <SelectItem value="global_employer">Employer</SelectItem>
-              <SelectItem value="college">College / University</SelectItem>
-              <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
-              {/* Admin role is usually hidden or invite-only, but keeping for demo */}
-              <SelectItem value="admin">Administrator</SelectItem>
-            </SelectContent>
-          </Select>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="role">I am a...</Label>
+            <Select value={role} onValueChange={setRole}>
+              <SelectTrigger className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors">
+                <SelectValue placeholder="Select your role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="student">Student / Job Seeker</SelectItem>
+                <SelectItem value="global_employer">Employer</SelectItem>
+                <SelectItem value="college">College / University</SelectItem>
+                <SelectItem value="ngo">NGO / Non-Profit</SelectItem>
+                {/* Admin role is usually hidden or invite-only, but keeping for demo */}
+                <SelectItem value="admin">Administrator</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="inviteCode">Referral / Invite Code (Optional)</Label>
+            <Input 
+              id="inviteCode" 
+              placeholder="e.g., REF-XYZ123" 
+              value={referralCodeInput}
+              onChange={(e) => setReferralCodeInput(e.target.value)}
+              className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-colors"
+            />
+          </div>
         </div>
         <Button 
           type="submit" 
