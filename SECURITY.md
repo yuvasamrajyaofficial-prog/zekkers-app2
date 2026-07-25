@@ -21,6 +21,6 @@ Please **do not** create public issues to report security vulnerabilities.
 
 Instead, report them privately:
 
-1. Email us at **security@yuvasamrajya.org**.
+1. Email us at **ph293815@gmail.com**.
 2. Include steps to reproduce, potential impact on user profiles, and test accounts used.
 3. We will acknowledge receipt of your report within 48 hours and work with you to coordinate disclosures/patches.
