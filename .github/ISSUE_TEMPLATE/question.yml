@@ -1,0 +1,25 @@
+name: "❓ Question or Help Request"
+description: "Ask a question about configuration, setup, codebase details, or features."
+title: "[Question]: "
+labels: ["help wanted", "question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Stuck with local installation, or want to understand code modules? Ask away!
+  - type: textarea
+    id: context
+    attributes:
+      label: "What is your question?"
+      description: "Be as detailed as possible to help maintainers provide clear answers."
+      placeholder: "How can I configure the Firestore rules locally for Zekkers?"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Relevant Logs or Diagnostics"
+      description: "Add error output or configurations snippet here if relevant."
+      placeholder: "npm err! ..."
+    validations:
+      required: false

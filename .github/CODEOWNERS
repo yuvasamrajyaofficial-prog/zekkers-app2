@@ -1,0 +1,15 @@
+# CODEOWNERS
+# This file defines users or teams that are required reviewers for repository modifications.
+
+# Global owners for all files:
+* @yuvasamrajyaofficial-prog @prashant-zekkers
+
+# Product specific directories:
+/src/app/global-employers-dashboard/ @yuvasamrajyaofficial-prog/employers-team
+/src/app/admin-dashboard/ @yuvasamrajyaofficial-prog/admins
+/src/ai/ @yuvasamrajyaofficial-prog/ai-core-team
+
+# Firebase security & configurations:
+/firestore.rules @yuvasamrajyaofficial-prog/devops
+/storage.rules @yuvasamrajyaofficial-prog/devops
+/.github/ @yuvasamrajyaofficial-prog/admins

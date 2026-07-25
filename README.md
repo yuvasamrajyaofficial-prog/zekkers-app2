@@ -1,404 +1,76 @@
-# 🚀 Zekkers — Smart Seekers. Verified Opportunities. AI-Powered Futures.
+# <div align="center">⚔️ Yuva Samrajya Official Ecosystem ⚔️</div>
 
 <div align="center">
-
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.7-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.x-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-11.x-FFCA28?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
-
-**A unified career ecosystem connecting students, professionals, employers, colleges, NGOs, and institutions with government, private, and global opportunities.**
-
-[Live Demo](https://zekkers-app2.vercel.app) • [Report Bug](https://github.com/yuvasamrajyaofficial-prog/zekkers-app2/issues) • [Request Feature](https://github.com/yuvasamrajyaofficial-prog/zekkers-app2/issues)
-
+  <img src="https://img.shields.io/github/license/yuvasamrajyaofficial-prog/zekkers-app2?style=for-the-badge&color=blue" alt="License" />
+  <img src="https://img.shields.io/github/stars/yuvasamrajyaofficial-prog/zekkers-app2?style=for-the-badge&color=gold" alt="Stars" />
+  <img src="https://img.shields.io/github/issues/yuvasamrajyaofficial-prog/zekkers-app2?style=for-the-badge&color=red" alt="Issues" />
+  <img src="https://img.shields.io/github/workflow/status/yuvasamrajyaofficial-prog/zekkers-app2/Continuous%20Integration?style=for-the-badge&color=green" alt="CI Build" />
 </div>
 
 ---
 
-## 📋 Table of Contents
+Welcome to the **Yuva Samrajya** open-source engineering ecosystem. We build tools that bridge state-of-the-art AI technology with career opportunities and spiritual discovery.
 
-- [About The Project](#about-the-project)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [AI Features](#ai-features)
-- [Dashboards](#dashboards)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+Our organization maintains two flagship products: **Zekkers** & **Malola**.
 
 ---
 
-## 🎯 About The Project
+## 🚀 Flagship Products
 
-**Zekkers** is a comprehensive career platform that bridges the gap between job seekers and verified employers through AI-driven matching, secure profiles, and transparent hiring workflows. The platform caters to multiple stakeholders including:
-
-- 🎓 **Students & Job Seekers** — Browse government, private, and global opportunities
-- 🏢 **Global Employers** — Post jobs, manage ATS, access AI-powered candidate matching
-- 🏫 **Colleges** — Track placements, manage campus drives, analytics
-- 🤝 **NGOs** — Support skill development and placements
-
-- 👨‍💼 **Admin** — Platform management and oversight
+| Product     | Description                                                                              | Core Target Audience            | Status   |
+| :---------- | :--------------------------------------------------------------------------------------- | :------------------------------ | :------- |
+| **Zekkers** | AI-Powered Career, Onboarding, Resume Parsing, and Learning Roadmap Hub.                 | Students, Professionals, and HR | `Active` |
+| **Malola**  | AI Spiritual Companion, Astrology, Meditation, Temple directories, and Scripture Vaults. | Seekers and Community Learners  | `Active` |
 
 ---
 
-## 📸 Screenshots
+### 💼 1. Zekkers: AI-Powered Career Hub
 
-### Student Dashboard
+Zekkers accelerates candidate onboarding, talent discovery, and skills mapping:
 
-![Student Dashboard - AI Job Matching](docs/screenshots/student-dashboard.png)
-_Smart job recommendations with AI-powered match scores for government, private, and international opportunities_
+- **Resume AI Studio**: Automated Genkit-powered parsing, indexing, and direct profile integration.
+- **Dynamic Roadmaps**: AI-generated educational roadmaps for target roles.
+- **Mock Interviews**: Real-time voice-interactive mentoring and evaluations.
+- **Referral Pipeline**: Integrated candidate tracking system rewarding point allocations (`100` points per onboarding).
 
-### College Dashboard
+### 🕉️ 2. Malola: AI Spiritual Companion
 
-![College Dashboard - Placement Analytics](docs/screenshots/college-dashboard.png)
-_Real-time placement tracking with department analytics and student readiness metrics_
+Malola balances growth with a comprehensive digital spiritual portal:
 
-### Global Employer Dashboard
-
-![Global Employer Dashboard](docs/screenshots/global-employer-dashboard.png)
-_International hiring with global talent insights, visa tracking, and multi-country analytics_
-
-### NGO Dashboard
-
-![NGO Dashboard - Program Management](docs/screenshots/ngo-dashboard.png)
-_Track beneficiaries, skill programs, placements, and social impact metrics_
-
-### College Analytics & Insights
-
-![College Analytics Dashboard](docs/screenshots/college-analytics.png)
-_AI-powered analytics with hiring trends, job categories, and actionable placement insights_
-
-### NGO Donor Reporting
-
-![NGO Donor Reporting & Funding](docs/screenshots/ngo-donor-reporting.png)
-_Comprehensive donor management with commitment tracking and program funding analytics_
-
-> **Note:** Screenshots coming soon! The app is live and fully functional.
+- **Astro AI**: Real-time personal charts, transits, and customized insights.
+- **Scripture Media Vault**: Audio transcripts, daily verse uploads, and pdf directories.
+- **Temple Locator**: Interactive directory tracking history, timings, and events.
+- **Meditation Assistant**: Guided breathing exercises, timers, and progress counters.
 
 ---
 
-## ✨ Key Features
+## 🛠️ Technological Stack
 
-### 🔍 For Job Seekers
-
-- **AI Job Matching** — Smart recommendations based on profile and skills
-- **Resume Analyzer** — AI-powered resume scoring and suggestions
-- **Skill Roadmaps** — Personalized learning paths powered by AI
-- **Interview Prep** — AI mock interviews with real-time feedback
-- **Competition Tracking** — Track coding competitions and hackathons
-
-### 💼 For Global Employers
-
-- **Applicant Tracking System (ATS)** — Kanban-style candidate management
-- **AI Candidate Finder** — Intelligent candidate search and ranking
-- **Campus Hiring** — Manage college partnerships and drives
-- **Skill Gap Analysis** — AI-powered workforce insights
-- **Global Hiring** — Remote job postings and international talent pool
-
-### 🏫 For Colleges
-
-- **Placement Analytics** — Track student placements and outcomes
-- **Campus Drive Management** — Schedule and manage recruitment drives
-- **Student Progress Tracking** — Monitor skill development
-- **Employer Partnerships** — Manage corporate collaborations
-
-### 🤖 AI-Powered Features
-
-- **Resume Analysis & Scoring** — Get instant feedback with match scores (0-100)
-- **Smart Job Matching** — AI ranks jobs based on your skills and preferences
-- **Skill Gap Identification** — Discover missing skills for target roles
-- **Voice AI Interviews** — Practice with realistic AI mock interviews
-- **Career Roadmaps** — Personalized learning paths generated by AI
-- **Intelligent Notifications** — Context-aware alerts and recommendations
-- **Automated Screening** — AI pre-screens candidates for employers
-- **Sentiment Analysis** — Analyze application and interview responses
-
-### 🔧 Platform Features
-
-- **Real-Time Updates** — Live notifications and data synchronization
-- **Responsive Design** — Works seamlessly on desktop, tablet, and mobile
-- **Dark Mode** — Eye-friendly dark theme support
-- **Advanced Search** — Full-text search with filters
-- **Data Export** — Export data to PDF, CSV, Excel
-- **API Access** — RESTful API for integrations
-
-### 📊 Analytics & Insights
-
-- **Placement Dashboard** — Comprehensive placement tracking
-- **Performance Metrics** — KPIs for employers and colleges
-- **Trend Analysis** — Industry and skill trends
-- **Custom Reports** — Generate custom analytics reports
-- **Data Visualization** — Interactive charts and graphs
-- **Predictive Analytics** — AI-powered hiring predictions
+- **Frontend**: Next.js 16 (App Router), React 19, TailwindCSS, Framer Motion
+- **AI Orchestration**: Google Genkit AI, Gemini Pro Models
+- **Database & Storage**: Google Cloud Firestore, Firebase Storage
+- **Hosting**: Firebase App Hosting, Vercel
+- **CI/CD & Linting**: GitHub Actions, ESLint, TypeScript Compiler (`tsc`)
 
 ---
 
-## 🛠 Tech Stack
+## 🤝 Join the Open Source Movement
 
-### Frontend
+We believe in the power of open-source. Anyone is welcome, whether you're a first-year college student, a senior backend engineer, or a product designer.
 
-- **Framework:** Next.js 16.0.7 (React 19)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **UI Components:** Radix UI, Shadcn/ui
-- **Animations:** Framer Motion
-- **Forms:** React Hook Form + Zod validation
-- **Charts:** Recharts
+### How to Get Started
 
-### Backend & Services
-
-- **Backend:** Firebase (Firestore, Auth, Storage, Functions)
-- **AI/ML:** Google Genkit AI
-- **API Integration:** RESTful APIs, Firebase Cloud Functions
-
-### DevOps
-
-- **Deployment:** Vercel / Firebase Hosting
-- **CI/CD:** GitHub Actions
-- **Version Control:** Git & GitHub
+1. Read the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
+2. Review our [ROADMAP.md](ROADMAP.md) to see what we're building next.
+3. Browse the `good first issue` label.
+4. Clone the codebase and configure your env using our [INSTALLATION.md](INSTALLATION.md).
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18.x or higher
-- npm or yarn package manager
-- Firebase account (for backend services)
-- Git
-
-### Environment Variables
-
-See `.env.example` for all available configuration options.
-
----
-
-## 📖 Usage
-
-### Development
-
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-```
-
-### Firebase Functions
-
-```bash
-cd functions
-npm run serve        # Test functions locally
-npm run deploy       # Deploy to Firebase
-```
-
-### Genkit AI Development
-
-```bash
-npm run genkit:dev   # Start Genkit development server
-npm run genkit:watch # Watch mode for AI flows
-```
-
----
-
-## 📁 Project Structure
-
-```
-zekkers-app2/
-├── src/
-│   ├── app/                    # Next.js App Router pages
-│   │   ├── dashboard/          # Job seeker dashboard
-
-│   │   ├── college-dashboard/  # College dashboard
-│   │   ├── ngo-dashboard/      # NGO dashboard
-│   │   └── admin-dashboard/    # Admin dashboard
-│   ├── components/             # Reusable React components
-│   │   ├── ui/                 # Shadcn/ui components
-│   │   └── analytics/          # Analytics components
-│   ├── ai/                     # AI/ML integration
-│   │   └── flows/              # Genkit AI flows
-│   ├── lib/                    # Utility functions
-│   ├── services/               # API service layers
-│   ├── hooks/                  # Custom React hooks
-│   ├── types/                  # TypeScript type definitions
-│   └── firebase/               # Firebase configuration
-├── functions/                  # Firebase Cloud Functions
-├── public/                     # Static assets
-└── docs/                       # Documentation
-```
-
----
-
-## 🤖 AI Features
-
-Zekkers leverages **Google Genkit AI** for intelligent features:
-
-### Resume Analyzer Flow
-
-Analyzes resumes against job descriptions and provides:
-
-- Match score (0-100)
-- Strengths and weaknesses
-- Improvement suggestions
-
-### AI Ranking Engine
-
-Ranks job postings based on candidate profile:
-
-- Skill matching
-- Experience alignment
-- Location preferences
-
-### Interview AI Flow
-
-Conducts AI-powered mock interviews with:
-
-- Voice interaction
-- Real-time feedback
-- Performance scoring
-
----
-
-## 🎛 Dashboards
-
-### Student Dashboard (`/dashboard`)
-
-- Job search and recommendations
-- Resume builder and analyzer
-- Competition tracker
-- Interview preparation
-- Skill roadmaps
-
-### College Dashboard (`/college-dashboard`)
-
-- Placement tracking
-- Student analytics
-- Campus drive management
-- Employer partnerships
-
-### NGO Dashboard (`/ngo-dashboard`)
-
-- Program management
-- Participant tracking
-- Placement coordination
-- Impact analytics
-
-### Global Employer Dashboard (`/global-employers-dashboard`)
-
-- International job postings
-- Remote hiring tools
-- Global candidate pool
-- Compliance and documentation
-
-### Admin Dashboard (`/admin-dashboard`)
-
-- Platform management
-- User management
-- Analytics and reporting
-- System configuration
-
----
-
-## 🔒 Security & Privacy
-
-Zekkers takes security and privacy seriously:
-
-### Authentication & Authorization
-
-- ✅ **Firebase Authentication** — Secure email/password and OAuth login
-- ✅ **Role-Based Access Control (RBAC)** — Granular permissions for each dashboard
-- ✅ **Session Management** — Secure token-based sessions
-- ✅ **Multi-Factor Authentication** — Optional 2FA for enhanced security
-
-### Data Protection
-
-- 🔐 **End-to-End Encryption** — All data in transit encrypted with HTTPS
-- 🔐 **Database Security** — Firestore security rules for data access control
-- 🔐 **PII Protection** — Personal Identifiable Information handled per GDPR/CCPA
-- 🔐 **Resume Storage** — Secure Firebase Storage with access controls
-
-### Compliance
-
-- ✅ **GDPR Compliant** — Data privacy and user rights
-- ✅ **CCPA Compliant** — California Consumer Privacy Act
-- ✅ **ISO 27001** — Information security management standards
-- ✅ **Data Retention Policies** — Configurable data lifecycle management
-
-### AI Safety
-
-- 🤖 **Content Moderation** — AI-powered content filtering
-- 🤖 **Bias Mitigation** — Fair and unbiased AI recommendations
-- 🤖 **Data Minimization** — Only necessary data used for AI processing
-- 🤖 **Transparent AI** — Clear explanations for AI decisions
-
-### Security Features
-
-- 🛡️ **XSS Protection** — Cross-site scripting prevention
-- 🛡️ **CSRF Protection** — Cross-site request forgery tokens
-- 🛡️ **Rate Limiting** — API abuse prevention
-- 🛡️ **Input Validation** — Zod schema validation on all inputs
-- 🛡️ **SQL Injection Prevention** — NoSQL database (Firestore)
-- 🛡️ **Security Headers** — CSP, HSTS, X-Frame-Options configured
-
-### Reporting Security Issues
-
-If you discover a security vulnerability, please email:
-**yuvasamrajyaofficial@gmail.com**
-
-Do NOT create public GitHub issues for security vulnerabilities.
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## 📧 Contact
-
-**Yuva Samrajya Official**
-
-- GitHub: [@yuvasamrajyaofficial-prog](https://github.com/yuvasamrajyaofficial-prog)
-- Project Link: [https://github.com/yuvasamrajyaofficial-prog/zekkers-app2](https://github.com/yuvasamrajyaofficial-prog/zekkers-app2)
-
----
-
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/)
-- [Firebase](https://firebase.google.com/)
-- [Google Genkit AI](https://firebase.google.com/products/genkit)
-- [Shadcn/ui](https://ui.shadcn.com/)
-- [Radix UI](https://www.radix-ui.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-
----
-
-<div align="center">
-
-**Made with ❤️ by the Prashant**
-
-© 2025 Zekkers — Powered by MCT. All rights reserved.
-
-</div>
+## 💬 Community Channels
+
+- **Website**: [https://yuvasamrajya.org](https://yuvasamrajya.org)
+- **Discord**: [Join our Discord Server](https://discord.gg/yuvasamrajya)
+- **X (formerly Twitter)**: [@yuvasamrajya](https://twitter.com/yuvasamrajya)
+- **LinkedIn**: [Yuva Samrajya Official](https://linkedin.com/company/yuvasamrajya)
+- **YouTube**: [Yuva Samrajya Dev Logs](https://youtube.com/c/yuvasamrajya)

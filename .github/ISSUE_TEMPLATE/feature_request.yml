@@ -1,0 +1,52 @@
+name: "✨ Feature Request"
+description: "Propose a new idea, feature highlight, or optimization for Zekkers or Malola."
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to improve the platform? We'd love to hear it!
+  - type: dropdown
+    id: product
+    attributes:
+      label: "Product Area"
+      description: "Which product / ecosystem does this feature apply to?"
+      options:
+        - "Zekkers Platform"
+        - "Malola Spiritual Ecosystem"
+        - "AI Engine / Core Genkit Flow"
+        - "CI/CD & Developer Experience"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: "Is your feature request related to a problem?"
+      description: "A clear and concise description of what the problem or limitation is."
+      placeholder: "It is currently difficult to..."
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: "Proposed Solution"
+      description: "Detailed description of what you want to happen."
+      placeholder: "We should add a feature that..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "Alternative Approaches"
+      description: "Any alternative solutions or workarounds you've considered."
+      placeholder: "Alternatively, we could..."
+    validations:
+      required: false
+  - type: checkboxes
+    id: contributor
+    attributes:
+      label: "Contribution Plan"
+      options:
+        - label: "I would be willing to submit a pull request to implement this feature myself."
+          required: false

@@ -1,0 +1,32 @@
+name: "📝 Documentation Update"
+description: "Suggest improvements, fixes, or additions to the documentation."
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us make our guides, readmes, and wiki clearer for everyone!
+  - type: textarea
+    id: details
+    attributes:
+      label: "What documentation changes are needed?"
+      description: "Describe the gap in documentation or what needs fixing."
+      placeholder: "The INSTALLATION.md guide is missing information on..."
+    validations:
+      required: true
+  - type: input
+    id: doc_link
+    attributes:
+      label: "Affected Files or Links"
+      description: "If applicable, reference the file names or URLs to fix."
+      placeholder: "INSTALLATION.md"
+    validations:
+      required: false
+  - type: checkboxes
+    id: volunteer
+    attributes:
+      label: "I want to help"
+      options:
+        - label: "I would like to submit a Pull Request to fix this documentation issue."
+          required: false

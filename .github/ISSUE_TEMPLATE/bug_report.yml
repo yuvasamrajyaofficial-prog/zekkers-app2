@@ -1,0 +1,65 @@
+name: "🐛 Bug Report"
+description: "Report a compilation issue, runtime error, or visual defect on Zekkers or Malola."
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please provide as much detail as possible to help us triage and fix it.
+  - type: dropdown
+    id: project
+    attributes:
+      label: "Component / Product"
+      description: "Which product does this bug affect?"
+      options:
+        - "Zekkers (Career & Learning)"
+        - "Malola (Spiritual Ecosystem)"
+        - "Shared / General Infrastructure"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "When I navigate to... the app crashes."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Steps to reproduce the behavior."
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behavior"
+      description: "A clear and concise description of what you expected to happen."
+      placeholder: "The page should load user profiles immediately."
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: "Environment Details"
+      description: "OS, Browser version, Node version, etc. (e.g. Windows 11, Chrome 120, Node v20)"
+      placeholder: "Windows 11, Node v20, Next.js v16"
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklists
+    attributes:
+      label: "Checklist"
+      options:
+        - label: "I have searched existing issues to ensure this is not a duplicate."
+          required: true
+        - label: "I have checked that I am running the latest version of the repository."
+          required: true
