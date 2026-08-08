@@ -14,6 +14,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AtsBoard } from './_components/ats-board';
+import { MOCK_STAGES, MOCK_ATS_CANDIDATES } from '@/types/ats';
 
 const candidates = [
   {
@@ -188,10 +190,8 @@ export default function AtsPage() {
                 </CardContent>
             </Card>
         </TabsContent>
-        <TabsContent value="board">
-            <div className="p-12 text-center text-muted-foreground bg-slate-50 rounded-lg border border-dashed">
-                Kanban board visualization would appear here.
-            </div>
+        <TabsContent value="board" className="mt-4">
+            <AtsBoard candidates={MOCK_ATS_CANDIDATES} stages={MOCK_STAGES} />
         </TabsContent>
       </Tabs>
     </div>
