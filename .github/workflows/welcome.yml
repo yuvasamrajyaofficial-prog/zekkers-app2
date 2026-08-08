@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Welcome Issue Commits
         if: github.event.issues.opened == true
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -24,7 +24,7 @@ jobs:
 
       - name: Welcome Pull Requests
         if: github.event.pull_request_target.opened == true
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
