@@ -1,0 +1,20 @@
+# PR Labeler Configuration
+# Automatically label PRs based on paths changed
+
+"ai":
+  - src/ai/**/*
+
+"frontend":
+  - src/app/**/*
+  - src/components/**/*
+  - src/styles/**/*
+  - public/**/*
+
+"backend":
+  - src/services/**/*
+  - src/firebase/**/*
+  - functions/**/*
+
+"documentation":
+  - "**.md"
+  - docs/**/*
