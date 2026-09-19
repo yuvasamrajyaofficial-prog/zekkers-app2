@@ -47,7 +47,7 @@
     "dotenv": "^16.6.1",
     "embla-carousel-react": "^8.6.0",
     "firebase": "^12.17.1",
-    "framer-motion": "^11.5.7",
+    "framer-motion": "^13.4.0",
     "genkit": "^1.40.1",
     "lucide-react": "^0.475.0",
     "next": "^16.0.10",
